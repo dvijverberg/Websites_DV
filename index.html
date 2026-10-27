@@ -1,411 +1,63 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Dion Vijverberg — Product Development Engineer</title>
   <meta name="description" content="Dion Vijverberg, product development engineer. From idea to something that can actually be made.">
-  <meta name="theme-color" content="#050a07">
-  <link rel="preload" href="assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
-  <style>
-    @font-face { font-family: "Archivo"; src: url(assets/fonts/archivo.woff2) format("woff2-variations"); font-weight: 100 900; font-stretch: 62% 125%; font-display: swap; }
-    @font-face { font-family: "JetBrains Mono"; src: url(assets/fonts/jbm-400.woff2) format("woff2"); font-weight: 400; font-display: swap; }
-    @font-face { font-family: "JetBrains Mono"; src: url(assets/fonts/jbm-500.woff2) format("woff2"); font-weight: 500; font-display: swap; }
-    :root {
-      --bg: #050a07;
-      --ink: #ecebe6;
-      --dim: #8b8d87;
-      --faint: #2a2f2c;
-      --line: #1b201d;
-      --hot: #ff5b1f;
-      --mono: "JetBrains Mono", ui-monospace, monospace;
-      --sans: "Archivo", system-ui, sans-serif;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg);
-      color: var(--ink);
-      font-family: var(--sans);
-      
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-    ::selection { background: var(--hot); color: var(--bg); }
-    a { color: inherit; }
-
-    /* engineering grid */
-    body::before {
-      content: "";
-      position: fixed; inset: 0;
-      background-image:
-        linear-gradient(var(--line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--line) 1px, transparent 1px);
-      background-size: 48px 48px;
-      mask-image: radial-gradient(ellipse at 70% 20%, #000 0%, transparent 70%);
-      -webkit-mask-image: radial-gradient(ellipse at 70% 20%, #000 0%, transparent 70%);
-      opacity: .55;
-      pointer-events: none;
-      z-index: 0;
-    }
-    main, header.bar, footer { position: relative; z-index: 1; }
-
-    .mono {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--dim);
-    }
-    .wrap { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
-
-    /* ---------- top bar ---------- */
-    header.bar {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 22px 0;
-    }
-    .mark {
-      font-weight: 900;
-      font-stretch: 62%;
-      font-size: 22px;
-      letter-spacing: .02em;
-      text-decoration: none;
-    }
-    .mark i { color: var(--hot); font-style: normal; }
-    .status { display: flex; align-items: center; gap: 10px; }
-    .dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--hot);
-      box-shadow: 0 0 0 0 rgba(255,91,31,.6);
-      animation: ping 2s infinite;
-    }
-    @keyframes ping {
-      0% { box-shadow: 0 0 0 0 rgba(255,91,31,.55); }
-      70% { box-shadow: 0 0 0 10px rgba(255,91,31,0); }
-      100% { box-shadow: 0 0 0 0 rgba(255,91,31,0); }
-    }
-
-    /* ---------- hero ---------- */
-    .hero {
-      position: relative;
-      min-height: calc(100vh - 70px);
-      min-height: calc(100svh - 70px);
-      display: grid;
-      grid-template-columns: 1fr;
-      align-items: end;
-      padding-bottom: 48px;
-    }
-    .photo {
-      position: absolute;
-      right: 4%; bottom: 0;
-      height: 92%;
-      aspect-ratio: 1100 / 1307;
-      z-index: 2;
-      pointer-events: none;
-    }
-    .photo img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      filter: grayscale(.2) contrast(1.06);
-      opacity: 0;
-      transform: scale(1.04);
-      transition: opacity 1.4s ease, transform 1.8s cubic-bezier(.2,.7,0,1);
-    }
-    .loaded .photo img { opacity: 1; transform: none; }
-
-    /* dimension lines around the photo */
-    .dim-v, .dim-h { position: absolute; color: var(--dim); }
-    .dim-v {
-      right: -30px; top: 60%; bottom: 20%;
-      border-left: 1px solid var(--faint);
-    }
-    .dim-v::before, .dim-v::after, .dim-h::before, .dim-h::after {
-      content: ""; position: absolute; background: var(--faint);
-    }
-    .dim-v::before, .dim-v::after { left: -6px; width: 11px; height: 1px; }
-    .dim-v::before { top: 0; } .dim-v::after { bottom: 0; }
-    .dim-v span {
-      position: absolute; top: 50%; left: -10px;
-      transform: translate(-50%, -50%) rotate(-90deg);
-      background: var(--bg); padding: 0 8px; white-space: nowrap;
-    }
-    .dim-h {
-      top: 8%; left: 22%; right: 22%;
-      border-top: 1px solid var(--faint);
-    }
-    .dim-h::before, .dim-h::after { top: -6px; width: 1px; height: 11px; }
-    .dim-h::before { left: 0; } .dim-h::after { right: 0; }
-    .dim-h span {
-      position: absolute; left: 50%; top: -8px;
-      transform: translateX(-50%);
-      background: var(--bg); padding: 0 8px; white-space: nowrap;
-    }
-    .callout {
-      position: absolute; left: -40px; top: 74%;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .callout::before {
-      content: ""; width: 56px; height: 1px; background: var(--hot);
-    }
-    .callout b { color: var(--hot); font-weight: 500; }
-
-    h1 {
-      position: relative;
-      font-weight: 900;
-      font-stretch: 62%;
-      font-size: clamp(76px, 16.5vw, 236px);
-      line-height: .8;
-      letter-spacing: -.01em;
-      text-transform: uppercase;
-      z-index: 1;
-    }
-    h1 .line { display: block; overflow: hidden; }
-    h1 .line span {
-      display: block;
-      transform: translateY(105%);
-      transition: transform 1.1s cubic-bezier(.2,.8,0,1);
-    }
-    h1 .line:nth-child(2) span { transition-delay: .12s; }
-    .loaded h1 .line span { transform: none; }
-    h1 .line:nth-child(2) { padding-left: 8vw; }
-
-    .hero-foot {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 32px;
-      margin-top: 36px;
-      align-items: end;
-      position: relative;
-      z-index: 3;
-    }
-    .pitch {
-      font-size: clamp(20px, 2.1vw, 28px);
-      font-weight: 400;
-      line-height: 1.25;
-      max-width: 520px;
-    }
-    .pitch em { font-style: normal; color: var(--hot); }
-    .hero-meta {
-      display: flex; flex-direction: column; gap: 6px;
-      justify-self: end; text-align: right;
-    }
-
-    /* ---------- sections ---------- */
-    section { padding: 120px 0 0; }
-    .sec-head {
-      display: flex; justify-content: space-between; align-items: baseline;
-      border-bottom: 1px solid var(--faint);
-      padding-bottom: 14px; margin-bottom: 8px;
-    }
-    h2 {
-      font-weight: 800;
-      font-stretch: 75%;
-      font-size: clamp(30px, 4vw, 48px);
-      text-transform: uppercase;
-      letter-spacing: -.005em;
-    }
-
-    /* work rows */
-    .work { list-style: none; }
-    .work li {
-      display: grid;
-      grid-template-columns: 70px 1fr 1.1fr 140px;
-      gap: 24px;
-      align-items: baseline;
-      padding: 30px 0;
-      border-bottom: 1px solid var(--line);
-      position: relative;
-      transition: padding .4s cubic-bezier(.2,.8,0,1);
-    }
-    .work li::before {
-      content: ""; position: absolute; left: 0; bottom: -1px;
-      height: 1px; width: 0; background: var(--hot);
-      transition: width .6s cubic-bezier(.2,.8,0,1);
-    }
-    .work li:hover::before { width: 100%; }
-    .work li:hover { padding-left: 14px; }
-    .work .n { color: var(--hot); }
-    .work h3 {
-      font-weight: 700;
-      font-stretch: 85%;
-      font-size: clamp(22px, 2.3vw, 30px);
-      line-height: 1.05;
-      text-transform: uppercase;
-    }
-    .work p { color: var(--dim); font-size: 16px; line-height: 1.5; }
-    .work .where { text-align: right; }
-    .badge {
-      display: inline-block; margin-top: 10px;
-      border: 1px solid var(--hot); color: var(--hot);
-      padding: 4px 8px; border-radius: 2px;
-    }
-
-    /* experience */
-    .exp { list-style: none; }
-    .exp li {
-      display: grid;
-      grid-template-columns: 180px 1fr auto;
-      gap: 24px;
-      padding: 18px 0;
-      border-bottom: 1px solid var(--line);
-      align-items: baseline;
-    }
-    .exp .role { font-size: 19px; font-weight: 600; }
-    .exp .org { color: var(--dim); font-size: 15px; margin-top: 3px; }
-
-    /* skills */
-    .skills { display: flex; flex-wrap: wrap; gap: 10px; padding-top: 22px; }
-    .skills span {
-      font-family: var(--mono); font-size: 13px;
-      border: 1px solid var(--faint);
-      padding: 9px 14px; border-radius: 2px;
-      transition: border-color .2s, color .2s;
-    }
-    .skills span:hover { border-color: var(--hot); color: var(--hot); }
-
-    /* contact */
-    .contact { padding: 160px 0 80px; }
-    .contact .mono { margin-bottom: 20px; display: block; }
-    .big-mail {
-      display: inline-block;
-      font-weight: 900;
-      font-stretch: 62%;
-      font-size: clamp(48px, 10vw, 150px);
-      line-height: .9;
-      text-transform: uppercase;
-      text-decoration: none;
-      position: relative;
-    }
-    .big-mail .arrow {
-      display: inline-block; color: var(--hot);
-      transition: transform .4s cubic-bezier(.2,.8,0,1);
-    }
-    .big-mail:hover .arrow { transform: translate(14px, -14px); }
-    .mail-line {
-      margin-top: 22px;
-      font-family: var(--mono); font-size: 15px;
-    }
-    .mail-line a { text-decoration: none; border-bottom: 1px solid var(--hot); }
-
-    /* title block footer */
-    footer { padding: 0 0 32px; }
-    .tblock {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
-      border: 1px solid var(--faint);
-    }
-    .tblock div {
-      padding: 12px 14px;
-      border-right: 1px solid var(--faint);
-      display: flex; flex-direction: column; gap: 6px;
-    }
-    .tblock div:last-child { border-right: 0; }
-    .tblock b {
-      font-family: var(--mono); font-weight: 500;
-      font-size: 13px; color: var(--ink);
-      letter-spacing: .04em; text-transform: uppercase;
-    }
-
-    /* reveal on scroll */
-    .rv { opacity: 0; transform: translateY(24px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.8,0,1); }
-    .rv.in { opacity: 1; transform: none; }
-
-    /* cursor coordinate readout */
-    .coords {
-      position: fixed; right: 24px; bottom: 20px; z-index: 5;
-      pointer-events: none;
-    }
-
-    @media (max-width: 900px) {
-      .photo { right: -6%; height: 72%; }
-      .dim-v, .dim-h, .callout { display: none; }
-      .hero-foot { grid-template-columns: 1fr; }
-      .hero-meta { justify-self: start; text-align: left; }
-      .work li { grid-template-columns: 44px 1fr; gap: 10px 16px; }
-      .work p, .work .where { grid-column: 2; text-align: left; }
-      .exp li { grid-template-columns: 1fr; gap: 4px; }
-      .tblock { grid-template-columns: 1fr 1fr; }
-      .tblock div { border-bottom: 1px solid var(--faint); }
-      .tblock div:first-child { grid-column: 1 / -1; }
-      .coords { display: none; }
-      section { padding-top: 90px; }
-    }
-    @media (max-width: 520px) {
-      .wrap { padding: 0 16px; }
-      .status .mono:last-child { display: none; }
-      .hero { align-items: start; padding-top: 8px; }
-      .photo { position: relative; right: auto; bottom: auto; height: auto; width: 86%; margin: 0 auto -26%; }
-      .photo img { display: block; }
-      h1 .line:nth-child(2) { padding-left: 0; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { transition: none !important; animation: none !important; }
-      .rv, h1 .line span, .photo img { opacity: 1; transform: none; }
-    }
-  </style>
+  <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+  <link rel="preload" href="/assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/styles.css">
 </head>
 <body>
   <div class="wrap">
     <header class="bar">
-      <a class="mark" href="#">DV<i>/</i></a>
-      <div class="status">
-        <span class="dot"></span>
-        <span class="mono">Open to work</span>
-        <span class="mono">— De Lier, NL</span>
+      <a class="mark" href="/">DV<i>/</i></a>
+      <div class="bar-right">
+        <nav class="mono">
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <button class="theme-toggle mono" type="button" aria-label="Switch theme"><span class="knob"></span><span class="label">Light</span></button>
       </div>
     </header>
 
     <main>
       <div class="hero">
-        <div class="photo" aria-hidden="true">
-          <img src="assets/dion.webp" alt="">
-          <div class="dim-h mono"><span>Concept</span></div>
-          <div class="dim-v mono"><span>→ Production</span></div>
-          <div class="callout mono"><b>Fig. 1</b> The engineer</div>
-        </div>
-
-        <h1 aria-label="Dion Vijverberg">
-          <span class="line"><span>Dion</span></span>
-          <span class="line"><span>Vijverberg</span></span>
-        </h1>
-
-        <div class="hero-foot">
-          <p class="pitch">
-            Product development engineer. I take products from idea to
-            <em>something that can actually be made.</em>
-          </p>
+        <div>
+          <div class="eyebrow"><span class="dot"></span><span class="mono">Open to work — De Lier, NL</span></div>
+          <h1>Dion<br>Vijverberg</h1>
+          <p class="pitch">Product development engineer. I take products from idea to <strong>something that can actually be made.</strong></p>
           <div class="hero-meta">
-            <span class="mono">MSc Integrated Product Design</span>
-            <span class="mono">TU Delft — 2026</span>
+            <div><span class="mono">Education</span><b>MSc IPD, TU Delft</b></div>
+            <div><span class="mono">Focus</span><b>Concept → Production</b></div>
           </div>
         </div>
+        <figure class="portrait">
+          <div class="frame"><img src="/assets/dion.jpg" alt="Portrait of Dion Vijverberg" width="880" height="1100"></div>
+          <figcaption class="mono"><span><span class="hot">Fig. 1</span> — The engineer</span><span>1:1</span></figcaption>
+        </figure>
       </div>
 
-      <section id="work">
+      <section id="projects">
         <div class="sec-head rv">
-          <h2>Selected work</h2>
-          <span class="mono">03 items</span>
+          <h2>Projects</h2>
+          <span class="mono">Selected</span>
         </div>
-        <ul class="work">
-          <li class="rv">
-            <span class="mono n">01</span>
+        <div class="projects">
+          <a class="project rv" href="/projects/e-bike-diagnostics">
+            <div class="top"><span class="mono hot">01</span><span class="mono">Graduation · 2026</span></div>
             <h3>Hearing motor faults without opening the motor</h3>
-            <p>Graduation project. Took e-bike motors apart, built a working sensor prototype and showed that vibration analysis can detect defects. Aimed at repair, not replacement.<br><span class="mono badge">Paper accepted · IWAR 2026</span></p>
-            <span class="mono where">TU Delft</span>
-          </li>
-          <li class="rv">
-            <span class="mono n">02</span>
-            <h3>From CAD model to delivered part</h3>
-            <p>Redesigned a custom tool and took it all the way to production with an external manufacturer.</p>
-            <span class="mono where">KUBO R&amp;D</span>
-          </li>
-          <li class="rv">
-            <span class="mono n">03</span>
-            <h3>Testing an air handling system</h3>
-            <p>Designed and ran a performance test setup, from data collection to analysis and validation.</p>
-            <span class="mono where">KUBO R&amp;D</span>
-          </li>
-        </ul>
+            <p>A vibration-based diagnostic tool for e-bike motors, aimed at repair instead of replacement.</p>
+            <span class="go">↗</span>
+          </a>
+          <div class="project soon rv">
+            <div class="top"><span class="mono hot">02</span><span class="mono">Coming soon</span></div>
+            <h3>Blender add-ons</h3>
+            <p>Tools I built to speed up product visualisation work.</p>
+          </div>
+        </div>
       </section>
 
       <section id="experience">
@@ -451,9 +103,9 @@
       </section>
 
       <section class="contact" id="contact">
-        <span class="mono rv">Got something that needs to get made?</span>
-        <a class="big-mail rv" href="mailto:dionweervijf@gmail.com">Let's build<br>it <span class="arrow">↗</span></a>
-        <p class="mail-line rv"><a href="mailto:dionweervijf@gmail.com">dionweervijf@gmail.com</a></p>
+        <span class="mono rv">Contact</span>
+        <h2 class="rv">Got something that<br>needs to get made?</h2>
+        <a class="mail rv" href="mailto:dionweervijf@gmail.com">dionweervijf@gmail.com <span class="hot">↗</span></a>
       </section>
     </main>
 
@@ -461,31 +113,11 @@
       <div class="tblock">
         <div><span class="mono">Title</span><b>Dion Vijverberg — Portfolio</b></div>
         <div><span class="mono">Drawn by</span><b>D. Vijverberg</b></div>
-        <div><span class="mono">Scale</span><b>1:1</b></div>
-        <div><span class="mono">Rev</span><b>A</b></div>
+        <div><span class="mono">Rev</span><b>B</b></div>
         <div><span class="mono">Sheet</span><b>1 / 1 · <span id="yr">2026</span></b></div>
       </div>
     </footer>
   </div>
-
-  <div class="coords mono" id="coords">X 0000 · Y 0000</div>
-
-  <script>
-    window.addEventListener("load", () => document.body.classList.add("loaded"));
-    setTimeout(() => document.body.classList.add("loaded"), 1200);
-
-    document.getElementById("yr").textContent = new Date().getFullYear();
-
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-    }, { threshold: 0.15 });
-    document.querySelectorAll(".rv").forEach((el) => io.observe(el));
-
-    const c = document.getElementById("coords");
-    const pad = (n) => String(Math.round(n)).padStart(4, "0");
-    window.addEventListener("pointermove", (e) => {
-      c.textContent = `X ${pad(e.clientX)} · Y ${pad(e.clientY + window.scrollY)}`;
-    });
-  </script>
+  <script src="/assets/site.js"></script>
 </body>
 </html>
