@@ -1,254 +1,491 @@
 <!doctype html>
-<html lang="nl">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Jouw Naam</title>
-  <meta name="description" content="Persoonlijke website van Jouw Naam.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <title>Dion Vijverberg — Product Development Engineer</title>
+  <meta name="description" content="Dion Vijverberg, product development engineer. From idea to something that can actually be made.">
+  <meta name="theme-color" content="#050a07">
+  <link rel="preload" href="assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
   <style>
-    /* ===== Kleuren: pas deze aan om je site een eigen gezicht te geven ===== */
+    @font-face { font-family: "Archivo"; src: url(assets/fonts/archivo.woff2) format("woff2-variations"); font-weight: 100 900; font-stretch: 62% 125%; font-display: swap; }
+    @font-face { font-family: "JetBrains Mono"; src: url(assets/fonts/jbm-400.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+    @font-face { font-family: "JetBrains Mono"; src: url(assets/fonts/jbm-500.woff2) format("woff2"); font-weight: 500; font-display: swap; }
     :root {
-      --bg: #f6f3ee;
-      --surface: #ffffff;
-      --text: #1d1b19;
-      --muted: #6b655e;
-      --accent: #d9542b;
-      --border: #e4ded5;
+      --bg: #050a07;
+      --ink: #ecebe6;
+      --dim: #8b8d87;
+      --faint: #2a2f2c;
+      --line: #1b201d;
+      --hot: #ff5b1f;
+      --mono: "JetBrains Mono", ui-monospace, monospace;
+      --sans: "Archivo", system-ui, sans-serif;
     }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #151413;
-        --surface: #1f1d1b;
-        --text: #f1ece5;
-        --muted: #a39b91;
-        --accent: #f07a50;
-        --border: #2f2c29;
-      }
-    }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
+    html { scroll-behavior: smooth; }
     body {
       background: var(--bg);
-      color: var(--text);
-      font-family: "Inter", system-ui, sans-serif;
-      line-height: 1.6;
+      color: var(--ink);
+      font-family: var(--sans);
+      
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
+    ::selection { background: var(--hot); color: var(--bg); }
+    a { color: inherit; }
 
-    .wrap {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 0 16px;
+    /* engineering grid */
+    body::before {
+      content: "";
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse at 70% 20%, #000 0%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse at 70% 20%, #000 0%, transparent 70%);
+      opacity: .55;
+      pointer-events: none;
+      z-index: 0;
     }
+    main, header.bar, footer { position: relative; z-index: 1; }
 
-    /* ===== Navigatie ===== */
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 28px 0;
-    }
-    .logo {
-      font-family: "Fraunces", serif;
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: var(--text);
-      text-decoration: none;
-    }
-    .logo span { color: var(--accent); }
-    nav ul { display: flex; gap: 22px; list-style: none; }
-    nav a.link {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.95rem;
-      transition: color .2s;
-    }
-    nav a.link:hover { color: var(--text); }
-
-    /* ===== Intro ===== */
-    header.hero { padding: 72px 0 64px; }
-    .hello {
-      display: inline-block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--accent);
-      letter-spacing: .08em;
+    .mono {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .12em;
       text-transform: uppercase;
-      margin-bottom: 16px;
+      color: var(--dim);
     }
+    .wrap { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+
+    /* ---------- top bar ---------- */
+    header.bar {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 22px 0;
+    }
+    .mark {
+      font-weight: 900;
+      font-stretch: 62%;
+      font-size: 22px;
+      letter-spacing: .02em;
+      text-decoration: none;
+    }
+    .mark i { color: var(--hot); font-style: normal; }
+    .status { display: flex; align-items: center; gap: 10px; }
+    .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--hot);
+      box-shadow: 0 0 0 0 rgba(255,91,31,.6);
+      animation: ping 2s infinite;
+    }
+    @keyframes ping {
+      0% { box-shadow: 0 0 0 0 rgba(255,91,31,.55); }
+      70% { box-shadow: 0 0 0 10px rgba(255,91,31,0); }
+      100% { box-shadow: 0 0 0 0 rgba(255,91,31,0); }
+    }
+
+    /* ---------- hero ---------- */
+    .hero {
+      position: relative;
+      min-height: calc(100vh - 70px);
+      min-height: calc(100svh - 70px);
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: end;
+      padding-bottom: 48px;
+    }
+    .photo {
+      position: absolute;
+      right: 4%; bottom: 0;
+      height: 92%;
+      aspect-ratio: 1100 / 1307;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(.2) contrast(1.06);
+      opacity: 0;
+      transform: scale(1.04);
+      transition: opacity 1.4s ease, transform 1.8s cubic-bezier(.2,.7,0,1);
+    }
+    .loaded .photo img { opacity: 1; transform: none; }
+
+    /* dimension lines around the photo */
+    .dim-v, .dim-h { position: absolute; color: var(--dim); }
+    .dim-v {
+      right: -30px; top: 60%; bottom: 20%;
+      border-left: 1px solid var(--faint);
+    }
+    .dim-v::before, .dim-v::after, .dim-h::before, .dim-h::after {
+      content: ""; position: absolute; background: var(--faint);
+    }
+    .dim-v::before, .dim-v::after { left: -6px; width: 11px; height: 1px; }
+    .dim-v::before { top: 0; } .dim-v::after { bottom: 0; }
+    .dim-v span {
+      position: absolute; top: 50%; left: -10px;
+      transform: translate(-50%, -50%) rotate(-90deg);
+      background: var(--bg); padding: 0 8px; white-space: nowrap;
+    }
+    .dim-h {
+      top: 8%; left: 22%; right: 22%;
+      border-top: 1px solid var(--faint);
+    }
+    .dim-h::before, .dim-h::after { top: -6px; width: 1px; height: 11px; }
+    .dim-h::before { left: 0; } .dim-h::after { right: 0; }
+    .dim-h span {
+      position: absolute; left: 50%; top: -8px;
+      transform: translateX(-50%);
+      background: var(--bg); padding: 0 8px; white-space: nowrap;
+    }
+    .callout {
+      position: absolute; left: -40px; top: 74%;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .callout::before {
+      content: ""; width: 56px; height: 1px; background: var(--hot);
+    }
+    .callout b { color: var(--hot); font-weight: 500; }
+
     h1 {
-      font-family: "Fraunces", serif;
-      font-weight: 700;
-      font-size: clamp(2.4rem, 7vw, 4rem);
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      margin-bottom: 22px;
+      position: relative;
+      font-weight: 900;
+      font-stretch: 62%;
+      font-size: clamp(76px, 16.5vw, 236px);
+      line-height: .8;
+      letter-spacing: -.01em;
+      text-transform: uppercase;
+      z-index: 1;
     }
-    .intro {
-      font-size: 1.15rem;
-      color: var(--muted);
-      max-width: 560px;
-      margin-bottom: 32px;
-    }
-    .btn {
-      display: inline-block;
-      background: var(--accent);
-      color: #fff;
-      padding: 12px 22px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: transform .2s, opacity .2s;
-    }
-    .btn:hover { transform: translateY(-2px); opacity: .92; }
-    .btn.ghost {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--border);
-      margin-left: 8px;
-    }
-
-    /* ===== Secties ===== */
-    section { padding: 56px 0; border-top: 1px solid var(--border); }
-    h2 {
-      font-family: "Fraunces", serif;
-      font-size: 1.8rem;
-      margin-bottom: 28px;
-    }
-
-    .projects { display: grid; gap: 16px; }
-    .card {
+    h1 .line { display: block; overflow: hidden; }
+    h1 .line span {
       display: block;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 22px 24px;
+      transform: translateY(105%);
+      transition: transform 1.1s cubic-bezier(.2,.8,0,1);
+    }
+    h1 .line:nth-child(2) span { transition-delay: .12s; }
+    .loaded h1 .line span { transform: none; }
+    h1 .line:nth-child(2) { padding-left: 8vw; }
+
+    .hero-foot {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 32px;
+      margin-top: 36px;
+      align-items: end;
+      position: relative;
+      z-index: 3;
+    }
+    .pitch {
+      font-size: clamp(20px, 2.1vw, 28px);
+      font-weight: 400;
+      line-height: 1.25;
+      max-width: 520px;
+    }
+    .pitch em { font-style: normal; color: var(--hot); }
+    .hero-meta {
+      display: flex; flex-direction: column; gap: 6px;
+      justify-self: end; text-align: right;
+    }
+
+    /* ---------- sections ---------- */
+    section { padding: 120px 0 0; }
+    .sec-head {
+      display: flex; justify-content: space-between; align-items: baseline;
+      border-bottom: 1px solid var(--faint);
+      padding-bottom: 14px; margin-bottom: 8px;
+    }
+    h2 {
+      font-weight: 800;
+      font-stretch: 75%;
+      font-size: clamp(30px, 4vw, 48px);
+      text-transform: uppercase;
+      letter-spacing: -.005em;
+    }
+
+    /* work rows */
+    .work { list-style: none; }
+    .work li {
+      display: grid;
+      grid-template-columns: 70px 1fr 1.1fr 140px;
+      gap: 24px;
+      align-items: baseline;
+      padding: 30px 0;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      transition: padding .4s cubic-bezier(.2,.8,0,1);
+    }
+    .work li::before {
+      content: ""; position: absolute; left: 0; bottom: -1px;
+      height: 1px; width: 0; background: var(--hot);
+      transition: width .6s cubic-bezier(.2,.8,0,1);
+    }
+    .work li:hover::before { width: 100%; }
+    .work li:hover { padding-left: 14px; }
+    .work .n { color: var(--hot); }
+    .work h3 {
+      font-weight: 700;
+      font-stretch: 85%;
+      font-size: clamp(22px, 2.3vw, 30px);
+      line-height: 1.05;
+      text-transform: uppercase;
+    }
+    .work p { color: var(--dim); font-size: 16px; line-height: 1.5; }
+    .work .where { text-align: right; }
+    .badge {
+      display: inline-block; margin-top: 10px;
+      border: 1px solid var(--hot); color: var(--hot);
+      padding: 4px 8px; border-radius: 2px;
+    }
+
+    /* experience */
+    .exp { list-style: none; }
+    .exp li {
+      display: grid;
+      grid-template-columns: 180px 1fr auto;
+      gap: 24px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: baseline;
+    }
+    .exp .role { font-size: 19px; font-weight: 600; }
+    .exp .org { color: var(--dim); font-size: 15px; margin-top: 3px; }
+
+    /* skills */
+    .skills { display: flex; flex-wrap: wrap; gap: 10px; padding-top: 22px; }
+    .skills span {
+      font-family: var(--mono); font-size: 13px;
+      border: 1px solid var(--faint);
+      padding: 9px 14px; border-radius: 2px;
+      transition: border-color .2s, color .2s;
+    }
+    .skills span:hover { border-color: var(--hot); color: var(--hot); }
+
+    /* contact */
+    .contact { padding: 160px 0 80px; }
+    .contact .mono { margin-bottom: 20px; display: block; }
+    .big-mail {
+      display: inline-block;
+      font-weight: 900;
+      font-stretch: 62%;
+      font-size: clamp(48px, 10vw, 150px);
+      line-height: .9;
+      text-transform: uppercase;
       text-decoration: none;
-      color: inherit;
-      transition: border-color .2s, transform .2s;
+      position: relative;
     }
-    .card:hover { border-color: var(--accent); transform: translateY(-2px); }
-    .card h3 {
-      font-size: 1.1rem;
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 6px;
+    .big-mail .arrow {
+      display: inline-block; color: var(--hot);
+      transition: transform .4s cubic-bezier(.2,.8,0,1);
     }
-    .card h3 .arrow { color: var(--accent); transition: transform .2s; }
-    .card:hover .arrow { transform: translateX(4px); }
-    .card p { color: var(--muted); font-size: 0.97rem; }
-    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
-    .tag {
-      font-size: 0.78rem;
-      padding: 3px 10px;
-      border-radius: 999px;
-      background: var(--bg);
-      color: var(--muted);
+    .big-mail:hover .arrow { transform: translate(14px, -14px); }
+    .mail-line {
+      margin-top: 22px;
+      font-family: var(--mono); font-size: 15px;
+    }
+    .mail-line a { text-decoration: none; border-bottom: 1px solid var(--hot); }
+
+    /* title block footer */
+    footer { padding: 0 0 32px; }
+    .tblock {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+      border: 1px solid var(--faint);
+    }
+    .tblock div {
+      padding: 12px 14px;
+      border-right: 1px solid var(--faint);
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .tblock div:last-child { border-right: 0; }
+    .tblock b {
+      font-family: var(--mono); font-weight: 500;
+      font-size: 13px; color: var(--ink);
+      letter-spacing: .04em; text-transform: uppercase;
     }
 
-    .about p { color: var(--muted); margin-bottom: 14px; font-size: 1.05rem; }
+    /* reveal on scroll */
+    .rv { opacity: 0; transform: translateY(24px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.8,0,1); }
+    .rv.in { opacity: 1; transform: none; }
 
-    .contact-list { list-style: none; display: grid; gap: 10px; }
-    .contact-list a {
-      color: var(--text);
-      text-decoration: none;
-      border-bottom: 1px solid var(--accent);
-      font-weight: 500;
+    /* cursor coordinate readout */
+    .coords {
+      position: fixed; right: 24px; bottom: 20px; z-index: 5;
+      pointer-events: none;
     }
 
-    footer {
-      padding: 40px 0 56px;
-      color: var(--muted);
-      font-size: 0.85rem;
-      border-top: 1px solid var(--border);
+    @media (max-width: 900px) {
+      .photo { right: -6%; height: 72%; }
+      .dim-v, .dim-h, .callout { display: none; }
+      .hero-foot { grid-template-columns: 1fr; }
+      .hero-meta { justify-self: start; text-align: left; }
+      .work li { grid-template-columns: 44px 1fr; gap: 10px 16px; }
+      .work p, .work .where { grid-column: 2; text-align: left; }
+      .exp li { grid-template-columns: 1fr; gap: 4px; }
+      .tblock { grid-template-columns: 1fr 1fr; }
+      .tblock div { border-bottom: 1px solid var(--faint); }
+      .tblock div:first-child { grid-column: 1 / -1; }
+      .coords { display: none; }
+      section { padding-top: 90px; }
     }
-
     @media (max-width: 520px) {
-      nav ul { gap: 14px; }
-      .btn.ghost { margin-left: 0; margin-top: 10px; }
+      .wrap { padding: 0 16px; }
+      .status .mono:last-child { display: none; }
+      .hero { align-items: start; padding-top: 8px; }
+      .photo { position: relative; right: auto; bottom: auto; height: auto; width: 86%; margin: 0 auto -26%; }
+      .photo img { display: block; }
+      h1 .line:nth-child(2) { padding-left: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+      .rv, h1 .line span, .photo img { opacity: 1; transform: none; }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
-
-    <nav>
-      <a class="logo" href="#">Jouw Naam<span>.</span></a>
-      <ul>
-        <li><a class="link" href="#projecten">Projecten</a></li>
-        <li><a class="link" href="#over">Over</a></li>
-        <li><a class="link" href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-
-    <header class="hero">
-      <span class="hello">Hoi, ik ben</span>
-      <h1>Jouw Naam bouwt dingen voor het web.</h1>
-      <p class="intro">
-        Een korte zin over wie je bent en wat je doet. Bijvoorbeeld: ik maak
-        handige tools, experimenteer met nieuwe ideeën en deel hier wat ik bouw.
-      </p>
-      <a class="btn" href="#projecten">Bekijk projecten</a>
-      <a class="btn ghost" href="#contact">Neem contact op</a>
+    <header class="bar">
+      <a class="mark" href="#">DV<i>/</i></a>
+      <div class="status">
+        <span class="dot"></span>
+        <span class="mono">Open to work</span>
+        <span class="mono">— De Lier, NL</span>
+      </div>
     </header>
 
-    <section id="projecten">
-      <h2>Projecten</h2>
-      <div class="projects">
-        <!-- Kopieer een <a class="card"> blok om een project toe te voegen -->
-        <a class="card" href="#">
-          <h3>Project één <span class="arrow">→</span></h3>
-          <p>Beschrijf in één of twee zinnen wat dit project is en waarom je het maakte.</p>
-          <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
-        </a>
-        <a class="card" href="#">
-          <h3>Project twee <span class="arrow">→</span></h3>
-          <p>Een tool, een experiment of iets voor je werk. Link naar een subdomein als je wilt.</p>
-          <div class="tags"><span class="tag">JavaScript</span></div>
-        </a>
-        <a class="card" href="#">
-          <h3>Project drie <span class="arrow">→</span></h3>
-          <p>Nog niets? Laat dit staan als 'binnenkort' of haal het blok weg.</p>
-          <div class="tags"><span class="tag">Binnenkort</span></div>
-        </a>
+    <main>
+      <div class="hero">
+        <div class="photo" aria-hidden="true">
+          <img src="assets/dion.webp" alt="">
+          <div class="dim-h mono"><span>Concept</span></div>
+          <div class="dim-v mono"><span>→ Production</span></div>
+          <div class="callout mono"><b>Fig. 1</b> The engineer</div>
+        </div>
+
+        <h1 aria-label="Dion Vijverberg">
+          <span class="line"><span>Dion</span></span>
+          <span class="line"><span>Vijverberg</span></span>
+        </h1>
+
+        <div class="hero-foot">
+          <p class="pitch">
+            Product development engineer. I take products from idea to
+            <em>something that can actually be made.</em>
+          </p>
+          <div class="hero-meta">
+            <span class="mono">MSc Integrated Product Design</span>
+            <span class="mono">TU Delft — 2026</span>
+          </div>
+        </div>
       </div>
-    </section>
 
-    <section id="over" class="about">
-      <h2>Over mij</h2>
-      <p>
-        Vertel hier iets meer over jezelf: waar je werkt, wat je interessant vindt
-        en waar je mee bezig bent.
-      </p>
-      <p>
-        Een tweede alinea kan over je hobby's gaan, of over wat bezoekers van
-        deze site kunnen verwachten.
-      </p>
-    </section>
+      <section id="work">
+        <div class="sec-head rv">
+          <h2>Selected work</h2>
+          <span class="mono">03 items</span>
+        </div>
+        <ul class="work">
+          <li class="rv">
+            <span class="mono n">01</span>
+            <h3>Hearing motor faults without opening the motor</h3>
+            <p>Graduation project. Took e-bike motors apart, built a working sensor prototype and showed that vibration analysis can detect defects. Aimed at repair, not replacement.<br><span class="mono badge">Paper accepted · IWAR 2026</span></p>
+            <span class="mono where">TU Delft</span>
+          </li>
+          <li class="rv">
+            <span class="mono n">02</span>
+            <h3>From CAD model to delivered part</h3>
+            <p>Redesigned a custom tool and took it all the way to production with an external manufacturer.</p>
+            <span class="mono where">KUBO R&amp;D</span>
+          </li>
+          <li class="rv">
+            <span class="mono n">03</span>
+            <h3>Testing an air handling system</h3>
+            <p>Designed and ran a performance test setup, from data collection to analysis and validation.</p>
+            <span class="mono where">KUBO R&amp;D</span>
+          </li>
+        </ul>
+      </section>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <ul class="contact-list">
-        <li>E-mail: <a href="mailto:hallo@jouwdomein.nl">hallo@jouwdomein.nl</a></li>
-        <li>LinkedIn: <a href="https://www.linkedin.com/">linkedin.com/in/jouwnaam</a></li>
-        <li>GitHub: <a href="https://github.com/">github.com/jouwnaam</a></li>
-      </ul>
-    </section>
+      <section id="experience">
+        <div class="sec-head rv">
+          <h2>Experience</h2>
+          <span class="mono">2023 — now</span>
+        </div>
+        <ul class="exp">
+          <li class="rv">
+            <span class="mono">Feb 2025 — Aug 2025</span>
+            <div><div class="role">Employee Innovations</div><div class="org">KUBO Greenhouse Solutions · Monster</div></div>
+            <span class="mono">R&amp;D</span>
+          </li>
+          <li class="rv">
+            <span class="mono">Oct 2023 — Feb 2025</span>
+            <div><div class="role">Design Engineer</div><div class="org">Enshape Design Studio · Delft</div></div>
+            <span class="mono">Visualisation</span>
+          </li>
+          <li class="rv">
+            <span class="mono">Sep 2023 — Feb 2025</span>
+            <div><div class="role">Junior Designer</div><div class="org">Click-Pax · 's-Gravenzande</div></div>
+            <span class="mono">Packaging</span>
+          </li>
+          <li class="rv">
+            <span class="mono">Oct 2023 — Apr 2024</span>
+            <div><div class="role">Teaching Assistant</div><div class="org">TU Delft · Design Visualisation</div></div>
+            <span class="mono">Blender</span>
+          </li>
+        </ul>
+      </section>
+
+      <section id="skills">
+        <div class="sec-head rv">
+          <h2>Toolkit</h2>
+          <span class="mono">Hands + head</span>
+        </div>
+        <div class="skills rv">
+          <span>SolidWorks</span><span>Inventor</span><span>Blender</span>
+          <span>Prototyping</span><span>3D printing</span><span>Test setups</span>
+          <span>Data analysis</span><span>Design for manufacturing</span>
+          <span>Concept development</span><span>Circularity &amp; repairability</span>
+        </div>
+      </section>
+
+      <section class="contact" id="contact">
+        <span class="mono rv">Got something that needs to get made?</span>
+        <a class="big-mail rv" href="mailto:dionweervijf@gmail.com">Let's build<br>it <span class="arrow">↗</span></a>
+        <p class="mail-line rv"><a href="mailto:dionweervijf@gmail.com">dionweervijf@gmail.com</a></p>
+      </section>
+    </main>
 
     <footer>
-      © <span id="jaar"></span> Jouw Naam · Gehost op Vercel
+      <div class="tblock">
+        <div><span class="mono">Title</span><b>Dion Vijverberg — Portfolio</b></div>
+        <div><span class="mono">Drawn by</span><b>D. Vijverberg</b></div>
+        <div><span class="mono">Scale</span><b>1:1</b></div>
+        <div><span class="mono">Rev</span><b>A</b></div>
+        <div><span class="mono">Sheet</span><b>1 / 1 · <span id="yr">2026</span></b></div>
+      </div>
     </footer>
-
   </div>
 
+  <div class="coords mono" id="coords">X 0000 · Y 0000</div>
+
   <script>
-    // Zet automatisch het huidige jaar in de footer
-    document.getElementById("jaar").textContent = new Date().getFullYear();
+    window.addEventListener("load", () => document.body.classList.add("loaded"));
+    setTimeout(() => document.body.classList.add("loaded"), 1200);
+
+    document.getElementById("yr").textContent = new Date().getFullYear();
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    document.querySelectorAll(".rv").forEach((el) => io.observe(el));
+
+    const c = document.getElementById("coords");
+    const pad = (n) => String(Math.round(n)).padStart(4, "0");
+    window.addEventListener("pointermove", (e) => {
+      c.textContent = `X ${pad(e.clientX)} · Y ${pad(e.clientY + window.scrollY)}`;
+    });
   </script>
 </body>
 </html>
