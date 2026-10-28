@@ -169,7 +169,7 @@ const BAND_LABELS = ["0–80 Hz", "80–160 Hz", "160–300 Hz", "300–550 Hz",
         ? "Compared to the healthy motors, more vibration energy and a shift towards the 80–160 Hz band."
         : "Higher RMS than the healthy motor in every case, but smaller differences than with Bosch.");
     target = { amp: x.rms / Math.max(...s.map((y) => y.rms)), bands: bands.map((v) => v / 100), peaks: !!x.peaks };
-    if (reduce) draw(0);
+    if (reduce) { state = { amp: target.amp, bands: [...target.bands] }; draw(0); }
   }
 
   // ---------- illustrative oscilloscope ----------

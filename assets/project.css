@@ -13,7 +13,7 @@
   --s-mech: #199e70;
   --b1: #5a2410; --b2: #8f3a17; --b3: #d95926; --b4: #f08a5d; --b5: #f7b99a;
   --sel: #f07a50;
-  --bar: #3a403c;
+  --bar: #3a3a38;
 }
 
 .p-actions { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 30px; }
@@ -219,3 +219,10 @@ figcaption.cap { padding-top: 10px; display: flex; justify-content: space-betwee
 .baseline { bottom: 18px; top: -4px; }
 .baseline span { top: auto; bottom: -20px; left: 6px; }
 .paper img { height: auto; display: block; }
+
+/* drawings: white paper disappears into the page in both themes */
+.drawing { background: var(--bg); }
+.drawing img { mix-blend-mode: multiply; height: auto; display: block; width: 100%; }
+:root[data-theme="dark"] .drawing img { filter: invert(1) hue-rotate(180deg); mix-blend-mode: screen; }
+.drawing .hot-pt::before { box-shadow: 0 0 0 2px var(--bg); }
+.split .drawing { display: grid; place-items: center; }
