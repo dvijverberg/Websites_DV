@@ -20,6 +20,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#0e0e0d">
   <link rel="stylesheet" href="/assets/styles.css">
+  <script type="importmap">{"imports":{"three":"/assets/vendor/three/three.module.min.js","three/addons/":"/assets/vendor/three/addons/"}}</script>
   <link rel="stylesheet" href="/assets/project.css">
 </head>
 <body>
@@ -89,6 +90,19 @@
           </div>
         </div>
 
+        <figure class="m3d rv" id="motor3d" data-src="/assets/projects/e-bike/motor.glb">
+          <div class="m3d-stage"><span class="m3d-status mono">Loading 3D model…</span><span class="m3d-hint mono">Drag to rotate</span></div>
+          <div class="m3d-bar">
+            <div class="seg" role="group" aria-label="Show">
+              <button type="button" data-view="both" aria-pressed="true">Both halves</button>
+              <button type="button" data-view="left" aria-pressed="false">Left</button>
+              <button type="button" data-view="right" aria-pressed="false">Right</button>
+            </div>
+            <button type="button" class="m3d-reset mono" data-reset>Reset view</button>
+          </div>
+          <figcaption class="mono" style="margin-top:14px"><span class="hot">Fig. 2</span> — The two casing halves of a mid-drive motor, opened up. Drag to look around.</figcaption>
+        </figure>
+
         <div class="explode rv" id="explode">
           <div class="drawing viz">
             <div class="stage"><div class="inner">
@@ -106,7 +120,7 @@
             </div>
             <div class="part-info" aria-live="polite"></div>
           </div>
-          <p class="mono" style="margin-top:14px"><span class="hot">Fig. 2</span> — Generalised mid-drive motor, derived from the teardowns. Failure shares from interviews with revision experts.</p>
+          <p class="mono" style="margin-top:14px"><span class="hot">Fig. 3</span> — Generalised mid-drive motor, derived from the teardowns. Failure shares from interviews with revision experts.</p>
         </div>
 
         <div class="gallery g3">
@@ -180,7 +194,7 @@
             <div class="rms-rows"></div>
           </div>
         </div>
-        <p class="mono" style="margin-top:14px;line-height:1.6"><span class="hot">Fig. 3</span> — RMS and band energy are measured values (thesis table 9.3). The moving signal is a visualisation built from those values, not a raw recording.</p>
+        <p class="mono" style="margin-top:14px;line-height:1.6"><span class="hot">Fig. 4</span> — RMS and band energy are measured values (thesis table 9.3). The moving signal is a visualisation built from those values, not a raw recording.</p>
       </section>
 
       <!-- ===================== 05 FINDINGS ===================== -->
@@ -233,5 +247,6 @@
   </div>
   <script src="/assets/site.js"></script>
   <script src="/assets/projects/e-bike/e-bike.js"></script>
+  <script type="module" src="/assets/projects/e-bike/motor-viewer.js"></script>
 </body>
 </html>
