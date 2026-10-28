@@ -8,6 +8,7 @@
   <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
   <link rel="preload" href="/assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="stylesheet" href="/assets/home.css">
 </head>
 <body>
   <div class="wrap">
@@ -16,7 +17,7 @@
       <div class="bar-right">
         <nav class="mono">
           <a href="#projects">Projects</a>
-          <a href="#experience">Experience</a>
+          <a href="#about">About</a>
           <a href="#contact">Contact</a>
         </nav>
         <button class="theme-toggle mono" type="button" aria-label="Switch theme"><span class="knob"></span><span class="label">Light</span></button>
@@ -24,7 +25,7 @@
     </header>
 
     <main>
-      <div class="hero">
+      <div class="hero solo">
         <div>
           <div class="eyebrow"><span class="dot"></span><span class="mono">Open to work — De Lier, NL</span></div>
           <h1>Dion<br>Vijverberg</h1>
@@ -34,10 +35,6 @@
             <div><span class="mono">Focus</span><b>Concept → Production</b></div>
           </div>
         </div>
-        <figure class="portrait">
-          <div class="frame"><img src="/assets/dion.jpg" alt="Portrait of Dion Vijverberg" width="880" height="1100"></div>
-          <figcaption class="mono"><span><span class="hot">Fig. 1</span> — The engineer</span><span>1:1</span></figcaption>
-        </figure>
       </div>
 
       <section id="projects">
@@ -45,17 +42,41 @@
           <h2>Projects</h2>
           <span class="mono">Selected</span>
         </div>
-        <div class="projects">
-          <a class="project rv" href="/projects/e-bike-diagnostics">
+
+        <a class="feature rv" href="/projects/e-bike-diagnostics">
+          <div class="img"><img src="/assets/projects/e-bike/test-bench.jpg" alt="Test bench with an e-bike, four motors and a laptop showing vibration data" width="1600" height="1106"></div>
+          <div class="txt">
             <div class="top"><span class="mono hot">01</span><span class="mono">Graduation · 2026</span></div>
             <h3>Hearing motor faults without opening the motor</h3>
-            <p>A vibration-based diagnostic tool for e-bike motors, aimed at repair instead of replacement.</p>
+            <p>A vibration-based diagnostic tool that tells healthy e-bike motors from broken ones, so they get repaired instead of replaced.</p>
+            <div class="tags"><span>Teardown</span><span>Prototyping</span><span>Data analysis</span><span>Paper · IWAR 2026</span></div>
             <span class="go">↗</span>
-          </a>
+          </div>
+        </a>
+
+        <div class="projects single">
           <div class="project soon rv">
-            <div class="top"><span class="mono hot">02</span><span class="mono">Coming soon</span></div>
+            <span class="mono hot">02</span>
             <h3>Blender add-ons</h3>
             <p>Tools I built to speed up product visualisation work.</p>
+            <span class="mono" style="margin-left:auto">Coming soon</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="sec-head rv">
+          <h2>About</h2>
+          <span class="mono">Hands + head</span>
+        </div>
+        <div class="about">
+          <figure class="portrait rv">
+            <div class="frame"><img src="/assets/dion.jpg" alt="Portrait of Dion Vijverberg" width="880" height="1100" loading="lazy"></div>
+            <figcaption class="mono"><span>Dion</span><span>2026</span></figcaption>
+          </figure>
+          <div class="about-text rv">
+            <p>I like understanding how products work by taking them apart. At eighteen I bought a fifty-year-old Zündapp moped without knowing how a two-stroke engine worked. I've since spent <strong>more time repairing it than riding it.</strong></p>
+            <p>That curiosity runs through my work: from redesigning a tool and taking it to production at KUBO's R&amp;D department, to packaging concepts at Click-Pax and my graduation project on repairable e-bike motors.</p>
           </div>
         </div>
       </section>
@@ -92,7 +113,7 @@
       <section id="skills">
         <div class="sec-head rv">
           <h2>Toolkit</h2>
-          <span class="mono">Hands + head</span>
+          <span class="mono">What I work with</span>
         </div>
         <div class="skills rv">
           <span>SolidWorks</span><span>Inventor</span><span>Blender</span>
@@ -113,8 +134,8 @@
       <div class="tblock">
         <div><span class="mono">Title</span><b>Dion Vijverberg — Portfolio</b></div>
         <div><span class="mono">Drawn by</span><b>D. Vijverberg</b></div>
-        <div><span class="mono">Rev</span><b>B</b></div>
-        <div><span class="mono">Sheet</span><b>1 / 1 · <span id="yr">2026</span></b></div>
+        <div><span class="mono">Rev</span><b>C</b></div>
+        <div><span class="mono">Sheet</span><b>1 / 2 · <span id="yr">2026</span></b></div>
       </div>
     </footer>
   </div>

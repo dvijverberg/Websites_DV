@@ -4,10 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>E-bike motor diagnostics — Dion Vijverberg</title>
-  <meta name="description" content="Graduation project: a vibration-based diagnostic tool for e-bike motors, aimed at repair instead of replacement.">
+  <meta name="description" content="Graduation project: a non-intrusive, vibration-based diagnostic tool to assess the condition of e-bike motors.">
   <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
   <link rel="preload" href="/assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="stylesheet" href="/assets/project.css">
 </head>
 <body>
   <div class="wrap">
@@ -26,9 +27,13 @@
       <a class="back mono" href="/#projects">← All projects</a>
 
       <div class="p-head">
-        <span class="mono"><span class="hot">01</span> — Graduation project</span>
+        <span class="mono"><span class="hot">01</span> — Graduation project · MSc Integrated Product Design</span>
         <h1>Hearing motor faults without opening the motor</h1>
-        <p class="pitch">A vibration-based diagnostic tool for e-bike motors, so they can be <strong>repaired instead of replaced.</strong></p>
+        <p class="pitch">E-bike motors get thrown away when they could be repaired. I built a tool that <strong>listens to the vibrations of a running motor</strong> to tell a healthy one from a broken one, from the outside.</p>
+        <div class="p-actions">
+          <a class="mail" href="https://repository.tudelft.nl/record/uuid:810c5fd5-8d03-4a02-92ef-0ad4e4d3b947" target="_blank" rel="noopener">Read the full thesis <span class="hot">↗</span></a>
+          <a class="mail" href="#lab">Try the data <span class="hot">↓</span></a>
+        </div>
       </div>
 
       <div class="spec">
@@ -38,35 +43,170 @@
         <div><span class="mono">Outcome</span><b class="hot">Paper · IWAR 2026</b></div>
       </div>
 
-      <!-- Vervang door een foto: <img src="/assets/projects/e-bike/hero.jpg" alt="..."> -->
-      <div class="figure-ph rv"><span class="mono">Fig. 2 — Prototype photo</span></div>
+      <figure class="hero-img rv">
+        <img src="/assets/projects/e-bike/test-bench.jpg" alt="Test bench with a suspended e-bike, four Shimano motors and a laptop showing vibration data" width="1600" height="1106">
+        <figcaption class="cap mono"><span><span class="hot">Fig. 1</span> — Test bench with four Shimano motors</span><span>TU Delft</span></figcaption>
+      </figure>
 
-      <div class="p-body rv">
-        <h2>Problem</h2>
-        <div>
-          <p>When an e-bike motor fails, it usually gets replaced as a whole. Finding out what is actually wrong means opening it up, which costs time and makes repair the less attractive option.</p>
-        </div>
+      <div class="stats rv">
+        <div><b>75%</b><span class="mono">of motor failures are mechanical, and often repairable</span></div>
+        <div><b>9</b><span class="mono">motors taken apart and mapped</span></div>
+        <div><b>12</b><span class="mono">experts interviewed: mechanics, refurbishers, industry</span></div>
+        <div><b>€15</b><span class="mono">in electronics for the working prototype</span></div>
       </div>
 
-      <div class="p-body rv">
-        <h2>Approach</h2>
-        <div>
-          <p>I disassembled e-bike motors to <strong>map their architecture</strong> and understand where faults occur.</p>
-          <p>Then I built a <strong>working sensor prototype</strong> that collects vibration data from running motors, so healthy and defective motors can be compared.</p>
+      <!-- ===================== 01 PROBLEM ===================== -->
+      <section class="chapter" id="problem">
+        <div class="sec-head rv"><h2>The problem</h2><span class="mono">01</span></div>
+        <div class="lede rv">
+          <span class="mono">Replace, not repair</span>
+          <div>
+            <p>When an e-bike motor fails, it usually gets replaced as a whole. Yet <strong>most failures are mechanical</strong>: worn bearings and gears that can technically be repaired.</p>
+            <p>The bike mechanic is the first to see a struggling motor, but can't look inside. Diagnostic software only reads error codes. Experts at refurbishment companies diagnose by ear and feel: <em>"this sounds wrong."</em> So motors reach them too late, or not at all.</p>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <div class="p-body rv">
-        <h2>Result</h2>
-        <div>
-          <p>The prototype showed that vibration analysis can <strong>detect motor defects without opening the motor.</strong> The paper on this work was accepted for presentation at IWAR 2026.</p>
-          <!-- <p><a class="mail" href="LINK-NAAR-THESIS">Read the thesis <span class="hot">↗</span></a></p> -->
+      <!-- ===================== 02 TEARDOWN ===================== -->
+      <section class="chapter" id="teardown">
+        <div class="sec-head rv"><h2>Inside the motor</h2><span class="mono">02</span></div>
+        <div class="lede rv">
+          <span class="mono">9 motors, 6 brands</span>
+          <div>
+            <p>I took nine mid-drive motors apart and mapped every part and connection. Despite the different brands, they all share <strong>the same basic architecture</strong>. Combined with interviews, this showed where they fail.</p>
+          </div>
         </div>
-      </div>
 
-      <a class="next" href="/#contact">
-        <span class="mono">Want to know more?</span>
-        <span class="mono">Get in touch <span class="hot">→</span></span>
+        <div class="explode rv" id="explode">
+          <div class="paper viz">
+            <div class="stage"><div class="inner">
+              <img src="/assets/projects/e-bike/exploded.jpg" alt="Exploded view of a typical mid-drive e-bike motor" width="1800" height="844">
+            </div></div>
+          </div>
+          <div class="explode-ui viz">
+            <div>
+              <span class="mono">Where motors fail · tap a part</span>
+              <div class="legend" style="margin-top:12px">
+                <button type="button" data-cat="bear" aria-pressed="false" style="--c:var(--s-bear)"><i></i>Bearings <b>50%</b></button>
+                <button type="button" data-cat="elec" aria-pressed="false" style="--c:var(--s-elec)"><i></i>Electronics <b>25%</b></button>
+                <button type="button" data-cat="mech" aria-pressed="false" style="--c:var(--s-mech)"><i></i>Other mechanical <b>25%</b></button>
+              </div>
+            </div>
+            <div class="part-info" aria-live="polite"></div>
+          </div>
+          <p class="mono" style="margin-top:14px"><span class="hot">Fig. 2</span> — Generalised mid-drive motor, derived from the teardowns. Failure shares from interviews with revision experts.</p>
+        </div>
+
+        <div class="gallery g3">
+          <figure class="rv"><img src="/assets/projects/e-bike/teardown.jpg" width="1600" height="1192" alt="Disassembling an e-bike motor on a workbench" loading="lazy"></figure>
+          <figure class="rv"><img src="/assets/projects/e-bike/gear.jpg" width="1600" height="959" alt="Casing half with metal and nylon gears" loading="lazy"></figure>
+          <figure class="rv"><img src="/assets/projects/e-bike/crankshaft.jpg" width="1600" height="789" alt="Crankshaft assembly with bearings and freewheel" loading="lazy"></figure>
+        </div>
+      </section>
+
+      <!-- ===================== 03 PROTOTYPE ===================== -->
+      <section class="chapter" id="prototype">
+        <div class="sec-head rv"><h2>The prototype</h2><span class="mono">03</span></div>
+        <div class="lede rv">
+          <span class="mono">Piezo + microcontroller</span>
+          <div>
+            <p>A piezo sensor is pressed against the motor housing by a <strong>3D-printed 'finger'</strong> on a heavy, rigid stand. The motor runs in walk-assist mode, held on by a clamp, so nobody touches the bike.</p>
+            <p>A Seeeduino XIAO samples the signal at <strong>~4000 samples per second</strong> for 10 seconds. Python scripts plot it live, then calculate RMS, an FFT and the energy per frequency band.</p>
+          </div>
+        </div>
+        <div class="gallery g4">
+          <figure class="rv"><img src="/assets/projects/e-bike/piezo-finger.jpg" width="647" height="522" alt="3D-printed sensor finger pressed against the motor" loading="lazy"></figure>
+          <figure class="rv"><img src="/assets/projects/e-bike/electronics.jpg" width="1407" height="911" alt="Microcontroller, piezo sensor and printed parts" loading="lazy"></figure>
+          <figure class="rv"><img src="/assets/projects/e-bike/breadboard.jpg" width="574" height="524" alt="Breadboard with the sensor electronics" loading="lazy"></figure>
+          <figure class="rv"><img src="/assets/projects/e-bike/dashboard.jpg" width="576" height="524" alt="Laptop with the analysis dashboard" loading="lazy"></figure>
+        </div>
+      </section>
+
+      <!-- ===================== 04 LAB ===================== -->
+      <section class="chapter" id="lab-section">
+        <div class="sec-head rv"><h2>Explore the measurements</h2><span class="mono">04</span></div>
+        <div class="lede rv">
+          <span class="mono">Real test data</span>
+          <div>
+            <p>I tested two motor models: Bosch motors with <strong>known defects swapped in</strong> one at a time, and Shimano motors with unknown damage. Pick a motor and compare it with the healthy baseline.</p>
+          </div>
+        </div>
+
+        <div class="lab viz rv" id="lab">
+          <div class="lab-top">
+            <div class="seg" role="group" aria-label="Motor model">
+              <button type="button" data-brand="bosch" aria-pressed="true">Bosch BDU 350</button>
+              <button type="button" data-brand="shimano" aria-pressed="false">Shimano DU-E5000</button>
+            </div>
+            <div class="seg" id="orient" role="group" aria-label="Bike orientation" hidden>
+              <button type="button" data-orient="hanging" aria-pressed="true">Hanging</button>
+              <button type="button" data-orient="standing" aria-pressed="false">Standing</button>
+            </div>
+          </div>
+          <div class="lab-body">
+            <ul class="scen" aria-label="Test scenarios"></ul>
+            <div class="scope">
+              <div class="readout">
+                <div><span class="mono">RMS (mean)</span><b id="r-rms">–</b></div>
+                <div><span class="mono">vs. healthy</span><b id="r-dev">–</b></div>
+                <div><span class="mono">Motor</span><b id="r-motor" style="font-size:14px;padding-top:6px">–</b></div>
+              </div>
+              <div class="canvas-wrap">
+                <canvas aria-hidden="true"></canvas>
+                <span class="mono">Vibration · illustrative</span>
+              </div>
+              <div>
+                <span class="mono">Energy per frequency band</span>
+                <div class="bands-bar" style="margin-top:10px"></div>
+                <div class="bands-legend"></div>
+              </div>
+              <p class="note" id="lab-note"></p>
+            </div>
+          </div>
+          <div class="rms-chart">
+            <div class="head"><span class="mono">RMS per scenario · average of 2 measurements</span><span class="mono" id="base-note"></span></div>
+            <div class="rms-rows"></div>
+          </div>
+        </div>
+        <p class="mono" style="margin-top:14px;line-height:1.6"><span class="hot">Fig. 3</span> — RMS and band energy are measured values (thesis table 9.3). The moving signal is a visualisation built from those values, not a raw recording.</p>
+      </section>
+
+      <!-- ===================== 05 FINDINGS ===================== -->
+      <section class="chapter" id="findings">
+        <div class="sec-head rv"><h2>What I found</h2><span class="mono">05</span></div>
+        <ul class="findings">
+          <li class="rv"><h3>Broken motors vibrate more</h3><p>In almost every case the defective motor had a higher RMS. With all bearings damaged, it was nearly <strong>four times</strong> the healthy level. RMS works as a quick first check.</p></li>
+          <li class="rv"><h3>Defects shift the energy</h3><p>Every damaged Bosch motor moved energy into the 80–160 Hz band, and each defect had its own fingerprint. That hints at telling defects apart, not just spotting them.</p></li>
+          <li class="rv"><h3>The raw signal matters</h3><p>The broken gear produced a peak once per crank rotation that RMS and band energy completely missed. A good tool needs to look at the time signal too.</p></li>
+          <li class="rv"><h3>Proof of principle, not a product</h3><p>Two motor models, two measurements per case. It shows the method works; reliable thresholds per defect need much more data.</p></li>
+        </ul>
+      </section>
+
+      <!-- ===================== 06 CONCEPT ===================== -->
+      <section class="chapter" id="concept">
+        <div class="sec-head rv"><h2>The concept</h2><span class="mono">06</span></div>
+        <div class="lede rv">
+          <span class="mono">A tool for the workshop</span>
+          <div>
+            <p>A wireless sensor on a stand plus software with a database of <strong>healthy baselines</strong> per motor type. The mechanic measures during a normal service, in about fifteen minutes, and gets clear advice: fine, keep an eye on it, or send it to a revision specialist.</p>
+          </div>
+        </div>
+        <div class="split">
+          <figure class="paper rv"><img src="/assets/projects/e-bike/concept-scene.jpg" width="1400" height="1354" alt="Illustration of a bike mechanic using the diagnostic tool in a workshop" loading="lazy"></figure>
+          <figure class="paper rv"><img src="/assets/projects/e-bike/concept-tool.jpg" width="683" height="416" alt="Illustration of the sensor stand and the analysis software on a laptop" loading="lazy" style="padding:8%"></figure>
+        </div>
+        <ol class="steps">
+          <li class="rv"><span class="mono hot">01</span><b>Prepare</b><p>Hang the bike, remove chain and covers.</p></li>
+          <li class="rv"><span class="mono hot">02</span><b>Position</b><p>Rest the motor against the sensor finger.</p></li>
+          <li class="rv"><span class="mono hot">03</span><b>Run</b><p>Clamp the walk-assist button.</p></li>
+          <li class="rv"><span class="mono hot">04</span><b>Measure</b><p>Start recording from the laptop.</p></li>
+          <li class="rv"><span class="mono hot">05</span><b>Decide</b><p>Compare with the baseline and get advice.</p></li>
+        </ol>
+      </section>
+
+      <a class="next" href="https://repository.tudelft.nl/record/uuid:810c5fd5-8d03-4a02-92ef-0ad4e4d3b947" target="_blank" rel="noopener">
+        <span class="mono">Want all the details?</span>
+        <span class="mono">Read the thesis <span class="hot">↗</span></span>
       </a>
     </main>
 
@@ -74,11 +214,12 @@
       <div class="tblock">
         <div><span class="mono">Title</span><b>E-bike motor diagnostics</b></div>
         <div><span class="mono">Drawn by</span><b>D. Vijverberg</b></div>
-        <div><span class="mono">Rev</span><b>B</b></div>
+        <div><span class="mono">Rev</span><b>C</b></div>
         <div><span class="mono">Sheet</span><b>2 / 2 · <span id="yr">2026</span></b></div>
       </div>
     </footer>
   </div>
   <script src="/assets/site.js"></script>
+  <script src="/assets/projects/e-bike/e-bike.js"></script>
 </body>
 </html>
