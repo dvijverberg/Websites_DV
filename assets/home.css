@@ -40,3 +40,13 @@
   .about { grid-template-columns: 1fr; gap: 28px; }
   .about .portrait { max-width: 200px; order: 0; }
 }
+
+/* contact */
+.contact { padding: 112px 0 72px; }
+.contact h2 { font-size: clamp(26px, 3vw, 34px); line-height: 1; margin: 0; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding-top: 28px; align-items: start; }
+.contact-sub { font-size: 19px; line-height: 1.5; color: var(--dim); max-width: 420px; }
+.contact-links { list-style: none; display: grid; gap: 16px; }
+.contact-links li { display: grid; grid-template-columns: 90px 1fr; align-items: baseline; gap: 12px; }
+@media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
+.contact-links .mail { justify-self: start; }
