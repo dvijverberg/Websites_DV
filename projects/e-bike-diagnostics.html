@@ -68,16 +68,6 @@
         <div><b>€15</b><span class="mono">in electronics for the working prototype</span></div>
       </div>
 
-      <div class="made rv" role="region" aria-label="What I built">
-        <span class="mono">Built end to end · physical and digital</span>
-        <div class="made-grid">
-          <div><span class="mono hot">Research</span><p>Took nine motors apart and interviewed twelve experts to find where they fail.</p></div>
-          <div><span class="mono hot">Hardware</span><p>A rigid sensor stand with a 3D-printed finger that holds the piezo against the housing.</p></div>
-          <div><span class="mono hot">Electronics &amp; code</span><p>Piezo on a Seeeduino XIAO, Python scripts for live plots, RMS, FFT and band energy.</p></div>
-          <div><span class="mono hot">Testing</span><p>Known defects swapped into healthy motors one at a time, then compared with a baseline.</p></div>
-        </div>
-      </div>
-
       <!-- ===================== 01 PROBLEM ===================== -->
       <section class="chapter" id="problem">
         <div class="sec-head rv"><h2>The problem</h2><span class="mono">01</span></div>
@@ -96,7 +86,7 @@
         <div class="lede rv">
           <span class="mono">9 motors, 6 brands</span>
           <div>
-            <p>I took nine mid-drive motors apart and mapped every part and connection. Despite the different brands, they all share <strong>the same basic architecture</strong>. Combined with interviews, this showed where they fail.</p>
+            <p>Together with a fellow student, I took nine mid-drive motors apart and mapped every part and connection. Despite the different brands, they all share <strong>the same basic architecture</strong>. Combined with interviews, this showed where they fail.</p>
           </div>
         </div>
 
@@ -128,9 +118,36 @@
         </div>
       </section>
 
-      <!-- ===================== 03 PROTOTYPE ===================== -->
+      <!-- ===================== 03 WHAT TO MEASURE ===================== -->
+      <section class="chapter" id="choice">
+        <div class="sec-head rv"><h2>Choosing what to measure</h2><span class="mono">03</span></div>
+        <div class="lede rv">
+          <span class="mono">Six signals, four criteria</span>
+          <div>
+            <p>Experts describe a failing motor in subjective terms: noise, stiffness, play. I listed six signals that could make this measurable and scored each one on four criteria.</p>
+            <p><strong>Vibration came out on top.</strong> It shows wear early, can be measured from outside the housing and covers both bearings and gears. Motor power came close, but depends on access to the manufacturer's software.</p>
+          </div>
+        </div>
+        <div class="harris viz rv">
+          <table>
+            <thead><tr><th scope="col"><span class="sr">Signal</span></th><th scope="col">Detects wear early</th><th scope="col">Quick during a service</th><th scope="col">Works without opening</th><th scope="col">Bearings and gears</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Play</th><td><span class="hp s0"><i></i><i></i><i></i><i></i></span><span class="sr">−−</span></td><td><span class="hp s3"><i></i><i></i><i></i><i></i></span><span class="sr">++</span></td><td><span class="hp s2"><i></i><i></i><i></i><i></i></span><span class="sr">+</span></td><td><span class="hp s2"><i></i><i></i><i></i><i></i></span><span class="sr">+</span></td></tr>
+              <tr><th scope="row">Motor power</th><td><span class="hp s2"><i></i><i></i><i></i><i></i></span><span class="sr">+</span></td><td><span class="hp s2"><i></i><i></i><i></i><i></i></span><span class="sr">+</span></td><td><span class="hp s2"><i></i><i></i><i></i><i></i></span><span class="sr">+</span></td><td><span class="hp s2"><i></i><i></i><i></i><i></i></span><span class="sr">+</span></td></tr>
+              <tr><th scope="row">Temperature</th><td><span class="hp s1"><i></i><i></i><i></i><i></i></span><span class="sr">−</span></td><td><span class="hp s1"><i></i><i></i><i></i><i></i></span><span class="sr">−</span></td><td><span class="hp s2"><i></i><i></i><i></i><i></i></span><span class="sr">+</span></td><td><span class="hp s2"><i></i><i></i><i></i><i></i></span><span class="sr">+</span></td></tr>
+              <tr><th scope="row">Water ingress</th><td><span class="hp s3"><i></i><i></i><i></i><i></i></span><span class="sr">++</span></td><td><span class="hp s2"><i></i><i></i><i></i><i></i></span><span class="sr">+</span></td><td><span class="hp s0"><i></i><i></i><i></i><i></i></span><span class="sr">−−</span></td><td><span class="hp s1"><i></i><i></i><i></i><i></i></span><span class="sr">−</span></td></tr>
+              <tr><th scope="row">Slipping</th><td><span class="hp s0"><i></i><i></i><i></i><i></i></span><span class="sr">−−</span></td><td><span class="hp s0"><i></i><i></i><i></i><i></i></span><span class="sr">−−</span></td><td><span class="hp s1"><i></i><i></i><i></i><i></i></span><span class="sr">−</span></td><td><span class="hp s1"><i></i><i></i><i></i><i></i></span><span class="sr">−</span></td></tr>
+              <tr class="pick"><th scope="row">Vibration</th><td><span class="hp s3"><i></i><i></i><i></i><i></i></span><span class="sr">++</span></td><td><span class="hp s2"><i></i><i></i><i></i><i></i></span><span class="sr">+</span></td><td><span class="hp s3"><i></i><i></i><i></i><i></i></span><span class="sr">++</span></td><td><span class="hp s3"><i></i><i></i><i></i><i></i></span><span class="sr">++</span></td></tr>
+            </tbody>
+          </table>
+          <div class="harris-key mono" aria-hidden="true"><span>−− very poor</span><span>++ excellent</span></div>
+        </div>
+        <p class="mono" style="margin-top:14px"><span class="hot">Fig. 3</span> — Harris profile of the six candidate signals (thesis table 8.2).</p>
+      </section>
+
+      <!-- ===================== 04 PROTOTYPE ===================== -->
       <section class="chapter" id="prototype">
-        <div class="sec-head rv"><h2>The prototype</h2><span class="mono">03</span></div>
+        <div class="sec-head rv"><h2>The prototype</h2><span class="mono">04</span></div>
         <div class="lede rv">
           <span class="mono">Piezo + microcontroller</span>
           <div>
@@ -146,9 +163,9 @@
         </div>
       </section>
 
-      <!-- ===================== 04 LAB ===================== -->
+      <!-- ===================== 05 LAB ===================== -->
       <section class="chapter" id="lab-section">
-        <div class="sec-head rv"><h2>Explore the measurements</h2><span class="mono">04</span></div>
+        <div class="sec-head rv"><h2>Explore the measurements</h2><span class="mono">05</span></div>
         <div class="lede rv">
           <span class="mono">Real test data</span>
           <div>
@@ -192,27 +209,27 @@
             <div class="rms-rows"></div>
           </div>
         </div>
-        <p class="mono" style="margin-top:14px;line-height:1.6"><span class="hot">Fig. 3</span> — RMS and band energy are measured values (thesis table 9.3). The moving signal is a visualisation built from those values, not a raw recording.</p>
+        <p class="mono" style="margin-top:14px;line-height:1.6"><span class="hot">Fig. 4</span> — RMS and band energy are measured values (thesis table 9.3). The moving signal is a visualisation built from those values, not a raw recording.</p>
       </section>
 
-      <!-- ===================== 05 FINDINGS ===================== -->
+      <!-- ===================== 06 FINDINGS ===================== -->
       <section class="chapter" id="findings">
-        <div class="sec-head rv"><h2>What I found</h2><span class="mono">05</span></div>
+        <div class="sec-head rv"><h2>What I found</h2><span class="mono">06</span></div>
         <ul class="findings">
-          <li class="rv"><h3>Broken motors vibrate more</h3><p>In almost every case the defective motor had a higher RMS. With all bearings damaged, it was nearly <strong>four times</strong> the healthy level. RMS works as a quick first check.</p></li>
+          <li class="rv"><h3>Broken motors vibrate more</h3><p>In almost every case the defective motor had a higher RMS. With all bearings damaged, it was nearly <strong>four times</strong> the healthy level. The damaged Shimano motors also scored above their healthy counterpart, at a much lower level overall. RMS works as a quick first check.</p></li>
           <li class="rv"><h3>Defects shift the energy</h3><p>Every damaged Bosch motor moved energy into the 80–160 Hz band, and most defects left a slightly different pattern. That hints at telling defects apart, not just spotting them.</p></li>
           <li class="rv"><h3>The raw signal matters</h3><p>The broken gear produced a peak once per crank rotation that RMS and band energy completely missed. A good tool needs to look at the time signal too.</p></li>
           <li class="rv"><h3>Proof of principle, not a product</h3><p>Two motor models, two measurements per case. It shows the method works; reliable thresholds per defect need much more data.</p></li>
         </ul>
       </section>
 
-      <!-- ===================== 06 CONCEPT ===================== -->
+      <!-- ===================== 07 CONCEPT ===================== -->
       <section class="chapter" id="concept">
-        <div class="sec-head rv"><h2>The concept</h2><span class="mono">06</span></div>
+        <div class="sec-head rv"><h2>The concept</h2><span class="mono">07</span></div>
         <div class="lede rv">
           <span class="mono">A tool for the workshop</span>
           <div>
-            <p>A wireless sensor on a stand plus software with a database of <strong>healthy baselines</strong> per motor type. The mechanic measures during a normal service, in about fifteen minutes, and gets advice on what to do next.</p>
+            <p>A wireless sensor on a stand plus software with a database of <strong>healthy baselines</strong> per motor type. The mechanic measures during a normal service, in an estimated fifteen minutes, and gets advice on what to do next.</p>
           </div>
         </div>
         <figure class="drawing concept-scene rv"><img src="/assets/projects/e-bike/concept-scene.jpg" width="1400" height="1354" alt="Illustration of a bike mechanic using the diagnostic tool in a workshop" loading="lazy"></figure>
@@ -223,6 +240,29 @@
           <li class="rv"><span class="mono hot">04</span><b>Measure</b><p>Start recording from the laptop.</p></li>
           <li class="rv"><span class="mono hot">05</span><b>Decide</b><p>Compare with the baseline and get advice.</p></li>
         </ol>
+      </section>
+
+      <!-- ===================== 08 FEEDBACK ===================== -->
+      <section class="chapter" id="feedback">
+        <div class="sec-head rv"><h2>Feedback and next steps</h2><span class="mono">08</span></div>
+        <div class="lede rv">
+          <span class="mono">A mechanic and a revision expert</span>
+          <div>
+            <p>I presented the concept to a bike mechanic and a revision expert. Both valued an <strong>objective diagnosis that doesn't depend on the manufacturer's software</strong>. They were just as clear about what doesn't work yet.</p>
+          </div>
+        </div>
+        <ul class="fb">
+          <li class="rv"><div><span class="mono">Feedback</span><h3>Too slow for a regular service</h3><p>Removing chain, cranks and covers would take about thirty minutes, not my estimated fifteen. In this form the mechanic would only measure a motor that already sounds wrong, which defeats early detection.</p></div><div><span class="mono hot">Next step</span><p>Fewer parts to remove and a shorter measurement, so it fits a standard service.</p></div></li>
+          <li class="rv"><div><span class="mono">Feedback</span><h3>The clamp is improvised</h3><p>Holding the walk-assist button down with a clamp risks damaging the display and gives inconsistent runs.</p></div><div><span class="mono hot">Next step</span><p>A test mode in the motor software that runs the motor for a fixed time. That needs the manufacturers on board.</p></div></li>
+          <li class="rv"><div><span class="mono">Feedback</span><h3>A hanging bike can move</h3><p>Results have to be comparable between bikes and between workshops.</p></div><div><span class="mono hot">Next step</span><p>A standardised setup that is hard to get wrong.</p></div></li>
+          <li class="rv"><div><span class="mono">Feedback</span><h3>Build the sensor into the motor</h3><p>The revision expert's idea: motors that monitor their own condition, which would also show manufacturers how their motors wear in real use.</p></div><div><span class="mono hot">Next step</span><p>The bigger version of this project. It starts with a much larger set of baseline measurements.</p></div></li>
+        </ul>
+        <div class="lede reflect rv">
+          <span class="mono">What I took from it</span>
+          <div>
+            <p>I learned just enough about vibration physics to build a prototype that works. I'm not a vibration specialist, and to take this further I would bring one in. That is the part of design I enjoy most: framing the problem, building enough to test an idea, and knowing when to involve the expert.</p>
+          </div>
+        </div>
         <div class="lede beyond rv">
           <span class="mono">Beyond e-bikes</span>
           <div>
