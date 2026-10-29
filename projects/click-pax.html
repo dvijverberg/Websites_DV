@@ -41,7 +41,7 @@
       <a class="back mono" href="/#projects">← All projects</a>
 
       <div class="p-head">
-        <span class="mono"><span class="hot">02</span> — Packaging · software · automation</span>
+        <span class="mono"><span class="hot">01</span> — Packaging · software · automation</span>
         <h1>From a customer request to a proposal, automatically</h1>
         <p class="pitch">At Click-Pax I design packaging concepts for clients. Lately most of my time goes into the tools around that work: a chain of programs that turns a request into <strong>a dieline, a print, 3D renders, a price indication and a proposal</strong>.</p>
       </div>
@@ -138,7 +138,7 @@
           <li><span class="mono">06 · Headless</span><p>Runs without the interface from a queue, in the background or on a server.</p></li>
         </ul>
 
-        <div class="fold rv" id="fold" data-src="/assets/projects/click-pax/mailer-0427.json">
+        <div class="fold rv" id="fold" data-src="/assets/projects/click-pax/mailer-0427.json" data-tex-out="/assets/projects/click-pax/tex-out.webp" data-tex-in="/assets/projects/click-pax/tex-in.webp">
           <div class="fold-stage">
             <span class="fold-status mono">Loading 3D view</span>
             <span class="fold-hint mono">Drag to turn</span>
@@ -149,7 +149,7 @@
             <span class="mono fold-step" data-step aria-live="polite"></span>
           </div>
         </div>
-        <p class="mono" style="margin-top:14px"><span class="hot">Fig. 4</span> — Try it: the same mailer, 345 × 225 × 26 mm, folded from its production DXF. Simplified web version: panels and hinges only, no bend radius or print.</p>
+        <p class="mono" style="margin-top:14px"><span class="hot">Fig. 4</span> — Try it: the same mailer, 345 × 225 × 26 mm, folded from its production DXF. Simplified web version: panels and hinges with the print, no bend radius.</p>
 
         <ol class="seq rv" aria-label="Fold sequence rendered by the add-on">
           <li><img src="/assets/projects/click-pax/r/seq-0.webp" width="900" height="600" alt="Flat dieline, inside print up" loading="lazy" decoding="async"><span class="mono">01 · Flat</span></li>
@@ -167,16 +167,25 @@
         </div>
         <p class="mono cap"><span class="hot">Fig. 6</span> — Inside and outside printed separately. Plano: the whole sheet, outside up.</p>
 
-        <div class="clim rv">
-          <figure><img src="/assets/projects/click-pax/r/clim.webp" width="1200" height="1200" alt="Open shipping box with two paper insulation liners laid in crosswise" loading="lazy" decoding="async"></figure>
-          <div>
-            <span class="mono">Second add-on · built from scratch</span>
-            <h3>Climaliner</h3>
-            <p>Paper insulation liners for chilled and frozen shipments, laid into any box procedurally. Select the box, click, and a U-liner appears that fits its inside dimensions; add a second one crosswise inside it.</p>
-            <p>The liner is generated with Geometry Nodes: paper and core as separate materials, fold radius, glue edge, wrinkles and small imperfections, each liner with its own seed.</p>
-          </div>
-        </div>
-        <p class="mono cap"><span class="hot">Fig. 7</span> — A U-liner and a cross liner in a plain FEFCO 0201, rendered with both add-ons from one script.</p>
+        <figure class="shot rv">
+          <div class="shot-bar mono"><span><i></i><i></i><i></i></span><span>Blender 5.2 · Click-Pax Render v1.17.1</span></div>
+          <img src="/assets/projects/click-pax/r/blender-ui.webp" width="1600" height="933" alt="Blender viewport with the mailer open and the Click-Pax Render panel: panel 19 selected, fold angle 90, layer 1, print on outside and inside" loading="lazy" decoding="async">
+          <span class="pin mono" style="left:88.5%;top:29%">A</span>
+          <span class="pin mono" style="left:88.5%;top:45%">B</span>
+          <span class="pin mono" style="left:88.5%;top:70%">C</span>
+        </figure>
+        <ol class="pins mono">
+          <li><b>A</b> Pick a panel in the viewport, set its fold angle. Everything attached follows.</li>
+          <li><b>B</b> Layer in board thickness: here the tuck flap sits one layer out, in front of the front wall.</li>
+          <li><b>C</b> Print outside and inside, each from its own template, with or without opaque ink.</li>
+        </ol>
+        <p class="mono cap"><span class="hot">Fig. 7</span> — The add-on in Blender, live render in the viewport.</p>
+
+        <figure class="shot shot-nodes rv">
+          <div class="shot-bar mono"><span><i></i><i></i><i></i></span><span>Shader · KP_Kraft · 94 nodes</span></div>
+          <img src="/assets/projects/click-pax/r/blender-nodes.webp" width="1180" height="680" alt="Node graph of the procedural kraft board material" loading="lazy" decoding="async">
+        </figure>
+        <p class="mono cap"><span class="hot">Fig. 8</span> — The board is procedural: fibres, specks, flute show-through, cut and crease lines and the two prints, all in one node group.</p>
 
         <div class="mypart rv">
           <div>
@@ -220,9 +229,9 @@
         </ul>
       </section>
 
-      <a class="next" href="/projects/kubo-rnd">
+      <a class="next" href="/projects/e-bike-diagnostics">
         <span class="mono">Next project</span>
-        <span class="mono">KUBO R&amp;D <span class="hot">→</span></span>
+        <span class="mono">E-bike diagnostics <span class="hot">→</span></span>
       </a>
     </main>
 
@@ -231,7 +240,7 @@
         <div><span class="mono">Title</span><b>Click-Pax</b></div>
         <div><span class="mono">Drawn by</span><b>D. Vijverberg</b></div>
         <div><span class="mono">Rev</span><b>A</b></div>
-        <div><span class="mono">Sheet</span><b>3 / 4 · <span id="yr">2026</span></b></div>
+        <div><span class="mono">Sheet</span><b>2 / 4 · <span id="yr">2026</span></b></div>
       </div>
     </footer>
   </div>

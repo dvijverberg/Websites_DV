@@ -92,3 +92,15 @@
 .project:hover .thumb img { transform: scale(1.03); }
 .project.card-img h3 { padding-top: 14px; margin-top: 0; }
 .project.card-img p { padding-right: 28px; }
+
+/* hero: folding mailer (replaces the motor casing) */
+.hero-fold .fold-stage { position: relative; aspect-ratio: 1 / 1; cursor: grab; touch-action: pan-y; }
+.hero-fold .fold-stage:active { cursor: grabbing; }
+.hero-fold .fold-stage canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; display: block; }
+.hero-fold .fold-status { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); opacity: .6; }
+.fold-link { background: none; border: 0; padding: 0; font: inherit; letter-spacing: inherit; text-transform: inherit; color: var(--ink); cursor: pointer; border-bottom: 1px solid var(--hot); }
+.fold-link:hover { color: var(--hot); }
+@media (max-width: 860px) { .hero-fold .fold-stage { aspect-ratio: 4 / 3; } }
+.feature .img.img-render { border-right: 1px solid var(--faint); background: radial-gradient(ellipse at 50% 55%, var(--surface) 0%, var(--bg) 85%); }
+.feature .img.img-render img { object-fit: contain; }
+@media (max-width: 860px) { .feature .img.img-render { border-right: 0; border-bottom: 1px solid var(--faint); } }
