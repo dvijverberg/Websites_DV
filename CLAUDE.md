@@ -1,6 +1,6 @@
 # Portfolio Dion Vijverberg
 
-Static portfolio site, deployed by Vercel on every push to `main` (https://websitesdv.vercel.app, later dionvijverberg.nl).
+Static portfolio site, deployed by Vercel on every push to `main` (https://www.dionvijverberg.nl; websitesdv.vercel.app redirects there).
 Plain HTML/CSS/JS, no build step. `vercel.json` sets `cleanUrls`, so link to `/projects/click-pax`, not `.html`.
 
 Talk to Dion in Dutch. Site copy is English.

@@ -1,3 +1,11 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "websitesdv.vercel.app" }],
+      "destination": "https://www.dionvijverberg.nl/:path*",
+      "permanent": true
+    }
+  ]
 }
