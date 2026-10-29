@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>KUBO R&amp;D: analyse, build, test — Dion Vijverberg</title>
-  <meta name="description" content="R&D work at greenhouse builder KUBO: a tool redesigned and taken to production, an airflow test setup, and a heat test on PVC.">
+  <meta name="description" content="R&D work at greenhouse builder KUBO: an airflow test on an 85 m hose, a tool redesigned and taken to production, and a heat test on PVC.">
   <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
   <link rel="preload" href="/assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -12,7 +12,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <meta property="og:type" content="website">
   <meta property="og:title" content="KUBO R&amp;D: analyse, build, test — Dion Vijverberg">
-  <meta property="og:description" content="A tool redesigned and taken to production, an airflow test setup, and a heat test on PVC.">
+  <meta property="og:description" content="An airflow test on an 85 m hose, a tool redesigned and taken to production, and a heat test on PVC.">
   <meta property="og:url" content="https://websitesdv.vercel.app/projects/kubo-rnd">
   <meta property="og:image" content="https://websitesdv.vercel.app/og.png">
   <meta property="og:image:width" content="1200">
@@ -21,6 +21,7 @@
   <meta name="theme-color" content="#0e0e0d">
   <link rel="stylesheet" href="/assets/styles.css">
   <link rel="stylesheet" href="/assets/project.css">
+  <link rel="stylesheet" href="/assets/projects/kubo/kubo.css">
 </head>
 <body>
   <div class="wrap">
@@ -41,7 +42,7 @@
       <div class="p-head">
         <span class="mono"><span class="hot">03</span> — R&amp;D · greenhouse technology</span>
         <h1>Analyse, build, test: R&amp;D at KUBO</h1>
-        <p class="pitch">An internship and part-time job in the R&amp;D department of greenhouse builder KUBO. No fixed project, just real problems: <strong>a tool I redesigned and took to production</strong>, an airflow test setup, and a prototype built only to understand a risk.</p>
+        <p class="pitch">An internship and part-time job in the R&amp;D department of greenhouse builder KUBO. No fixed project, just real problems: <strong>an airflow test on an 85 m hose</strong>, a tool I redesigned and took to production, and a prototype built only to understand a risk.</p>
       </div>
 
       <div class="spec">
@@ -53,18 +54,121 @@
 
       <figure class="hero-img rv">
         <img src="/assets/projects/kubo/tools.jpg" alt="Three stainless steel profile tools" width="1600" height="1200">
-        <figcaption class="cap mono"><span><span class="hot">Fig. 1</span> — The three stainless steel tools, made by an external manufacturer</span><span>KUBO</span></figcaption>
+        <figcaption class="cap mono"><span><span class="hot">Fig. 1</span> — The three stainless steel tools from project 02</span><span>KUBO</span></figcaption>
       </figure>
 
-      <!-- ===================== 01 TOOL ===================== -->
+      <!-- ===================== 01 AHU ===================== -->
+      <section class="chapter" id="airflow">
+        <div class="sec-head rv"><h2>How much air comes out?</h2><span class="mono">01</span></div>
+        <div class="lede rv">
+          <span class="mono">Test setup · data</span>
+          <div>
+            <p>KUBO's Ultra Clima system uses an Air Handling Unit (AHU) per path in the greenhouse: a heating and cooling block with a fan that blows air through a long hose. Growers want to know <strong>how much air goes in</strong>, because that sets how quickly the air in the greenhouse is replaced.</p>
+            <p>This was the biggest project of my internship. We built a test setup around one AHU and an 85 m hose, and ran the fan at different speeds. Airflow can be worked out in more than one way, so we measured several things at once to compare them.</p>
+            <p>Even with a detailed test plan we kept running into surprises, and had to adjust the setup and redo parts of the test. <strong>Testing takes longer than you plan</strong>, and that's the point of it.</p>
+          </div>
+        </div>
+        <div class="role-list rv">
+          <span class="mono">My role</span>
+          <ul><li>Building the setup</li><li>Running the tests</li><li>Processing the data</li><li>Improving the setup</li></ul>
+        </div>
+
+        <div class="rig rv" id="rig">
+          <div class="rig-top">
+            <span class="mono"><span class="hot">Fig. 2</span> — The test setup, simplified</span>
+            <span class="mono">Select a measuring point</span>
+          </div>
+          <div class="rig-body">
+            <div class="rig-draw">
+              <svg viewBox="0 0 680 290" aria-hidden="false" role="group" aria-label="Schematic of the AHU test setup with four measuring points">
+                <rect class="ln fill" x="40" y="80" width="56" height="140"/>
+                <path class="thin" d="M48,86 V214 M56,86 V214 M64,86 V214 M72,86 V214 M80,86 V214 M88,86 V214 "/>
+                <rect class="ln fill" x="96" y="80" width="98" height="140"/>
+                <path class="ln fill" d="M194,80 L234,110 L234,190 L194,220 Z"/>
+                <circle class="thin" cx="145" cy="150" r="34"/>
+                <ellipse class="thin" cx="145" cy="133" rx="7" ry="15"/>
+                <ellipse class="thin" cx="145" cy="133" rx="7" ry="15" transform="rotate(120 145 150)"/>
+                <ellipse class="thin" cx="145" cy="133" rx="7" ry="15" transform="rotate(240 145 150)"/>
+                <circle class="ln fill" cx="145" cy="150" r="4"/>
+                <rect class="fill" x="234" y="110" width="186" height="80"/>
+                <rect class="fill" x="450" y="110" width="190" height="80"/>
+                <path class="ln" d="M234,110 H420 M450,110 H640 M234,190 H420 M450,190 H640"/>
+                <path class="ln" d="M416,104 C428,132 408,168 420,196 M446,104 C458,132 438,168 450,196"/>
+                <rect class="ln fill" x="640" y="104" width="10" height="92"/>
+                <path class="air" d="M252,150 H405 M465,150 H612"/>
+                <path class="ln" d="M615,150 l-9,-5 M615,150 l-9,5"/>
+                <path class="dim-ln" d="M234,238 V262 M650,238 V262 M234,250 H650 M234,250 l9,-4 M234,250 l9,4 M650,250 l-9,-4 M650,250 l-9,4"/>
+                <text x="442" y="242" text-anchor="middle">85 m</text>
+                <text class="lbl" x="44" y="70">coil</text>
+                <text class="lbl" x="124" y="70">fan</text>
+                <text class="lbl" x="244" y="102">hose</text>
+                <text class="lbl" x="480" y="142">air</text>
+
+                <g class="m" data-m="1"><path class="meas" d="M150,220 V246 M113,259 H124"/><rect class="meas" x="124" y="246" width="52" height="26" style="fill:var(--bg)"/><text x="150" y="263" text-anchor="middle">A</text></g>
+                <g class="m" data-m="2"><path class="meas" d="M110,80 V36 H237 M214,95 V36"/><rect class="meas" x="152" y="28" width="20" height="16" style="fill:var(--bg)"/></g>
+                <g class="m" data-m="3"><path class="meas" d="M300,69 V150 H280"/></g>
+                <g class="m" data-m="4"><path class="meas" d="M345,110 V98 M395,110 V98 M470,110 V98 M520,110 V98 M570,110 V98 M620,110 V98 M345,94 V88 H620 V94 M533,83 V88"/></g>
+
+                <g class="pt" data-pt="1" tabindex="0" role="button" aria-label="1: fan current"><circle cx="100" cy="259" r="15"/><text x="100" y="259">1</text></g>
+                <g class="pt" data-pt="2" tabindex="0" role="button" aria-label="2: pressure over the fan"><circle cx="250" cy="36" r="15"/><text x="250" y="36">2</text></g>
+                <g class="pt" data-pt="3" tabindex="0" role="button" aria-label="3: pitot tube"><circle cx="300" cy="56" r="15"/><text x="300" y="56">3</text></g>
+                <g class="pt" data-pt="4" tabindex="0" role="button" aria-label="4: pressure along the hose"><circle cx="533" cy="70" r="15"/><text x="533" y="70">4</text></g>
+              </svg>
+            </div>
+            <div class="rig-info">
+              <ol>
+                <li><button type="button" data-pick="1" aria-pressed="true"><span class="mono">1</span>Fan current</button></li>
+                <li><button type="button" data-pick="2" aria-pressed="false"><span class="mono">2</span>Pressure over the fan</button></li>
+                <li><button type="button" data-pick="3" aria-pressed="false"><span class="mono">3</span>Pitot tube</button></li>
+                <li><button type="button" data-pick="4" aria-pressed="false"><span class="mono">4</span>Pressure along the hose</button></li>
+              </ol>
+              <div class="rig-text" aria-live="polite">
+                <h4 class="mono hot"></h4>
+                <p></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart rv" id="chart">
+          <div class="chart-top">
+            <span class="mono"><span class="hot">Fig. 3</span> — Pressure along the hose</span>
+            <div class="seg" role="group" aria-label="Fan setting">
+              <button type="button" data-fan="30">30</button><button type="button" data-fan="40">40</button><button type="button" data-fan="50">50</button><button type="button" data-fan="60">60</button><button type="button" data-fan="70">70</button><button type="button" data-fan="80">80</button><button type="button" data-fan="90">90</button><button type="button" data-fan="100" aria-pressed="true">100</button>
+            </div>
+          </div>
+          <div class="chart-body">
+            <div class="chart-plot"></div>
+            <div class="chart-read">
+              <div><span class="mono">Average</span><b data-out="avg">–</b></div>
+              <div><span class="mono">Lowest</span><b data-out="lo">–</b></div>
+              <div><span class="mono">Highest</span><b data-out="hi">–</b></div>
+              <p><span data-out="note"></span> Values read from the graph in my internship report.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery g3">
+          <figure class="rv"><img src="/assets/projects/kubo/ahu-hose.jpg" alt="The end of the 85 metre hose in the test hall" width="1600" height="1200" loading="lazy"></figure>
+          <figure class="rv"><img src="/assets/projects/kubo/ahu.jpg" alt="The AHU: coil block and fan, connected to the hose" width="1600" height="1200" loading="lazy"></figure>
+          <figure class="rv"><img src="/assets/projects/kubo/ahu-unit.jpg" alt="The AHU test setup in the hall" width="1600" height="1200" loading="lazy"></figure>
+        </div>
+        <p class="mono" style="margin-top:14px"><span class="hot">Fig. 4</span> — The end of the 85 m hose, and the AHU in the test hall.</p>
+      </section>
+
+      <!-- ===================== 02 TOOL ===================== -->
       <section class="chapter" id="tool">
-        <div class="sec-head rv"><h2>A tool, from lost files to steel</h2><span class="mono">01</span></div>
+        <div class="sec-head rv"><h2>A tool, from lost files to steel</h2><span class="mono">02</span></div>
         <div class="lede rv">
           <span class="mono">Redesign → production</span>
           <div>
             <p>A greenhouse near the coast in Portugal had a problem: salty air made the aluminium corrode, the corrosion built up pressure, and the glass panes started to break. The temporary fix was to <strong>create more room in the frame</strong> around the glass, using a special tool that pulls part of the profile up when you tighten a bolt.</p>
             <p>One tool existed. Three more were needed, but the 3D models were gone and the people who made the original had left. What started as "can you get some quotes?" became a project I mostly ran on my own.</p>
           </div>
+        </div>
+        <div class="role-list rv">
+          <span class="mono">My role</span>
+          <ul><li>3D modelling</li><li>Redesign</li><li>Prototyping &amp; testing</li><li>Quotes &amp; production</li><li>Contact with manufacturers</li></ul>
         </div>
 
         <div class="process rv" id="process">
@@ -93,24 +197,6 @@
         </div>
       </section>
 
-      <!-- ===================== 02 AHU ===================== -->
-      <section class="chapter" id="airflow">
-        <div class="sec-head rv"><h2>How much air comes out?</h2><span class="mono">02</span></div>
-        <div class="lede rv">
-          <span class="mono">Test setup · data</span>
-          <div>
-            <p>KUBO's Ultra Clima system uses an Air Handling Unit per path in the greenhouse: a heating and cooling block with a fan that blows air through a long hose. Growers want to know <strong>how much air goes in</strong>, because that sets how quickly the air in the greenhouse is replaced.</p>
-            <p>We built a test setup and ran the fan at different speeds. Airflow can be worked out in more than one way, for example from the fan's current or from the pressure difference over the fan, so we measured several things to compare them. I built and improved the setup, ran the tests and analysed the data.</p>
-            <p>Even with a detailed test plan we kept running into surprises and had to redo parts. <strong>Testing takes longer than you plan</strong>, and that's the point of it.</p>
-          </div>
-        </div>
-        <div class="split">
-          <figure class="drawing rv" style="padding:6%"><img src="/assets/projects/kubo/ahu-schematic.jpg" alt="Schematic of the AHU test setup" width="1240" height="574" loading="lazy"></figure>
-          <figure class="rv"><img src="/assets/projects/kubo/ahu-hose.jpg" alt="The end of the 85 metre hose" width="1600" height="1200" loading="lazy" style="width:100%;height:100%;object-fit:cover"></figure>
-        </div>
-        <p class="mono" style="margin-top:14px"><span class="hot">Fig. 2</span> — The test setup, and the end of the 85 m hose.</p>
-      </section>
-
       <!-- ===================== 03 PVC ===================== -->
       <section class="chapter" id="pvc">
         <div class="sec-head rv"><h2>A prototype to understand a risk</h2><span class="mono">03</span></div>
@@ -121,6 +207,10 @@
             <p>With a colleague I took on heat. We made a small test setup with the PVC strips that hold the glass, put it in an oven at different temperatures, and looked at flexibility and deformation afterwards. The result: <strong>at high temperatures the PVC quickly loses strength and shape</strong>, so the company knew early to look for alternatives.</p>
             <p>For me this was new: building a prototype not to test a solution, but to understand the problem.</p>
           </div>
+        </div>
+        <div class="role-list rv">
+          <span class="mono">My role</span>
+          <ul><li>Brainstorm</li><li>Test plan</li><li>Running the test</li><li>Reporting</li></ul>
         </div>
         <div class="gallery g3">
           <figure class="rv"><img src="/assets/projects/kubo/pvc-setup.jpg" alt="Test setup with PVC strips holding glass" width="1600" height="1200" loading="lazy"></figure>
@@ -133,9 +223,9 @@
       <section class="chapter" id="learned">
         <div class="sec-head rv"><h2>What I took from it</h2><span class="mono">04</span></div>
         <ul class="findings">
+          <li class="rv"><h3>Plan for the surprises</h3><p>The airflow test needed more rounds than planned. You test because you can't predict everything, so I now build that time in from the start.</p></li>
           <li class="rv"><h3>Own the whole route</h3><p>The tool only mattered once it was made, tested and sent out. Modelling it was the easy part; getting it made and working was the job.</p></li>
-          <li class="rv"><h3>Prototype early, and cheaply</h3><p>A 3D print showed whether the tool worked before anyone paid for stainless steel.</p></li>
-          <li class="rv"><h3>Plan for the surprises</h3><p>Every test needed more time than planned. Now I build that time in from the start.</p></li>
+          <li class="rv"><h3>Prototype early, and cheaply</h3><p>A 3D print showed whether the tool worked before anyone paid for stainless steel. And a quick oven test showed a risk before it became a problem.</p></li>
         </ul>
       </section>
 
@@ -144,7 +234,6 @@
         <span class="mono">E-bike motor diagnostics <span class="hot">→</span></span>
       </a>
     </main>
-
     <footer style="margin-top: 72px;">
       <div class="tblock">
         <div><span class="mono">Title</span><b>KUBO R&amp;D</b></div>
@@ -155,42 +244,6 @@
     </footer>
   </div>
   <script src="/assets/site.js"></script>
-  <script>
-  (function () {
-    const steps = [
-      { img: "profile.jpg", alt: "Aluminium profile after deforming", t: "The problem",
-        p: "Corrosion pushes on the glass until it breaks. The tool pulls the aluminium profile up to give the glass room. It buys time for a proper solution." },
-      { img: "tool-front.jpg", alt: "Front view of the tool", t: "Rebuild from scratch",
-        p: "All that was left was an assembly drawing and a few STEP files. I modelled every part again, so changes were easy, and improved the design for function and for production, together with the manufacturer." },
-      { img: "tool-parts.jpg", alt: "Tool parts on the desk", t: "Print it first",
-        p: "Before ordering steel, I 3D printed the tool to check that it actually worked." },
-      { img: "tool-closeup.jpg", alt: "Close-up of the stainless steel tool", t: "Get it made",
-        p: "I requested and compared quotes and we chose Xometry, a manufacturer none of us had used before. About three weeks after approval the stainless steel parts arrived." },
-      { img: "tools.jpg", alt: "Three finished tools", t: "Test and ship",
-        p: "We assembled the tools, tested them and sent them out to the project." },
-    ];
-    const root = document.getElementById("process");
-    const img = root.querySelector(".process-img img");
-    const txt = root.querySelector(".process-txt");
-    const tabs = root.querySelectorAll("[data-step]");
-    function show(i) {
-      const s = steps[i];
-      tabs.forEach((b, j) => b.setAttribute("aria-selected", String(i === j)));
-      img.style.opacity = 0;
-      setTimeout(() => { img.src = "/assets/projects/kubo/" + s.img; img.alt = s.alt; img.style.opacity = 1; }, 150);
-      txt.querySelector(".mono").textContent = "Step " + (i + 1) + " of " + steps.length;
-      txt.querySelector("h3").textContent = s.t;
-      txt.querySelector("p").textContent = s.p;
-    }
-    tabs.forEach((b) => b.addEventListener("click", () => show(+b.dataset.step)));
-    root.addEventListener("keydown", (e) => {
-      const cur = [...tabs].findIndex((b) => b.getAttribute("aria-selected") === "true");
-      if (e.key === "ArrowRight") { show(Math.min(cur + 1, steps.length - 1)); tabs[Math.min(cur + 1, steps.length - 1)].focus(); }
-      if (e.key === "ArrowLeft") { show(Math.max(cur - 1, 0)); tabs[Math.max(cur - 1, 0)].focus(); }
-    });
-    steps.forEach((s) => { const p = new Image(); p.src = "/assets/projects/kubo/" + s.img; });
-    show(0);
-  })();
-  </script>
+  <script src="/assets/projects/kubo/kubo.js"></script>
 </body>
 </html>
