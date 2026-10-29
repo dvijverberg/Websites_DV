@@ -68,9 +68,12 @@
   .hero-3d .m3d-stage { aspect-ratio: 4 / 3; }
 }
 
-/* skills in groups */
-.skill-groups { display: grid; gap: 26px; padding-top: 26px; }
-.skill-groups .skills { padding-top: 10px; }
+/* toolkit as rows, same rhythm as experience */
+.exp.tools li { grid-template-columns: 200px 1fr; align-items: start; }
+.exp.tools li > .mono { padding-top: 9px; }
+.exp.tools .skills { padding-top: 0; }
+.tools-note { color: var(--dim); font-size: 15.5px; line-height: 1.55; max-width: 620px; margin-bottom: 12px; }
+@media (max-width: 860px) { .exp.tools li { grid-template-columns: 1fr; gap: 10px; } .exp.tools li > .mono { padding-top: 0; } }
 .projects .project.soon .top { display: flex; justify-content: space-between; width: 100%; }
 .exp li.earlier .role { font-weight: 500; color: var(--dim); }
 
