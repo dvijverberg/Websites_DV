@@ -107,3 +107,4 @@
 /* long section title: keep label on one line */
 #experience .sec-head { gap: 16px; }
 #experience .sec-head .mono { white-space: nowrap; }
+#education { padding-top: 72px; }
