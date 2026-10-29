@@ -50,3 +50,20 @@
 .contact-links li { display: grid; grid-template-columns: 90px 1fr; align-items: baseline; gap: 12px; }
 @media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
 .contact-links .mail { justify-self: start; }
+
+/* hero with 3D model */
+.hero.home { grid-template-columns: 1.05fr 1fr; gap: 24px; align-items: center; padding: 72px 0 24px; }
+.hero.home h1 { font-size: clamp(56px, 8vw, 112px); }
+.hero-3d { position: relative; }
+.hero-3d .m3d-stage {
+  aspect-ratio: 1 / 1; border: 0;
+  background: none; overflow: visible;
+}
+.hero-3d .m3d-status { opacity: .6; }
+.hero-3d figcaption { display: flex; justify-content: space-between; gap: 12px; margin-top: -8px; }
+.hero-3d figcaption a { text-decoration: none; color: var(--ink); }
+.hero-3d figcaption a:hover { color: var(--hot); }
+@media (max-width: 860px) {
+  .hero.home { grid-template-columns: 1fr; padding-top: 40px; gap: 8px; }
+  .hero-3d .m3d-stage { aspect-ratio: 4 / 3; }
+}

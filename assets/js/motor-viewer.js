@@ -1,15 +1,14 @@
 // Interactive 3D view of the two motor casing halves.
-// Loads lazily when the viewer scrolls into view.
-const root = document.getElementById("motor3d");
-
-if (root) {
+// Every element with class "m3d" becomes a viewer; it loads lazily.
+// data-src: model, data-mode: both | left | right, data-tilt: x-rotation
+document.querySelectorAll(".m3d").forEach((root) => {
   const io = new IntersectionObserver((entries) => {
-    if (entries.some((e) => e.isIntersecting)) { io.disconnect(); init(); }
+    if (entries.some((e) => e.isIntersecting)) { io.disconnect(); init(root); }
   }, { rootMargin: "400px" });
   io.observe(root);
-}
+});
 
-async function init() {
+async function init(root) {
   const status = root.querySelector(".m3d-status");
   let THREE, OrbitControls, GLTFLoader, RoomEnvironment, toCreasedNormals;
   try {
@@ -81,7 +80,8 @@ async function init() {
   };
   const group = new THREE.Group();
   group.add(gltf.scene);
-  group.rotation.x = -0.25;
+  group.rotation.x = root.dataset.tilt ? +root.dataset.tilt : -0.25;
+  group.rotation.y = root.dataset.yaw ? +root.dataset.yaw : 0;
   scene.add(group);
 
   let mode = "both";
@@ -105,7 +105,7 @@ async function init() {
     const fov = THREE.MathUtils.degToRad(camera.fov);
     const fitH = 140 / (2 * Math.tan(fov / 2));
     const fitW = vis / (2 * Math.tan(fov / 2) * aspect);
-    camGoal.dist = Math.max(fitH, fitW) * 1.25;
+    camGoal.dist = Math.max(fitH, fitW) * (root.dataset.pad ? +root.dataset.pad : 1.25);
     if (instant) setDist(camGoal.dist);
   }
   function setDist(d) {
@@ -124,10 +124,10 @@ async function init() {
 
   camera.position.set(0, 60, 600);
   resize();
-  applyMode("both", true);
+  applyMode(root.dataset.mode || "both", true);
 
   root.querySelectorAll("[data-view]").forEach((b) => b.addEventListener("click", () => applyMode(b.dataset.view)));
-  root.querySelector("[data-reset]").addEventListener("click", () => {
+  root.querySelector("[data-reset]")?.addEventListener("click", () => {
     camera.position.set(0, 60, camGoal.dist);
     controls.target.set(0, 0, 0);
   });

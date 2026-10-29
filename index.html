@@ -20,7 +20,9 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#0e0e0d">
   <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="stylesheet" href="/assets/m3d.css">
   <link rel="stylesheet" href="/assets/home.css">
+  <script type="importmap">{"imports":{"three":"/assets/vendor/three/three.module.min.js","three/addons/":"/assets/vendor/three/addons/"}}</script>
 </head>
 <body>
   <div class="wrap">
@@ -37,7 +39,7 @@
     </header>
 
     <main>
-      <div class="hero solo">
+      <div class="hero home">
         <div>
           <div class="eyebrow"><span class="dot"></span><span class="mono">Open to work — De Lier, NL</span></div>
           <h1>Dion<br>Vijverberg</h1>
@@ -47,6 +49,10 @@
             <div><span class="mono">Focus</span><b>Concept → Production</b></div>
           </div>
         </div>
+        <figure class="m3d hero-3d" data-src="/assets/projects/e-bike/motor.glb" data-mode="right" data-tilt="-0.55" data-yaw="-0.5" data-pad="1.35">
+          <div class="m3d-stage"><span class="m3d-status mono"></span></div>
+          <figcaption class="mono"><span><span class="hot">Fig. 0</span> — E-bike motor casing · drag to rotate</span><a href="/projects/e-bike-diagnostics">Project →</a></figcaption>
+        </figure>
       </div>
 
       <section id="projects">
@@ -160,5 +166,6 @@
     </footer>
   </div>
   <script src="/assets/site.js"></script>
+  <script type="module" src="/assets/js/motor-viewer.js"></script>
 </body>
 </html>
