@@ -101,6 +101,5 @@
 .fold-link { background: none; border: 0; padding: 0; font: inherit; letter-spacing: inherit; text-transform: inherit; color: var(--ink); cursor: pointer; border-bottom: 1px solid var(--hot); }
 .fold-link:hover { color: var(--hot); }
 @media (max-width: 860px) { .hero-fold .fold-stage { aspect-ratio: 4 / 3; } }
-.feature .img.img-render { border-right: 1px solid var(--faint); background: radial-gradient(ellipse at 50% 55%, var(--surface) 0%, var(--bg) 85%); }
-.feature .img.img-render img { object-fit: contain; }
+.feature .img.img-render { border-right: 1px solid var(--faint); }
 @media (max-width: 860px) { .feature .img.img-render { border-right: 0; border-bottom: 1px solid var(--faint); } }

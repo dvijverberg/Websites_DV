@@ -55,9 +55,9 @@
 
       <div class="stats rv">
         <div><b>6</b><span class="mono">tools in one chain, each with its own tests</span></div>
-        <div><b>4</b><span class="mono">FEFCO box types drawn automatically</span></div>
+        <div><b>1<small>click</small></b><span class="mono">from a request in the sales platform to a proposal PDF</span></div>
         <div><b>≤0.5<small>mm</small></b><span class="mono">difference from ArtiosCAD drawings</span></div>
-        <div><b>2</b><span class="mono">Blender add-ons: one extended, one built from scratch</span></div>
+        <div><b>2</b><span class="mono">Blender add-ons, both built from scratch</span></div>
       </div>
 
       <!-- ===================== 01 THE CHAIN ===================== -->
@@ -90,28 +90,41 @@
 
       <!-- ===================== 02 TRY IT ===================== -->
       <section class="chapter" id="dieline">
-        <div class="sec-head rv"><h2>Try it: a box from three numbers</h2><span class="mono">02</span></div>
+        <div class="sec-head rv"><h2>Try it: a mailer from three numbers</h2><span class="mono">02</span></div>
         <div class="lede rv">
           <span class="mono">Simplified demo</span>
           <div>
-            <p>The first block draws a dieline from a box type and inside dimensions. Below is a <strong>simplified browser version</strong> for the most common box, a FEFCO 0201. The real tool also accounts for board thickness, glue flap rules and ArtiosCAD conventions, and refuses sizes that can't be made.</p>
+            <p>The first block draws a dieline from a box type and inside dimensions. Below is a <strong>simplified browser version</strong> for a FEFCO 0427 mailer: change the size, the dieline is redrawn and folded in 3D. The real tool works to ArtiosCAD conventions within 0.5 mm and refuses sizes that can't be made.</p>
           </div>
         </div>
 
-        <div class="die rv" id="die">
+        <div class="die fold rv" data-gen="0427">
           <div class="die-controls">
-            <label><span class="mono">Length</span><input type="range" min="100" max="600" step="5" value="300" data-k="L"><b data-v="L"></b></label>
-            <label><span class="mono">Width</span><input type="range" min="80" max="400" step="5" value="200" data-k="W"><b data-v="W"></b></label>
-            <label><span class="mono">Height</span><input type="range" min="50" max="400" step="5" value="150" data-k="H"><b data-v="H"></b></label>
+            <label><span class="mono">Length</span><input type="range" min="200" max="450" step="5" value="345" data-k="L"><b data-v="L"></b></label>
+            <label><span class="mono">Width</span><input type="range" min="140" max="320" step="5" value="225" data-k="W"><b data-v="W"></b></label>
+            <label><span class="mono">Height</span><input type="range" min="20" max="90" step="1" value="26" data-k="H"><b data-v="H"></b></label>
             <div class="die-out">
-              <div><span class="mono">Sheet</span><b id="die-sheet"></b></div>
-              <div><span class="mono">Board</span><b id="die-area"></b></div>
+              <div><span class="mono">Sheet</span><b data-out="sheet"></b></div>
+              <div><span class="mono">Board</span><b data-out="area"></b></div>
             </div>
             <div class="die-legend mono"><span><i class="cut"></i>Cut</span><span><i class="crease"></i>Crease</span></div>
           </div>
-          <div class="die-stage"><svg id="die-svg" role="img" aria-label="FEFCO 0201 dieline"></svg></div>
+          <div class="die-panes">
+            <div class="die-stage"><svg data-svg role="img" aria-label="FEFCO 0427 dieline"></svg></div>
+            <div class="fold-pane">
+              <div class="fold-stage">
+                <span class="fold-status mono">Loading 3D view</span>
+                <span class="fold-hint mono">Drag to turn</span>
+              </div>
+              <div class="fold-bar">
+                <button class="fold-play mono" type="button" data-play>Fold</button>
+                <input type="range" min="0" max="1000" value="0" data-fold aria-label="Fold progress">
+                <span class="mono fold-step" data-step aria-live="polite"></span>
+              </div>
+            </div>
+          </div>
         </div>
-        <p class="mono" style="margin-top:14px"><span class="hot">Fig. 2</span> — FEFCO 0201, inside dimensions in mm. Simplified: no board thickness allowances.</p>
+        <p class="mono cap"><span class="hot">Fig. 2</span> — FEFCO 0427, inside dimensions in mm. Simplified: fixed B-flute offsets, no bend radius.</p>
       </section>
 
       <!-- ===================== 03 RENDERS ===================== -->
@@ -120,14 +133,10 @@
         <div class="lede rv">
           <span class="mono">Add-ons · Python</span>
           <div>
-            <p>The render step runs on a Blender add-on that reads a flat dieline, <strong>folds it into a real box</strong> with layered flaps, bend radius and board thickness, puts the print on it and renders fixed views in kraft, brown or white board. It runs headless, so renders can be made in the background or on a server.</p>
-            <p>A colleague built the base version. I added folding recipes for autolock bottoms and full-flap boxes, the correct closing of mailer boxes, board colour and print options in the render plan, and a fix for renders that came out too dark. I also built a second add-on from scratch that <strong>lays paper insulation liners</strong> into a box procedurally with Geometry Nodes.</p>
+            <p>The render step runs on a Blender add-on I built. It reads the flat production DXF, <strong>folds it into a real box</strong> with layered flaps, bend radius and board thickness, puts the print on the outside and the inside and renders fixed views. It runs headless, so a whole folder of drawings can be rendered in the background or on a server.</p>
+            <p>A second add-on, also mine, <strong>lays paper insulation liners</strong> into a box procedurally with Geometry Nodes, for the chilled and frozen packaging of sister label Iso-PAX.</p>
           </div>
         </div>
-        <figure class="render-hero rv">
-          <img src="/assets/projects/click-pax/r/closed.webp" width="1800" height="1100" alt="Rendered kraft mailer box with a DV print, closed, three-quarter view" loading="lazy" decoding="async">
-        </figure>
-        <p class="mono cap"><span class="hot">Fig. 3</span> — Rendered by the add-on from a script: one DXF and two print PNGs in, finished views out. The print is my own concept.</p>
 
         <ul class="addon-feats rv">
           <li><span class="mono">01 · Read</span><p>Imports the ArtiosCAD DXF. Cut lines become panel edges, crease lines become hinges.</p></li>
@@ -137,35 +146,6 @@
           <li><span class="mono">05 · Views</span><p>Fixed views, closed and open, on white and transparent. Kraft, brown or white board.</p></li>
           <li><span class="mono">06 · Headless</span><p>Runs without the interface from a queue, in the background or on a server.</p></li>
         </ul>
-
-        <div class="fold rv" id="fold" data-src="/assets/projects/click-pax/mailer-0427.json" data-tex-out="/assets/projects/click-pax/tex-out.webp" data-tex-in="/assets/projects/click-pax/tex-in.webp">
-          <div class="fold-stage">
-            <span class="fold-status mono">Loading 3D view</span>
-            <span class="fold-hint mono">Drag to turn</span>
-          </div>
-          <div class="fold-bar">
-            <button class="fold-play mono" type="button" data-play>Fold</button>
-            <input type="range" min="0" max="1000" value="0" aria-label="Fold progress">
-            <span class="mono fold-step" data-step aria-live="polite"></span>
-          </div>
-        </div>
-        <p class="mono" style="margin-top:14px"><span class="hot">Fig. 4</span> — Try it: the same mailer, 345 × 225 × 26 mm, folded from its production DXF. Simplified web version: panels and hinges with the print, no bend radius.</p>
-
-        <ol class="seq rv" aria-label="Fold sequence rendered by the add-on">
-          <li><img src="/assets/projects/click-pax/r/seq-0.webp" width="900" height="600" alt="Flat dieline, inside print up" loading="lazy" decoding="async"><span class="mono">01 · Flat</span></li>
-          <li><img src="/assets/projects/click-pax/r/seq-1.webp" width="900" height="600" alt="Side walls and back wall up" loading="lazy" decoding="async"><span class="mono">02 · Walls</span></li>
-          <li><img src="/assets/projects/click-pax/r/seq-2.webp" width="900" height="600" alt="Double end walls folded in" loading="lazy" decoding="async"><span class="mono">03 · End walls</span></li>
-          <li><img src="/assets/projects/click-pax/r/seq-3.webp" width="900" height="600" alt="Lid half closed" loading="lazy" decoding="async"><span class="mono">04 · Lid</span></li>
-          <li><img src="/assets/projects/click-pax/r/seq-4.webp" width="900" height="600" alt="Closed mailer" loading="lazy" decoding="async"><span class="mono">05 · Closed</span></li>
-        </ol>
-        <p class="mono cap"><span class="hot">Fig. 5</span> — The same stages, rendered by the add-on with one fixed camera.</p>
-
-        <div class="trio rv">
-          <figure><img src="/assets/projects/click-pax/r/open-front.webp" width="1000" height="1000" alt="Open mailer seen from the front, orange inside print with the dieline drawn in white" loading="lazy" decoding="async"></figure>
-          <figure><img src="/assets/projects/click-pax/r/open.webp" width="1000" height="1000" alt="Open mailer, three-quarter view" loading="lazy" decoding="async"></figure>
-          <figure><img src="/assets/projects/click-pax/r/plano.webp" width="1000" height="1000" alt="The flat sheet, outside print up" loading="lazy" decoding="async"></figure>
-        </div>
-        <p class="mono cap"><span class="hot">Fig. 6</span> — Inside and outside printed separately. Plano: the whole sheet, outside up.</p>
 
         <figure class="shot rv">
           <div class="shot-bar mono"><span><i></i><i></i><i></i></span><span>Blender 5.2 · Click-Pax Render v1.17.1</span></div>
@@ -179,31 +159,19 @@
           <li><b>B</b> Layer in board thickness: here the tuck flap sits one layer out, in front of the front wall.</li>
           <li><b>C</b> Print outside and inside, each from its own template, with or without opaque ink.</li>
         </ol>
-        <p class="mono cap"><span class="hot">Fig. 7</span> — The add-on in Blender, live render in the viewport.</p>
+        <p class="mono cap"><span class="hot">Fig. 3</span> — The add-on in Blender, live render in the viewport.</p>
+
+        <div class="duo rv">
+          <figure><img src="/assets/projects/click-pax/r/open.webp" width="1000" height="1000" alt="Open mailer, orange inside print with the dieline drawn in white" loading="lazy" decoding="async"></figure>
+          <figure><img src="/assets/projects/click-pax/r/plano.webp" width="1000" height="1000" alt="The flat sheet, outside print up" loading="lazy" decoding="async"></figure>
+        </div>
+        <p class="mono cap"><span class="hot">Fig. 4</span> — Final renders from a script: one DXF and two print files in. Open, and plano with the outside up. The print is my own concept.</p>
 
         <figure class="shot shot-nodes rv">
           <div class="shot-bar mono"><span><i></i><i></i><i></i></span><span>Shader · KP_Kraft · 94 nodes</span></div>
           <img src="/assets/projects/click-pax/r/blender-nodes.webp" width="1180" height="680" alt="Node graph of the procedural kraft board material" loading="lazy" decoding="async">
         </figure>
-        <p class="mono cap"><span class="hot">Fig. 8</span> — The board is procedural: fibres, specks, flute show-through, cut and crease lines and the two prints, all in one node group.</p>
-
-        <div class="mypart rv">
-          <div>
-            <span class="mono">Base version</span>
-            <p>A colleague built the first version of the add-on. I worked on top of it.</p>
-          </div>
-          <div>
-            <span class="mono hot">My part</span>
-            <ul>
-              <li>Folding recipes for autolock bottoms (0701) and full-flap boxes (0203)</li>
-              <li>The correct closing of the 0427 mailer</li>
-              <li>Board colour and print options in the render plan</li>
-              <li>A fix for renders that came out too dark</li>
-              <li>A batch package that plans and renders every article in a folder of DXFs</li>
-              <li>The Climaliner add-on, from scratch: paper insulation liners laid in with Geometry Nodes</li>
-            </ul>
-          </div>
-        </div>
+        <p class="mono cap"><span class="hot">Fig. 5</span> — The board is procedural: fibres, specks, flute show-through, cut and crease lines and the two prints, all in one node group.</p>
       </section>
 
       <!-- ===================== 04 CONCEPTS ===================== -->

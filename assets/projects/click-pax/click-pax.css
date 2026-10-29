@@ -99,42 +99,9 @@
 }
 @media (max-width: 520px) { .addon-feats { grid-template-columns: 1fr; } }
 
-/* ---------- renders ---------- */
 .cap { margin-top: 14px; }
-.render-hero { margin-top: 40px; position: relative; }
-.render-hero img { display: block; width: 100%; height: auto; }
-.seq { list-style: none; margin-top: 56px; display: grid; grid-template-columns: repeat(5, 1fr); border: 1px solid var(--faint); }
-.seq li { display: flex; flex-direction: column; gap: 10px; padding: 14px 10px 14px; }
-.seq li + li { border-left: 1px solid var(--line); }
-.seq img { width: 100%; height: auto; display: block; }
-.seq li:last-child .mono { color: var(--hot); }
-.trio { margin-top: 48px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--faint); }
-.trio figure { margin: 0; padding: 12px; }
-.trio figure + figure { border-left: 1px solid var(--line); }
-.trio img { width: 100%; height: auto; display: block; }
-.mypart { margin-top: 48px; display: grid; grid-template-columns: 1fr 2fr; border-top: 1px solid var(--faint); }
-.mypart > div { padding: 22px 22px 0 0; }
-.mypart > div + div { padding-left: 22px; border-left: 1px solid var(--line); }
-.mypart p, .mypart li { color: var(--dim); font-size: 15px; line-height: 1.55; margin-top: 10px; }
-.mypart ul { list-style: none; }
-.mypart li { padding-left: 18px; position: relative; color: var(--ink); }
-.mypart li::before { content: "—"; position: absolute; left: 0; color: var(--dim); }
 @media (max-width: 860px) {
-  .seq { grid-template-columns: repeat(3, 1fr); }
-  .seq li:nth-child(4) { border-left: 0; }
-  .seq li:nth-child(n+4) { border-top: 1px solid var(--line); }
-  .trio { grid-template-columns: 1fr; }
-  .trio figure + figure { border-left: 0; border-top: 1px solid var(--line); }
-  .mypart { grid-template-columns: 1fr; }
-  .mypart > div + div { padding-left: 0; border-left: 0; }
 }
-.clim { margin-top: 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--faint); align-items: center; }
-.clim figure { margin: 0; padding: 12px; border-right: 1px solid var(--line); }
-.clim img { width: 100%; height: auto; display: block; }
-.clim > div { padding: 28px; }
-.clim h3 { font-size: 26px; font-weight: 600; font-stretch: 85%; margin: 8px 0 10px; }
-.clim p { color: var(--dim); font-size: 16px; line-height: 1.6; margin-top: 10px; }
-@media (max-width: 860px) { .clim { grid-template-columns: 1fr; } .clim figure { border-right: 0; border-bottom: 1px solid var(--line); } .clim > div { padding: 20px; } }
 .shot { margin-top: 56px; position: relative; border: 1px solid var(--faint); background: #1d1d1d; }
 .shot img { display: block; width: 100%; height: auto; }
 .shot-bar { display: flex; justify-content: space-between; align-items: center; padding: 9px 12px; border-bottom: 1px solid #2c2c2a; color: #8f8e89; }
@@ -153,4 +120,30 @@
   .pins { grid-template-columns: 1fr; }
   .pins li + li { border-left: 0; border-top: 1px solid var(--line); }
   .shot .pin { width: 18px; height: 18px; font-size: 10px; }
+}
+
+/* ---------- 0427 demo: dieline + 3D side by side ---------- */
+.die.fold { margin-top: 40px; }
+.die-panes { display: grid; grid-template-columns: 1fr 1fr; min-width: 0; }
+.die-panes .die-stage { border-right: 1px solid var(--faint); min-height: 0; padding: 18px; }
+.die-panes .die-stage svg { max-height: 420px; }
+.fold-pane { display: flex; flex-direction: column; min-width: 0; }
+.fold-pane .fold-stage { aspect-ratio: auto; flex: 1; min-height: 340px; }
+.fold-pane .fold-bar { grid-template-columns: auto 1fr; }
+.fold-pane .fold-step { grid-column: span 2; text-align: left; }
+
+/* two renders side by side */
+.duo { margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--faint); }
+.duo figure { margin: 0; padding: 12px; }
+.duo figure + figure { border-left: 1px solid var(--line); }
+.duo img { width: 100%; height: auto; display: block; }
+
+@media (max-width: 1000px) {
+  .die-panes { grid-template-columns: 1fr; }
+  .die-panes .die-stage { border-right: 0; border-bottom: 1px solid var(--faint); }
+  .fold-pane .fold-stage { aspect-ratio: 4 / 3; min-height: 0; flex: none; }
+}
+@media (max-width: 860px) {
+  .duo { grid-template-columns: 1fr; }
+  .duo figure + figure { border-left: 0; border-top: 1px solid var(--line); }
 }
