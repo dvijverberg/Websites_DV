@@ -62,8 +62,9 @@ export function mailer0427(L, W, H) {
 }
 
 // Dieline drawing: cuts are the parts of panel edges that are not a crease
-function drawDieline(svg, data) {
+function drawDieline(svg, data, frame) {
   const [w, h] = data.sheet;
+  const [FW, FH] = frame || [w, h];   // fixed drawing area, so the scale stays put while you slide
   const hinges = data.nodes.filter((n) => n.axis).map((n) => n.axis);
   // parts of segment a-b not covered by a collinear crease
   function cutParts(a, b) {
@@ -94,8 +95,10 @@ function drawDieline(svg, data) {
     });
   });
   const crease = hinges.map(([A, B]) => `M${A[0]} ${Y(A[1])}L${B[0]} ${Y(B[1])}`);
-  const fs = Math.max(w, h) / 30, pad = fs * 1.6, gap = fs * 0.9;
-  svg.setAttribute("viewBox", `${-pad} ${-pad} ${w + 2 * pad + fs} ${h + 2 * pad + fs}`);
+  const fs = Math.max(FW, FH) / 30, pad = fs * 1.6, gap = fs * 0.9;
+  // centre the sheet in the fixed frame
+  const ox = (FW - w) / 2, oy = (FH - h) / 2;
+  svg.setAttribute("viewBox", `${-pad - ox} ${-pad - oy} ${FW + 2 * pad + fs} ${FH + 2 * pad + fs}`);
   svg.innerHTML = `
     <path class="die-fill" d="${fill.join("")}"/>
     <path class="die-crease" d="${crease.join("")}"/>
@@ -129,12 +132,14 @@ async function init(root) {
   const dims = {};
   root.querySelectorAll("input[data-k]").forEach((inp) => (dims[inp.dataset.k] = +inp.value));
   const dieSvg = root.querySelector("[data-svg]");
+  const maxOf = (k) => +(root.querySelector(`input[data-k="${k}"]`)?.max || 0);
+  const dieFrame = gen ? mailer0427(maxOf("L"), maxOf("W"), maxOf("H")).sheet : null;
   function readDims() {
     root.querySelectorAll("input[data-k]").forEach((inp) => (dims[inp.dataset.k] = +inp.value));
     root.querySelectorAll("[data-v]").forEach((b) => (b.textContent = dims[b.dataset.v] + " mm"));
     const data = mailer0427(dims.L, dims.W, dims.H);
     if (dieSvg) {
-      const r = drawDieline(dieSvg, data);
+      const r = drawDieline(dieSvg, data, dieFrame);
       const out = (k, v) => { const el = root.querySelector(`[data-out="${k}"]`); if (el) el.textContent = v; };
       out("sheet", `${Math.round(r.w)} × ${Math.round(r.h)} mm`);
       out("area", `${(r.area / 1e6).toFixed(2)} m²`);
@@ -143,7 +148,16 @@ async function init(root) {
   }
 
   let data;
-  if (gen) data = readDims();          // the drawing works even if 3D does not
+  let onDims = null;                   // set once the 3D view is ready
+  if (gen) {
+    data = readDims();                 // the drawing works even if 3D does not
+    let queued = false;
+    root.querySelectorAll("input[data-k]").forEach((inp) => inp.addEventListener("input", () => {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(() => { queued = false; const d = readDims(); if (onDims) onDims(d); });
+    }));
+  }
 
   let THREE, OrbitControls, RoomEnvironment;
   try {
@@ -199,24 +213,36 @@ async function init(root) {
   skin(inMat, root.dataset.texIn);
 
   // ---------- scene graph: spin (turntable) > world (lay the drawing on the table) > sheet ----------
-  const sheet = new THREE.Group();        // drawing frame as the DXF: x right, y up, +z = outside
-  const world = new THREE.Group();
-  world.rotation.x = Math.PI / 2;         // drawing lies on the table, inside up
-  world.add(sheet);
-  const spin = new THREE.Group();
-  spin.add(world);
-  scene.add(spin);
-  if (hero) { spin.rotation.y = 0.35; world.rotation.z = -Math.PI / 2; }
+  function placed() {
+    const sheet = new THREE.Group();      // drawing frame as the DXF: x right, y up, +z = outside
+    const world = new THREE.Group();
+    world.rotation.x = Math.PI / 2;       // drawing lies on the table, inside up
+    world.add(sheet);
+    const spin = new THREE.Group();
+    spin.add(world);
+    if (hero) { spin.rotation.y = 0.35; world.rotation.z = -Math.PI / 2; }
+    return { sheet, spin, nodes: [], cSheet: new THREE.Vector2(), cBase: new THREE.Vector2() };
+  }
+  const model = placed();
+  scene.add(model.spin);
+  // generator mode: an invisible model at the largest slider sizes sets the camera, so the
+  // view keeps one scale and only the dimension you change moves
+  let ref = null;
+  if (gen) {
+    ref = placed();
+    ref.spin.visible = false;
+    scene.add(ref.spin);
+  }
 
-  let nodes = [], cSheet = new THREE.Vector2(), cBase = new THREE.Vector2();
   const bb = (pts) => pts.reduce((b, p) => [Math.min(b[0], p[0]), Math.min(b[1], p[1]), Math.max(b[2], p[0]), Math.max(b[3], p[1])], [1e9, 1e9, -1e9, -1e9]);
-  function build(d) {
+  function build(d, m = model) {
+    const sheet = m.sheet;
     sheet.traverse((o) => { if (o.geometry) o.geometry.dispose(); });
     sheet.clear();
     const T = d.thickness;
     const [SW, SH] = d.sheet || [543, 517];
     const V = (p) => new THREE.Vector3(p[0], p[1], 0);
-    nodes = d.nodes.map((n) => ({ ...n }));
+    const nodes = m.nodes = d.nodes.map((n) => ({ ...n }));
     nodes.forEach((n, i) => {
       const pivot = n.axis ? V(n.axis[0]) : new THREE.Vector3();
       n.pivot = pivot;
@@ -241,7 +267,7 @@ async function init(root) {
       mesh.castShadow = mesh.receiveShadow = true;
       n.g = new THREE.Group();
       n.g.add(mesh);
-      if (!hero) {
+      if (!hero && m === model) {
         n.g.add(new THREE.LineLoop(
           new THREE.BufferGeometry().setFromPoints(n.pts.map((p) => new THREE.Vector3(p[0] - pivot.x, p[1] - pivot.y, -T / 2 - 0.15))),
           lineMat));
@@ -251,10 +277,14 @@ async function init(root) {
       (parent ? parent.g : sheet).add(n.g);
     });
     const all = bb(nodes.flatMap((n) => n.pts)), base = bb(nodes[0].pts);
-    cSheet.set((all[0] + all[2]) / 2, (all[1] + all[3]) / 2);
-    cBase.set((base[0] + base[2]) / 2, (base[1] + base[3]) / 2);
+    m.cSheet.set((all[0] + all[2]) / 2, (all[1] + all[3]) / 2);
+    m.cBase.set((base[0] + base[2]) / 2, (base[1] + base[3]) / 2);
   }
   build(data);
+  if (ref) {
+    const mx = (k) => +(root.querySelector(`input[data-k="${k}"]`)?.max || dims[k]);
+    build(mailer0427(mx("L"), mx("W"), mx("H")), ref);
+  }
 
   // ---------- camera: always frames the whole box, whatever the fold state ----------
   const camera = new THREE.PerspectiveCamera(26, 1, 10, 8000);
@@ -270,7 +300,7 @@ async function init(root) {
   const box = new THREE.Box3(), sphere = new THREE.Sphere();
   const PAD = hero ? 0.88 : 1.0;
   function frame(k) {
-    box.setFromObject(spin);
+    box.setFromObject((ref || model).spin, true);
     box.getBoundingSphere(sphere);
     const vfov = THREE.MathUtils.degToRad(camera.fov);
     const hfov = 2 * Math.atan(Math.tan(vfov / 2) * camera.aspect);
@@ -291,14 +321,18 @@ async function init(root) {
   const start = +(root.dataset.start || 0);
   let p = start, goal = start;
   const lerp = (a, b, t) => a + (b - a) * t;
-  function pose(t) {
-    nodes.forEach((n) => {
+  function poseModel(m, t) {
+    m.nodes.forEach((n) => {
       if (!n.dir) return;
       const k = smooth(Math.min(1, Math.max(0, (t - n.t[0]) / (n.t[1] - n.t[0]))));
       n.g.quaternion.setFromAxisAngle(n.dir, -THREE.MathUtils.degToRad(n.angle * k));   // fold towards the inside (-z)
     });
     const c = smooth(Math.min(1, t / 0.4));
-    sheet.position.set(-lerp(cSheet.x, cBase.x, c), -lerp(cSheet.y, cBase.y, c), 0);
+    m.sheet.position.set(-lerp(m.cSheet.x, m.cBase.x, c), -lerp(m.cSheet.y, m.cBase.y, c), 0);
+  }
+  function pose(t) {
+    poseModel(model, t);
+    if (ref) poseModel(ref, t);
     lineMat.opacity = 0.9 * (1 - Math.min(1, t / 0.12));
     lineMat.visible = lineMat.opacity > 0.01;
     if (stepOut) {
@@ -343,12 +377,8 @@ async function init(root) {
   });
   range?.addEventListener("input", () => { goal = p = range.value / 1000; setPlaying(false); });
   if (gen) {
-    let queued = false;
-    root.querySelectorAll("input[data-k]").forEach((inp) => inp.addEventListener("input", () => {
-      if (queued) return;
-      queued = true;
-      requestAnimationFrame(() => { queued = false; build(readDims()); pose(p); });
-    }));
+    onDims = (d) => { build(d); pose(p); };
+    onDims(readDims());                // catch up with anything changed while 3D was loading
   }
   let idle;
   const auto = controls.autoRotate;
