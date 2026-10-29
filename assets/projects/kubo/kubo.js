@@ -122,16 +122,16 @@
 
   /* ---------- tool: process steps ---------- */
   const steps = [
-    { img: "profile.jpg", alt: "Aluminium profile after deforming", t: "The problem",
-      p: "Corrosion pushes on the glass until it breaks. The tool pulls the profile up so the glass has more room. That buys time for a real solution." },
-    { img: "dion-cad.jpg", alt: "Me modelling the tool at my desk", t: "Modelling it again",
+    { img: "profile.jpg", alt: "Aluminium profile after deforming", t: "Problem",
+      p: "The profile after using the tool: the edge is pulled up, so the glass has more room. A temporary fix that buys time for a real solution." },
+    { img: "dion-cad.jpg", alt: "Me modelling the tool at my desk", t: "Modelling",
       p: "We only had an assembly drawing and some STEP files. I modelled all parts again so they were easy to change, and made some improvements to how it works and how it's made, together with the manufacturer." },
     { img: "tool-parts.jpg", alt: "The black 3D-printed tool next to bolts and parts", t: "3D print",
       p: "Before ordering the steel parts, I 3D printed the tool (the black part) to check if it worked." },
     { img: "tool-closeup.jpg", alt: "Close-up of the stainless steel tool", t: "Production",
       p: "I requested and compared quotes. We went with Xometry, which none of us had used before. The stainless steel parts arrived about three weeks after we approved." },
-    { img: "tools.jpg", alt: "Three finished tools", t: "Test and ship",
-      p: "We assembled the tools, tested them and sent them out." },
+    { img: "tools.jpg", alt: "Three finished tools", t: "Test & ship",
+      p: "We assembled the tools, tested them and sent them out. They did the job, but broke quite quickly, so the design can still be improved." },
   ];
   const proc = document.getElementById("process");
   if (proc) {
