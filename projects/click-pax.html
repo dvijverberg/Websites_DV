@@ -20,6 +20,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#0e0e0d">
   <link rel="stylesheet" href="/assets/styles.css">
+  <script type="importmap">{"imports":{"three":"/assets/vendor/three/three.module.min.js","three/addons/":"/assets/vendor/three/addons/"}}</script>
   <link rel="stylesheet" href="/assets/project.css">
   <link rel="stylesheet" href="/assets/projects/click-pax/click-pax.css">
 </head>
@@ -123,7 +124,28 @@
             <p>A colleague built the base version. I added folding recipes for autolock bottoms and full-flap boxes, the correct closing of mailer boxes, board colour and print options in the render plan, and a fix for renders that came out too dark. I also built a second add-on from scratch that <strong>lays paper insulation liners</strong> into a box procedurally with Geometry Nodes.</p>
           </div>
         </div>
-        <!-- RENDERS: plaats hier renders zodra Dion ze aanlevert -->
+        <div class="fold rv" id="fold" data-src="/assets/projects/click-pax/mailer-0427.json">
+          <div class="fold-stage">
+            <span class="fold-status mono">Loading 3D view</span>
+            <span class="fold-hint mono">Drag to turn</span>
+          </div>
+          <div class="fold-bar">
+            <button class="fold-play mono" type="button" data-play>Fold</button>
+            <input type="range" min="0" max="1000" value="0" aria-label="Fold progress">
+            <span class="mono fold-step" data-step aria-live="polite"></span>
+          </div>
+        </div>
+        <p class="mono" style="margin-top:14px"><span class="hot">Fig. 3</span> — A FEFCO 0427 mailer, 345 × 225 × 26 mm, folded from its production DXF. Simplified web version: panels and hinges only, no bend radius or print.</p>
+
+        <ul class="addon-feats rv">
+          <li><span class="mono">01 · Read</span><p>Imports the ArtiosCAD DXF. Cut lines become panel edges, crease lines become hinges.</p></li>
+          <li><span class="mono">02 · Fold</span><p>A recipe per box type says which panel folds when, how far and on which layer.</p></li>
+          <li><span class="mono">03 · Board</span><p>Real board thickness, layered flaps and a bend radius. Flaps never run through each other.</p></li>
+          <li><span class="mono">04 · Print</span><p>The print PDF is cropped to its design lines and lands 1:1 on the dieline.</p></li>
+          <li><span class="mono">05 · Views</span><p>Fixed views, closed and open, on white and transparent. Kraft, brown or white board.</p></li>
+          <li><span class="mono">06 · Headless</span><p>Runs without the interface from a queue, in the background or on a server.</p></li>
+        </ul>
+        <!-- RENDERS: galerij komt hier zodra de renders er zijn -->
       </section>
 
       <!-- ===================== 04 CONCEPTS ===================== -->
@@ -166,5 +188,6 @@
   </div>
   <script src="/assets/site.js"></script>
   <script src="/assets/projects/click-pax/click-pax.js"></script>
+  <script type="module" src="/assets/projects/click-pax/mailer-fold.js"></script>
 </body>
 </html>
