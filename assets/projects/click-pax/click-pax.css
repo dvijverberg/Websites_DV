@@ -1,0 +1,61 @@
+.stats b small { font-size: .45em; margin-left: 2px; }
+
+/* ---------- pipeline ---------- */
+.chain { margin-top: 40px; border: 1px solid var(--faint); }
+.chain-steps { list-style: none; display: grid; grid-template-columns: repeat(6, 1fr); border-bottom: 1px solid var(--faint); position: relative; }
+.chain-steps li + li { border-left: 1px solid var(--line); }
+.chain-steps button {
+  width: 100%; background: none; border: 0; cursor: pointer; text-align: left; color: var(--dim);
+  padding: 16px 16px 14px; display: flex; flex-direction: column; gap: 6px;
+  border-bottom: 2px solid transparent; margin-bottom: -1px; position: relative;
+}
+.chain-steps button b { font-family: var(--sans); font-size: 16px; font-weight: 600; }
+.chain-steps button::after {
+  content: "→"; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  color: var(--faint); font-size: 14px;
+}
+.chain-steps li:last-child button::after { content: none; }
+.chain-steps button:hover { color: var(--ink); }
+.chain-steps button.done { color: var(--ink); }
+.chain-steps button.done .mono { color: var(--dim); }
+.chain-steps button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--hot); background: var(--surface); }
+.chain-steps button[aria-selected="true"] .mono { color: var(--hot); }
+.chain-detail { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; padding: 28px; }
+.chain-detail h3 { font-size: 26px; font-weight: 600; font-stretch: 85%; margin: 8px 0 10px; }
+.chain-detail p { color: var(--dim); font-size: 16px; line-height: 1.6; }
+.chain-meta { display: flex; flex-direction: column; gap: 18px; border-left: 1px solid var(--line); padding-left: 28px; }
+.chain-meta p { color: var(--ink); margin-top: 6px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.chips span { font-family: var(--mono); font-size: 12px; border: 1px solid var(--faint); padding: 5px 9px; }
+
+/* ---------- dieline demo ---------- */
+.die { margin-top: 40px; display: grid; grid-template-columns: 260px 1fr; border: 1px solid var(--faint); }
+.die-controls { padding: 22px; border-right: 1px solid var(--faint); display: flex; flex-direction: column; gap: 18px; }
+.die-controls label { display: grid; grid-template-columns: 1fr auto; gap: 6px 10px; align-items: center; }
+.die-controls label input { grid-column: span 2; width: 100%; accent-color: var(--hot); }
+.die-controls b { font-family: var(--mono); font-weight: 500; font-size: 13px; }
+.die-out { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; border-top: 1px solid var(--line); padding-top: 16px; }
+.die-out div { display: flex; flex-direction: column; gap: 4px; }
+.die-legend { display: flex; gap: 16px; align-items: center; }
+.die-legend span { display: inline-flex; gap: 8px; align-items: center; }
+.die-legend i { width: 22px; height: 0; border-top: 1.5px solid var(--ink); display: inline-block; }
+.die-legend i.crease { border-top: 1.5px dashed var(--hot); }
+.die-stage { padding: 20px; display: grid; place-items: center; min-height: 360px; background: var(--surface); }
+.die-stage svg { width: 100%; max-height: 460px; }
+.die-fill { fill: var(--bg); }
+.die-cut { fill: none; stroke: var(--ink); stroke-width: 1.5; vector-effect: non-scaling-stroke; stroke-linejoin: round; }
+.die-crease { fill: none; stroke: var(--hot); stroke-width: 1.5; stroke-dasharray: 6 4; vector-effect: non-scaling-stroke; }
+.die-labels text { fill: var(--dim); font-family: var(--mono); letter-spacing: .05em; }
+.die-dim path { fill: none; stroke: var(--dim); stroke-width: 1; vector-effect: non-scaling-stroke; }
+
+@media (max-width: 860px) {
+  .chain-steps { grid-template-columns: repeat(3, 1fr); }
+  .chain-steps li:nth-child(4) { border-left: 0; }
+  .chain-steps li:nth-child(n+4) { border-top: 1px solid var(--line); }
+  .chain-steps button::after { content: none; }
+  .chain-detail { grid-template-columns: 1fr; gap: 20px; padding: 20px; }
+  .chain-meta { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 18px; }
+  .die { grid-template-columns: 1fr; }
+  .die-controls { border-right: 0; border-bottom: 1px solid var(--faint); }
+  .die-stage { min-height: 240px; }
+}

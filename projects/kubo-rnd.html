@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KUBO R&amp;D: analyse, build, test — Dion Vijverberg</title>
+  <meta name="description" content="R&D work at greenhouse builder KUBO: a tool redesigned and taken to production, an airflow test setup, and a heat test on PVC.">
+  <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+  <link rel="preload" href="/assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="KUBO R&amp;D: analyse, build, test — Dion Vijverberg">
+  <meta property="og:description" content="A tool redesigned and taken to production, an airflow test setup, and a heat test on PVC.">
+  <meta property="og:url" content="https://websitesdv.vercel.app/projects/kubo-rnd">
+  <meta property="og:image" content="https://websitesdv.vercel.app/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0e0e0d">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="stylesheet" href="/assets/project.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="bar">
+      <a class="mark" href="/">DV<i>/</i></a>
+      <div class="bar-right">
+        <nav class="mono">
+          <a href="/#projects">Projects</a>
+          <a href="/#contact">Contact</a>
+        </nav>
+        <button class="theme-toggle mono" type="button" aria-label="Switch theme"><span class="knob"></span><span class="label">Light</span></button>
+      </div>
+    </header>
+
+    <main>
+      <a class="back mono" href="/#projects">← All projects</a>
+
+      <div class="p-head">
+        <span class="mono"><span class="hot">03</span> — R&amp;D · greenhouse technology</span>
+        <h1>Analyse, build, test: R&amp;D at KUBO</h1>
+        <p class="pitch">An internship and part-time job in the R&amp;D department of greenhouse builder KUBO. No fixed project, just real problems: <strong>a tool I redesigned and took to production</strong>, an airflow test setup, and a prototype built only to understand a risk.</p>
+      </div>
+
+      <div class="spec">
+        <div><span class="mono">Context</span><b>Internship → part-time</b></div>
+        <div><span class="mono">Where</span><b>KUBO Group, Monster</b></div>
+        <div><span class="mono">Year</span><b>2025</b></div>
+        <div><span class="mono">Team</span><b>R&amp;D department</b></div>
+      </div>
+
+      <figure class="hero-img rv">
+        <img src="/assets/projects/kubo/tools.jpg" alt="Three stainless steel profile tools" width="1600" height="1200">
+        <figcaption class="cap mono"><span><span class="hot">Fig. 1</span> — The three stainless steel tools, made by an external manufacturer</span><span>KUBO</span></figcaption>
+      </figure>
+
+      <!-- ===================== 01 TOOL ===================== -->
+      <section class="chapter" id="tool">
+        <div class="sec-head rv"><h2>A tool, from lost files to steel</h2><span class="mono">01</span></div>
+        <div class="lede rv">
+          <span class="mono">Redesign → production</span>
+          <div>
+            <p>A greenhouse near the coast in Portugal had a problem: salty air made the aluminium corrode, the corrosion built up pressure, and the glass panes started to break. The temporary fix was to <strong>create more room in the frame</strong> around the glass, using a special tool that pulls part of the profile up when you tighten a bolt.</p>
+            <p>One tool existed. Three more were needed, but the 3D models were gone and the people who made the original had left. What started as "can you get some quotes?" became a project I mostly ran on my own.</p>
+          </div>
+        </div>
+
+        <div class="process rv" id="process">
+          <div class="process-tabs" role="tablist" aria-label="Project steps">
+            <button role="tab" aria-selected="true" data-step="0"><span class="mono">01</span>Problem</button>
+            <button role="tab" aria-selected="false" data-step="1"><span class="mono">02</span>Rebuild</button>
+            <button role="tab" aria-selected="false" data-step="2"><span class="mono">03</span>Prototype</button>
+            <button role="tab" aria-selected="false" data-step="3"><span class="mono">04</span>Produce</button>
+            <button role="tab" aria-selected="false" data-step="4"><span class="mono">05</span>Test &amp; ship</button>
+          </div>
+          <div class="process-body">
+            <figure class="process-img"><img src="/assets/projects/kubo/profile.jpg" alt="" width="1600" height="1200"></figure>
+            <div class="process-txt" aria-live="polite">
+              <span class="mono hot"></span>
+              <h3></h3>
+              <p></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery g4">
+          <figure class="rv"><img src="/assets/projects/kubo/tool-front.jpg" alt="Front view of the stainless steel tool" width="1600" height="1200" loading="lazy"></figure>
+          <figure class="rv"><img src="/assets/projects/kubo/tool-top.jpg" alt="Top view of the tools" width="1600" height="1200" loading="lazy"></figure>
+          <figure class="rv"><img src="/assets/projects/kubo/tool-closeup.jpg" alt="Close-up of the tool" width="1600" height="1200" loading="lazy"></figure>
+          <figure class="rv"><img src="/assets/projects/kubo/protolab.jpg" alt="The Protolab workshop at KUBO R&amp;D" width="1600" height="1200" loading="lazy"></figure>
+        </div>
+      </section>
+
+      <!-- ===================== 02 AHU ===================== -->
+      <section class="chapter" id="airflow">
+        <div class="sec-head rv"><h2>How much air comes out?</h2><span class="mono">02</span></div>
+        <div class="lede rv">
+          <span class="mono">Test setup · data</span>
+          <div>
+            <p>KUBO's Ultra Clima system uses an Air Handling Unit per path in the greenhouse: a heating and cooling block with a fan that blows air through a long hose. Growers want to know <strong>how much air goes in</strong>, because that sets how quickly the air in the greenhouse is replaced.</p>
+            <p>We built a test setup and ran the fan at different speeds. Airflow can be worked out in more than one way, for example from the fan's current or from the pressure difference over the fan, so we measured several things to compare them. I built and improved the setup, ran the tests and analysed the data.</p>
+            <p>Even with a detailed test plan we kept running into surprises and had to redo parts. <strong>Testing takes longer than you plan</strong>, and that's the point of it.</p>
+          </div>
+        </div>
+        <div class="split">
+          <figure class="drawing rv" style="padding:6%"><img src="/assets/projects/kubo/ahu-schematic.jpg" alt="Schematic of the AHU test setup" width="1240" height="574" loading="lazy"></figure>
+          <figure class="rv"><img src="/assets/projects/kubo/ahu-hose.jpg" alt="The end of the 85 metre hose" width="1600" height="1200" loading="lazy" style="width:100%;height:100%;object-fit:cover"></figure>
+        </div>
+        <p class="mono" style="margin-top:14px"><span class="hot">Fig. 2</span> — The test setup, and the end of the 85 m hose.</p>
+      </section>
+
+      <!-- ===================== 03 PVC ===================== -->
+      <section class="chapter" id="pvc">
+        <div class="sec-head rv"><h2>A prototype to understand a risk</h2><span class="mono">03</span></div>
+        <div class="lede rv">
+          <span class="mono">Research · heat test</span>
+          <div>
+            <p>For a project in Saudi Arabia, another department asked whether the PVC and aluminium parts would cause problems in that climate. In a brainstorm we named three risks: UV, high temperatures and thermal expansion.</p>
+            <p>With a colleague I took on heat. We made a small test setup with the PVC strips that hold the glass, put it in an oven at different temperatures, and looked at flexibility and deformation afterwards. The result: <strong>at high temperatures the PVC quickly loses strength and shape</strong>, so the company knew early to look for alternatives.</p>
+            <p>For me this was new: building a prototype not to test a solution, but to understand the problem.</p>
+          </div>
+        </div>
+        <div class="gallery g3">
+          <figure class="rv"><img src="/assets/projects/kubo/pvc-setup.jpg" alt="Test setup with PVC strips holding glass" width="1600" height="1200" loading="lazy"></figure>
+          <figure class="rv"><img src="/assets/projects/kubo/pvc-oven.jpg" alt="The test setup in the oven" width="1600" height="1200" loading="lazy"></figure>
+          <figure class="rv"><img src="/assets/projects/kubo/pvc-closeup.jpg" alt="Close-up of the PVC strip and glass" width="1600" height="1200" loading="lazy"></figure>
+        </div>
+      </section>
+
+      <!-- ===================== TAKEAWAY ===================== -->
+      <section class="chapter" id="learned">
+        <div class="sec-head rv"><h2>What I took from it</h2><span class="mono">04</span></div>
+        <ul class="findings">
+          <li class="rv"><h3>Own the whole route</h3><p>The tool only mattered once it was made, tested and sent out. Modelling it was the easy part; getting it made and working was the job.</p></li>
+          <li class="rv"><h3>Prototype early, and cheaply</h3><p>A 3D print showed whether the tool worked before anyone paid for stainless steel.</p></li>
+          <li class="rv"><h3>Plan for the surprises</h3><p>Every test needed more time than planned. Now I build that time in from the start.</p></li>
+        </ul>
+      </section>
+
+      <a class="next" href="/projects/e-bike-diagnostics">
+        <span class="mono">Next project</span>
+        <span class="mono">E-bike motor diagnostics <span class="hot">→</span></span>
+      </a>
+    </main>
+
+    <footer style="margin-top: 72px;">
+      <div class="tblock">
+        <div><span class="mono">Title</span><b>KUBO R&amp;D</b></div>
+        <div><span class="mono">Drawn by</span><b>D. Vijverberg</b></div>
+        <div><span class="mono">Rev</span><b>A</b></div>
+        <div><span class="mono">Sheet</span><b>4 / 4 · <span id="yr">2026</span></b></div>
+      </div>
+    </footer>
+  </div>
+  <script src="/assets/site.js"></script>
+  <script>
+  (function () {
+    const steps = [
+      { img: "profile.jpg", alt: "Aluminium profile after deforming", t: "The problem",
+        p: "Corrosion pushes on the glass until it breaks. The tool pulls the aluminium profile up to give the glass room. It buys time for a proper solution." },
+      { img: "tool-front.jpg", alt: "Front view of the tool", t: "Rebuild from scratch",
+        p: "All that was left was an assembly drawing and a few STEP files. I modelled every part again, so changes were easy, and improved the design for function and for production, together with the manufacturer." },
+      { img: "tool-parts.jpg", alt: "Tool parts on the desk", t: "Print it first",
+        p: "Before ordering steel, I 3D printed the tool to check that it actually worked." },
+      { img: "tool-closeup.jpg", alt: "Close-up of the stainless steel tool", t: "Get it made",
+        p: "I requested and compared quotes and we chose Xometry, a manufacturer none of us had used before. About three weeks after approval the stainless steel parts arrived." },
+      { img: "tools.jpg", alt: "Three finished tools", t: "Test and ship",
+        p: "We assembled the tools, tested them and sent them out to the project." },
+    ];
+    const root = document.getElementById("process");
+    const img = root.querySelector(".process-img img");
+    const txt = root.querySelector(".process-txt");
+    const tabs = root.querySelectorAll("[data-step]");
+    function show(i) {
+      const s = steps[i];
+      tabs.forEach((b, j) => b.setAttribute("aria-selected", String(i === j)));
+      img.style.opacity = 0;
+      setTimeout(() => { img.src = "/assets/projects/kubo/" + s.img; img.alt = s.alt; img.style.opacity = 1; }, 150);
+      txt.querySelector(".mono").textContent = "Step " + (i + 1) + " of " + steps.length;
+      txt.querySelector("h3").textContent = s.t;
+      txt.querySelector("p").textContent = s.p;
+    }
+    tabs.forEach((b) => b.addEventListener("click", () => show(+b.dataset.step)));
+    root.addEventListener("keydown", (e) => {
+      const cur = [...tabs].findIndex((b) => b.getAttribute("aria-selected") === "true");
+      if (e.key === "ArrowRight") { show(Math.min(cur + 1, steps.length - 1)); tabs[Math.min(cur + 1, steps.length - 1)].focus(); }
+      if (e.key === "ArrowLeft") { show(Math.max(cur - 1, 0)); tabs[Math.max(cur - 1, 0)].focus(); }
+    });
+    steps.forEach((s) => { const p = new Image(); p.src = "/assets/projects/kubo/" + s.img; });
+    show(0);
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Click-Pax: packaging and the software behind it — Dion Vijverberg</title>
+  <meta name="description" content="Packaging concepts at Click-Pax, and a chain of tools that turns a customer request into a dieline, renders, a price indication and a proposal.">
+  <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+  <link rel="preload" href="/assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Click-Pax: packaging and the software behind it — Dion Vijverberg">
+  <meta property="og:description" content="A chain of tools that turns a customer request into a dieline, renders, a price indication and a proposal.">
+  <meta property="og:url" content="https://websitesdv.vercel.app/projects/click-pax">
+  <meta property="og:image" content="https://websitesdv.vercel.app/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0e0e0d">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="stylesheet" href="/assets/project.css">
+  <link rel="stylesheet" href="/assets/projects/click-pax/click-pax.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="bar">
+      <a class="mark" href="/">DV<i>/</i></a>
+      <div class="bar-right">
+        <nav class="mono">
+          <a href="/#projects">Projects</a>
+          <a href="/#contact">Contact</a>
+        </nav>
+        <button class="theme-toggle mono" type="button" aria-label="Switch theme"><span class="knob"></span><span class="label">Light</span></button>
+      </div>
+    </header>
+
+    <main>
+      <a class="back mono" href="/#projects">← All projects</a>
+
+      <div class="p-head">
+        <span class="mono"><span class="hot">02</span> — Packaging · software · automation</span>
+        <h1>From a customer request to a proposal, automatically</h1>
+        <p class="pitch">At Click-Pax I design packaging concepts for clients. Lately most of my time goes into the tools around that work: a chain of programs that turns a request into <strong>a dieline, a print, 3D renders, a price indication and a proposal</strong>.</p>
+      </div>
+
+      <div class="spec">
+        <div><span class="mono">Role</span><b>Junior Designer</b></div>
+        <div><span class="mono">Where</span><b>Click-Pax, 's-Gravenzande</b></div>
+        <div><span class="mono">Since</span><b>2023</b></div>
+        <div><span class="mono">Built with</span><b>Python · Blender · Next.js · AI</b></div>
+      </div>
+
+      <div class="stats rv">
+        <div><b>6</b><span class="mono">tools in one chain, each with its own tests</span></div>
+        <div><b>4</b><span class="mono">FEFCO box types drawn automatically</span></div>
+        <div><b>≤0.5<small>mm</small></b><span class="mono">difference from ArtiosCAD drawings</span></div>
+        <div><b>2</b><span class="mono">Blender add-ons: one extended, one built from scratch</span></div>
+      </div>
+
+      <!-- ===================== 01 THE CHAIN ===================== -->
+      <section class="chapter" id="chain">
+        <div class="sec-head rv"><h2>The chain</h2><span class="mono">01</span></div>
+        <div class="lede rv">
+          <span class="mono">Request → proposal</span>
+          <div>
+            <p>Every quote needs the same steps: a dieline, a print mock-up, renders, a price and a document. I built that route as a chain of small programs. Each block has <strong>a fixed input, its own tests and a contract</strong> with the next one, so a block can be improved without breaking the rest.</p>
+            <p>No language model does the maths. The calculations are deterministic and traceable; a person checks the result before it goes out.</p>
+          </div>
+        </div>
+
+        <div class="chain rv" id="chain-ui">
+          <ol class="chain-steps" role="tablist" aria-label="Pipeline steps"></ol>
+          <div class="chain-detail" aria-live="polite">
+            <div>
+              <span class="mono hot" id="cd-n"></span>
+              <h3 id="cd-t"></h3>
+              <p id="cd-p"></p>
+            </div>
+            <div class="chain-meta">
+              <div><span class="mono">My part</span><p id="cd-me"></p></div>
+              <div><span class="mono">Tech</span><div class="chips" id="cd-tech"></div></div>
+            </div>
+          </div>
+        </div>
+        <p class="mono" style="margin-top:14px"><span class="hot">Fig. 1</span> — The route from request to proposal. Click a step.</p>
+      </section>
+
+      <!-- ===================== 02 TRY IT ===================== -->
+      <section class="chapter" id="dieline">
+        <div class="sec-head rv"><h2>Try it: a box from three numbers</h2><span class="mono">02</span></div>
+        <div class="lede rv">
+          <span class="mono">Simplified demo</span>
+          <div>
+            <p>The first block draws a dieline from a box type and inside dimensions. Below is a <strong>simplified browser version</strong> for the most common box, a FEFCO 0201. The real tool also accounts for board thickness, glue flap rules and ArtiosCAD conventions, and refuses sizes that can't be made.</p>
+          </div>
+        </div>
+
+        <div class="die rv" id="die">
+          <div class="die-controls">
+            <label><span class="mono">Length</span><input type="range" min="100" max="600" step="5" value="300" data-k="L"><b data-v="L"></b></label>
+            <label><span class="mono">Width</span><input type="range" min="80" max="400" step="5" value="200" data-k="W"><b data-v="W"></b></label>
+            <label><span class="mono">Height</span><input type="range" min="50" max="400" step="5" value="150" data-k="H"><b data-v="H"></b></label>
+            <div class="die-out">
+              <div><span class="mono">Sheet</span><b id="die-sheet"></b></div>
+              <div><span class="mono">Board</span><b id="die-area"></b></div>
+            </div>
+            <div class="die-legend mono"><span><i class="cut"></i>Cut</span><span><i class="crease"></i>Crease</span></div>
+          </div>
+          <div class="die-stage"><svg id="die-svg" role="img" aria-label="FEFCO 0201 dieline"></svg></div>
+        </div>
+        <p class="mono" style="margin-top:14px"><span class="hot">Fig. 2</span> — FEFCO 0201, inside dimensions in mm. Simplified: no board thickness allowances.</p>
+      </section>
+
+      <!-- ===================== 03 RENDERS ===================== -->
+      <section class="chapter" id="renders">
+        <div class="sec-head rv"><h2>Folding boxes in Blender</h2><span class="mono">03</span></div>
+        <div class="lede rv">
+          <span class="mono">Add-ons · Python</span>
+          <div>
+            <p>The render step runs on a Blender add-on that reads a flat dieline, <strong>folds it into a real box</strong> with layered flaps, bend radius and board thickness, puts the print on it and renders fixed views in kraft, brown or white board. It runs headless, so renders can be made in the background or on a server.</p>
+            <p>A colleague built the base version. I added folding recipes for autolock bottoms and full-flap boxes, the correct closing of mailer boxes, board colour and print options in the render plan, and a fix for renders that came out too dark. I also built a second add-on from scratch that <strong>lays paper insulation liners</strong> into a box procedurally with Geometry Nodes.</p>
+          </div>
+        </div>
+        <!-- RENDERS: plaats hier renders zodra Dion ze aanlevert -->
+      </section>
+
+      <!-- ===================== 04 CONCEPTS ===================== -->
+      <section class="chapter" id="concepts">
+        <div class="sec-head rv"><h2>Packaging concepts</h2><span class="mono">04</span></div>
+        <div class="lede rv">
+          <span class="mono">Design work</span>
+          <div>
+            <p>The design side is where it started: packaging concepts for clients in horticulture, from first sketch to production-ready design, with direct client contact.</p>
+            <p>For sister label Iso-PAX I made concept proposals for webshops that ship frozen or chilled meat: <strong>their own print on our box</strong>, renders with the insulation liners inside, test data and box types, in a three-page PDF per company.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== 05 AI ===================== -->
+      <section class="chapter" id="ai">
+        <div class="sec-head rv"><h2>How I work with AI</h2><span class="mono">05</span></div>
+        <ul class="findings">
+          <li class="rv"><h3>AI as a development partner</h3><p>I build these tools together with Claude. It lets me build software well beyond what I could write alone, as long as there is discipline around it.</p></li>
+          <li class="rv"><h3>Tests, contracts, reviews</h3><p>Every block has tests. Changes go through a branch and a pull request with green tests in a shared repository. Fields may be added, never renamed.</p></li>
+          <li class="rv"><h3>Never invent data</h3><p>Unknown values are marked for checking instead of guessed. A proposal with open checks gets a draft watermark and can't be finalised.</p></li>
+          <li class="rv"><h3>People stay in the loop</h3><p>The chain does the repetitive work; a person checks the output, and anything the tools reject goes to a human.</p></li>
+        </ul>
+      </section>
+
+      <a class="next" href="/projects/kubo-rnd">
+        <span class="mono">Next project</span>
+        <span class="mono">KUBO R&amp;D <span class="hot">→</span></span>
+      </a>
+    </main>
+
+    <footer style="margin-top: 72px;">
+      <div class="tblock">
+        <div><span class="mono">Title</span><b>Click-Pax</b></div>
+        <div><span class="mono">Drawn by</span><b>D. Vijverberg</b></div>
+        <div><span class="mono">Rev</span><b>A</b></div>
+        <div><span class="mono">Sheet</span><b>3 / 4 · <span id="yr">2026</span></b></div>
+      </div>
+    </footer>
+  </div>
+  <script src="/assets/site.js"></script>
+  <script src="/assets/projects/click-pax/click-pax.js"></script>
+</body>
+</html>
