@@ -103,3 +103,7 @@
 @media (max-width: 860px) { .hero-fold .fold-stage { aspect-ratio: 4 / 3; } }
 .feature .img.img-render { border-right: 1px solid var(--faint); }
 @media (max-width: 860px) { .feature .img.img-render { border-right: 0; border-bottom: 1px solid var(--faint); } }
+
+/* long section title: keep label on one line */
+#experience .sec-head { gap: 16px; }
+#experience .sec-head .mono { white-space: nowrap; }
