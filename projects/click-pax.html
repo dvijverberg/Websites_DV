@@ -124,6 +124,20 @@
             <p>A colleague built the base version. I added folding recipes for autolock bottoms and full-flap boxes, the correct closing of mailer boxes, board colour and print options in the render plan, and a fix for renders that came out too dark. I also built a second add-on from scratch that <strong>lays paper insulation liners</strong> into a box procedurally with Geometry Nodes.</p>
           </div>
         </div>
+        <figure class="render-hero rv">
+          <img src="/assets/projects/click-pax/r/closed.webp" width="1800" height="1100" alt="Rendered kraft mailer box with a DV print, closed, three-quarter view" loading="lazy" decoding="async">
+        </figure>
+        <p class="mono cap"><span class="hot">Fig. 3</span> — Rendered by the add-on from a script: one DXF and two print PNGs in, finished views out. The print is my own concept.</p>
+
+        <ul class="addon-feats rv">
+          <li><span class="mono">01 · Read</span><p>Imports the ArtiosCAD DXF. Cut lines become panel edges, crease lines become hinges.</p></li>
+          <li><span class="mono">02 · Fold</span><p>A recipe per box type says which panel folds when, how far and on which layer.</p></li>
+          <li><span class="mono">03 · Board</span><p>Real board thickness, layered flaps and a bend radius. Flaps never run through each other.</p></li>
+          <li><span class="mono">04 · Print</span><p>Separate artwork for the outside and the inside, placed 1:1 on the dieline.</p></li>
+          <li><span class="mono">05 · Views</span><p>Fixed views, closed and open, on white and transparent. Kraft, brown or white board.</p></li>
+          <li><span class="mono">06 · Headless</span><p>Runs without the interface from a queue, in the background or on a server.</p></li>
+        </ul>
+
         <div class="fold rv" id="fold" data-src="/assets/projects/click-pax/mailer-0427.json">
           <div class="fold-stage">
             <span class="fold-status mono">Loading 3D view</span>
@@ -135,17 +149,52 @@
             <span class="mono fold-step" data-step aria-live="polite"></span>
           </div>
         </div>
-        <p class="mono" style="margin-top:14px"><span class="hot">Fig. 3</span> — A FEFCO 0427 mailer, 345 × 225 × 26 mm, folded from its production DXF. Simplified web version: panels and hinges only, no bend radius or print.</p>
+        <p class="mono" style="margin-top:14px"><span class="hot">Fig. 4</span> — Try it: the same mailer, 345 × 225 × 26 mm, folded from its production DXF. Simplified web version: panels and hinges only, no bend radius or print.</p>
 
-        <ul class="addon-feats rv">
-          <li><span class="mono">01 · Read</span><p>Imports the ArtiosCAD DXF. Cut lines become panel edges, crease lines become hinges.</p></li>
-          <li><span class="mono">02 · Fold</span><p>A recipe per box type says which panel folds when, how far and on which layer.</p></li>
-          <li><span class="mono">03 · Board</span><p>Real board thickness, layered flaps and a bend radius. Flaps never run through each other.</p></li>
-          <li><span class="mono">04 · Print</span><p>The print PDF is cropped to its design lines and lands 1:1 on the dieline.</p></li>
-          <li><span class="mono">05 · Views</span><p>Fixed views, closed and open, on white and transparent. Kraft, brown or white board.</p></li>
-          <li><span class="mono">06 · Headless</span><p>Runs without the interface from a queue, in the background or on a server.</p></li>
-        </ul>
-        <!-- RENDERS: galerij komt hier zodra de renders er zijn -->
+        <ol class="seq rv" aria-label="Fold sequence rendered by the add-on">
+          <li><img src="/assets/projects/click-pax/r/seq-0.webp" width="900" height="600" alt="Flat dieline, inside print up" loading="lazy" decoding="async"><span class="mono">01 · Flat</span></li>
+          <li><img src="/assets/projects/click-pax/r/seq-1.webp" width="900" height="600" alt="Side walls and back wall up" loading="lazy" decoding="async"><span class="mono">02 · Walls</span></li>
+          <li><img src="/assets/projects/click-pax/r/seq-2.webp" width="900" height="600" alt="Double end walls folded in" loading="lazy" decoding="async"><span class="mono">03 · End walls</span></li>
+          <li><img src="/assets/projects/click-pax/r/seq-3.webp" width="900" height="600" alt="Lid half closed" loading="lazy" decoding="async"><span class="mono">04 · Lid</span></li>
+          <li><img src="/assets/projects/click-pax/r/seq-4.webp" width="900" height="600" alt="Closed mailer" loading="lazy" decoding="async"><span class="mono">05 · Closed</span></li>
+        </ol>
+        <p class="mono cap"><span class="hot">Fig. 5</span> — The same stages, rendered by the add-on with one fixed camera.</p>
+
+        <div class="trio rv">
+          <figure><img src="/assets/projects/click-pax/r/open-front.webp" width="1000" height="1000" alt="Open mailer seen from the front, orange inside print with the dieline drawn in white" loading="lazy" decoding="async"></figure>
+          <figure><img src="/assets/projects/click-pax/r/open.webp" width="1000" height="1000" alt="Open mailer, three-quarter view" loading="lazy" decoding="async"></figure>
+          <figure><img src="/assets/projects/click-pax/r/plano.webp" width="1000" height="1000" alt="The flat sheet, outside print up" loading="lazy" decoding="async"></figure>
+        </div>
+        <p class="mono cap"><span class="hot">Fig. 6</span> — Inside and outside printed separately. Plano: the whole sheet, outside up.</p>
+
+        <div class="clim rv">
+          <figure><img src="/assets/projects/click-pax/r/clim.webp" width="1200" height="1200" alt="Open shipping box with two paper insulation liners laid in crosswise" loading="lazy" decoding="async"></figure>
+          <div>
+            <span class="mono">Second add-on · built from scratch</span>
+            <h3>Climaliner</h3>
+            <p>Paper insulation liners for chilled and frozen shipments, laid into any box procedurally. Select the box, click, and a U-liner appears that fits its inside dimensions; add a second one crosswise inside it.</p>
+            <p>The liner is generated with Geometry Nodes: paper and core as separate materials, fold radius, glue edge, wrinkles and small imperfections, each liner with its own seed.</p>
+          </div>
+        </div>
+        <p class="mono cap"><span class="hot">Fig. 7</span> — A U-liner and a cross liner in a plain FEFCO 0201, rendered with both add-ons from one script.</p>
+
+        <div class="mypart rv">
+          <div>
+            <span class="mono">Base version</span>
+            <p>A colleague built the first version of the add-on. I worked on top of it.</p>
+          </div>
+          <div>
+            <span class="mono hot">My part</span>
+            <ul>
+              <li>Folding recipes for autolock bottoms (0701) and full-flap boxes (0203)</li>
+              <li>The correct closing of the 0427 mailer</li>
+              <li>Board colour and print options in the render plan</li>
+              <li>A fix for renders that came out too dark</li>
+              <li>A batch package that plans and renders every article in a folder of DXFs</li>
+              <li>The Climaliner add-on, from scratch: paper insulation liners laid in with Geometry Nodes</li>
+            </ul>
+          </div>
+        </div>
       </section>
 
       <!-- ===================== 04 CONCEPTS ===================== -->
