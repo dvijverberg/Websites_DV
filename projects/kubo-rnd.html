@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>KUBO R&amp;D: analyse, build, test — Dion Vijverberg</title>
+  <title>KUBO R&amp;D — Dion Vijverberg</title>
   <meta name="description" content="R&D work at greenhouse builder KUBO: an airflow test on an 85 m hose, a tool redesigned and taken to production, and a heat test on PVC.">
   <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
   <link rel="preload" href="/assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
@@ -11,7 +11,7 @@
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="KUBO R&amp;D: analyse, build, test — Dion Vijverberg">
+  <meta property="og:title" content="KUBO R&amp;D — Dion Vijverberg">
   <meta property="og:description" content="An airflow test on an 85 m hose, a tool redesigned and taken to production, and a heat test on PVC.">
   <meta property="og:url" content="https://websitesdv.vercel.app/projects/kubo-rnd">
   <meta property="og:image" content="https://websitesdv.vercel.app/og.png">
@@ -41,8 +41,8 @@
 
       <div class="p-head">
         <span class="mono"><span class="hot">03</span> — R&amp;D · greenhouse technology</span>
-        <h1>Analyse, build, test: R&amp;D at KUBO</h1>
-        <p class="pitch">An internship and part-time job in the R&amp;D department of greenhouse builder KUBO. No fixed project, just real problems: <strong>an airflow test on an 85 m hose</strong>, a tool I redesigned and took to production, and a prototype built only to understand a risk.</p>
+        <h1>R&amp;D at KUBO</h1>
+        <p class="pitch">Internship and part-time job at the R&amp;D department of greenhouse builder KUBO. I didn't have one fixed project but helped out on several. Below are the three I spent the most time on: an airflow test, redesigning a tool, and a heat test on PVC strips.</p>
       </div>
 
       <div class="spec">
@@ -59,13 +59,13 @@
 
       <!-- ===================== 01 AHU ===================== -->
       <section class="chapter" id="airflow">
-        <div class="sec-head rv"><h2>How much air comes out?</h2><span class="mono">01</span></div>
+        <div class="sec-head rv"><h2>Measuring the airflow of an AHU</h2><span class="mono">01</span></div>
         <div class="lede rv">
           <span class="mono">Test setup · data</span>
           <div>
-            <p>KUBO's Ultra Clima system uses an Air Handling Unit (AHU) per path in the greenhouse: a heating and cooling block with a fan that blows air through a long hose. Growers want to know <strong>how much air goes in</strong>, because that sets how quickly the air in the greenhouse is replaced.</p>
-            <p>This was the biggest project of my internship. We built a test setup around one AHU and an 85 m hose, and ran the fan at different speeds. Airflow can be worked out in more than one way, so we measured several things at once to compare them.</p>
-            <p>Even with a detailed test plan we kept running into surprises, and had to adjust the setup and redo parts of the test. <strong>Testing takes longer than you plan</strong>, and that's the point of it.</p>
+            <p>KUBO's Ultra Clima system has an Air Handling Unit (AHU) for each path in the greenhouse: a heating and cooling block with a fan that blows air through a long hose. Growers want to know how much air goes into the greenhouse (Q), because that tells them how quickly all the air gets replaced.</p>
+            <p>This was the biggest project of my internship. We set up one AHU with an 85 m hose and ran the fan at different speeds. Q can be calculated in a few ways, so we measured several things to compare them afterwards.</p>
+            <p>We had a detailed test plan, but still ran into things we didn't expect. Several times we had to change the setup or redo part of the test.</p>
           </div>
         </div>
         <div class="role-list rv">
@@ -158,12 +158,12 @@
 
       <!-- ===================== 02 TOOL ===================== -->
       <section class="chapter" id="tool">
-        <div class="sec-head rv"><h2>A tool, from lost files to steel</h2><span class="mono">02</span></div>
+        <div class="sec-head rv"><h2>Redesigning a tool</h2><span class="mono">02</span></div>
         <div class="lede rv">
           <span class="mono">Redesign → production</span>
           <div>
-            <p>A greenhouse near the coast in Portugal had a problem: salty air made the aluminium corrode, the corrosion built up pressure, and the glass panes started to break. The temporary fix was to <strong>create more room in the frame</strong> around the glass, using a special tool that pulls part of the profile up when you tighten a bolt.</p>
-            <p>One tool existed. Three more were needed, but the 3D models were gone and the people who made the original had left. What started as "can you get some quotes?" became a project I mostly ran on my own.</p>
+            <p>At a greenhouse near the coast in Portugal, the salty air made the aluminium corrode. The corrosion pushed on the glass until the panes broke. As a temporary fix, the frame around the glass was opened up a little with a special tool: you place it on the profile, tighten a bolt, and it pulls part of the profile up.</p>
+            <p>There was one tool, but three more were needed. The 3D models were lost and the people who made the original no longer worked there. At first I was only asked to get some quotes, but it turned into a redesign that I mostly did on my own.</p>
           </div>
         </div>
         <div class="role-list rv">
@@ -193,13 +193,12 @@
 
       <!-- ===================== 03 PVC ===================== -->
       <section class="chapter" id="pvc">
-        <div class="sec-head rv"><h2>A prototype to understand a risk</h2><span class="mono">03</span></div>
+        <div class="sec-head rv"><h2>Heat test on PVC strips</h2><span class="mono">03</span></div>
         <div class="lede rv">
           <span class="mono">Research · heat test</span>
           <div>
             <p>For a project in Saudi Arabia, another department asked whether the PVC and aluminium parts would cause problems in that climate. In a brainstorm we named three risks: UV, high temperatures and thermal expansion.</p>
-            <p>With a colleague I took on heat. We made a small test setup with the PVC strips that hold the glass, put it in an oven at different temperatures, and looked at flexibility and deformation afterwards. The result: <strong>at high temperatures the PVC quickly loses strength and shape</strong>, so the company knew early to look for alternatives.</p>
-            <p>For me this was new: building a prototype not to test a solution, but to understand the problem.</p>
+            <p>Together with a colleague I looked at heat. We built a small setup with the PVC strips that hold the glass, put it in an oven at different temperatures, and checked flexibility and deformation afterwards. Conclusion: at high temperatures the PVC loses strength and shape quickly, so it's worth looking for alternatives early.</p>
           </div>
         </div>
         <div class="role-list rv">
@@ -215,11 +214,11 @@
 
       <!-- ===================== TAKEAWAY ===================== -->
       <section class="chapter" id="learned">
-        <div class="sec-head rv"><h2>What I took from it</h2><span class="mono">04</span></div>
+        <div class="sec-head rv"><h2>What I learned</h2><span class="mono">04</span></div>
         <ul class="findings">
-          <li class="rv"><h3>Plan for the surprises</h3><p>The airflow test needed more rounds than planned. You test because you can't predict everything, so I now build that time in from the start.</p></li>
-          <li class="rv"><h3>Own the whole route</h3><p>The tool only mattered once it was made, tested and sent out. Modelling it was the easy part; getting it made and working was the job.</p></li>
-          <li class="rv"><h3>Prototype early, and cheaply</h3><p>A 3D print showed whether the tool worked before anyone paid for stainless steel. And a quick oven test showed a risk before it became a problem.</p></li>
+          <li class="rv"><h3>Testing takes time</h3><p>You can't predict everything beforehand, that's why you test. So plan extra time for changing the setup and redoing parts.</p></li>
+          <li class="rv"><h3>Doing the whole thing</h3><p>For the tool I did everything from modelling to quotes, ordering, testing and shipping, mostly on my own.</p></li>
+          <li class="rv"><h3>Prototypes for problems, too</h3><p>Normally I build a prototype to test a design. The oven test was only to understand a risk better, which was new to me.</p></li>
         </ul>
       </section>
 

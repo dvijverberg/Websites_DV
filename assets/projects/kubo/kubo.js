@@ -8,7 +8,7 @@
     const info = {
       1: { t: "Fan current", p: "A current meter on the fan's power supply. The current the fan draws is one way to work out the airflow Q." },
       2: { t: "Pressure over the fan", p: "A Testo sensor measures the difference in static pressure before and after the fan. That is a second way to work out Q." },
-      3: { t: "Pitot tube", p: "A pitot tube in the hose, just after the fan, measures the air that actually moves through it." },
+      3: { t: "Pitot tube", p: "A pitot tube in the hose, just after the fan, measures the air speed in the hose." },
       4: { t: "Pressure along the hose", p: "Measuring points from 10 to 87 m along the hose show how the pressure is spread over its length. The graph below shows those readings." },
     };
     const pts = rig.querySelectorAll(".pt");
@@ -123,15 +123,15 @@
   /* ---------- tool: process steps ---------- */
   const steps = [
     { img: "profile.jpg", alt: "Aluminium profile after deforming", t: "The problem",
-      p: "Corrosion pushes on the glass until it breaks. The tool pulls the aluminium profile up to give the glass room. It buys time for a proper solution." },
-    { img: "dion-cad.jpg", alt: "Me modelling the tool at my desk", t: "Rebuild from scratch",
-      p: "All that was left was an assembly drawing and a few STEP files. I modelled every part again, so changes were easy, and improved the design for function and for production, together with the manufacturer." },
-    { img: "tool-parts.jpg", alt: "The black 3D-printed tool next to bolts and parts", t: "Print it first",
-      p: "Before ordering steel, I 3D printed the tool (the black part) to check that it actually worked." },
-    { img: "tool-closeup.jpg", alt: "Close-up of the stainless steel tool", t: "Get it made",
-      p: "I requested and compared quotes and we chose Xometry, a manufacturer none of us had used before. About three weeks after approval the stainless steel parts arrived." },
+      p: "Corrosion pushes on the glass until it breaks. The tool pulls the profile up so the glass has more room. That buys time for a real solution." },
+    { img: "dion-cad.jpg", alt: "Me modelling the tool at my desk", t: "Modelling it again",
+      p: "We only had an assembly drawing and some STEP files. I modelled all parts again so they were easy to change, and made some improvements to how it works and how it's made, together with the manufacturer." },
+    { img: "tool-parts.jpg", alt: "The black 3D-printed tool next to bolts and parts", t: "3D print",
+      p: "Before ordering the steel parts, I 3D printed the tool (the black part) to check if it worked." },
+    { img: "tool-closeup.jpg", alt: "Close-up of the stainless steel tool", t: "Production",
+      p: "I requested and compared quotes. We went with Xometry, which none of us had used before. The stainless steel parts arrived about three weeks after we approved." },
     { img: "tools.jpg", alt: "Three finished tools", t: "Test and ship",
-      p: "We assembled the tools, tested them and sent them out to the project." },
+      p: "We assembled the tools, tested them and sent them out." },
   ];
   const proc = document.getElementById("process");
   if (proc) {
