@@ -1,0 +1,7 @@
+/* E-bike page: "built end to end" strip */
+.made { margin-top: 56px; }
+.made-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 16px; }
+.made-grid > div { border-top: 1px solid var(--line); padding-top: 14px; }
+.made-grid p { color: var(--dim); font-size: 15px; line-height: 1.55; margin-top: 8px; }
+@media (max-width: 900px) { .made-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .made-grid { grid-template-columns: 1fr; gap: 18px; } }

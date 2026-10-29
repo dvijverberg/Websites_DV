@@ -20,8 +20,8 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#0e0e0d">
   <link rel="stylesheet" href="/assets/styles.css">
-  <script type="importmap">{"imports":{"three":"/assets/vendor/three/three.module.min.js","three/addons/":"/assets/vendor/three/addons/"}}</script>
   <link rel="stylesheet" href="/assets/project.css">
+  <link rel="stylesheet" href="/assets/projects/e-bike/e-bike.css">
 </head>
 <body>
   <div class="wrap">
@@ -68,6 +68,16 @@
         <div><b>€15</b><span class="mono">in electronics for the working prototype</span></div>
       </div>
 
+      <div class="made rv" role="region" aria-label="What I built">
+        <span class="mono">Built end to end · physical and digital</span>
+        <div class="made-grid">
+          <div><span class="mono hot">Research</span><p>Took nine motors apart and interviewed twelve experts to find where they fail.</p></div>
+          <div><span class="mono hot">Hardware</span><p>A rigid sensor stand with a 3D-printed finger that holds the piezo against the housing.</p></div>
+          <div><span class="mono hot">Electronics &amp; code</span><p>Piezo on a Seeeduino XIAO, Python scripts for live plots, RMS, FFT and band energy.</p></div>
+          <div><span class="mono hot">Testing</span><p>Known defects swapped into healthy motors one at a time, then compared with a baseline.</p></div>
+        </div>
+      </div>
+
       <!-- ===================== 01 PROBLEM ===================== -->
       <section class="chapter" id="problem">
         <div class="sec-head rv"><h2>The problem</h2><span class="mono">01</span></div>
@@ -90,18 +100,6 @@
           </div>
         </div>
 
-        <figure class="m3d rv" id="motor3d" data-src="/assets/projects/e-bike/motor.glb">
-          <div class="m3d-stage"><span class="m3d-status mono">Loading 3D model…</span><span class="m3d-hint mono">Drag to rotate</span></div>
-          <div class="m3d-bar">
-            <div class="seg" role="group" aria-label="Show">
-              <button type="button" data-view="both" aria-pressed="true">Both halves</button>
-              <button type="button" data-view="left" aria-pressed="false">Left</button>
-              <button type="button" data-view="right" aria-pressed="false">Right</button>
-            </div>
-            <button type="button" class="m3d-reset mono" data-reset>Reset view</button>
-          </div>
-          <figcaption class="mono" style="margin-top:14px"><span class="hot">Fig. 2</span> — The two casing halves of a mid-drive motor, opened up. Drag to look around.</figcaption>
-        </figure>
 
         <div class="explode rv" id="explode">
           <div class="drawing viz">
@@ -120,7 +118,7 @@
             </div>
             <div class="part-info" aria-live="polite"></div>
           </div>
-          <p class="mono" style="margin-top:14px"><span class="hot">Fig. 3</span> — Generalised mid-drive motor, derived from the teardowns. Failure shares from interviews with revision experts.</p>
+          <p class="mono" style="margin-top:14px"><span class="hot">Fig. 2</span> — Generalised mid-drive motor, derived from the teardowns. Failure shares from interviews with revision experts.</p>
         </div>
 
         <div class="gallery g3">
@@ -194,7 +192,7 @@
             <div class="rms-rows"></div>
           </div>
         </div>
-        <p class="mono" style="margin-top:14px;line-height:1.6"><span class="hot">Fig. 4</span> — RMS and band energy are measured values (thesis table 9.3). The moving signal is a visualisation built from those values, not a raw recording.</p>
+        <p class="mono" style="margin-top:14px;line-height:1.6"><span class="hot">Fig. 3</span> — RMS and band energy are measured values (thesis table 9.3). The moving signal is a visualisation built from those values, not a raw recording.</p>
       </section>
 
       <!-- ===================== 05 FINDINGS ===================== -->
@@ -247,6 +245,5 @@
   </div>
   <script src="/assets/site.js"></script>
   <script src="/assets/projects/e-bike/e-bike.js"></script>
-  <script type="module" src="/assets/js/motor-viewer.js"></script>
 </body>
 </html>
