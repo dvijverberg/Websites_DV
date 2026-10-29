@@ -52,7 +52,7 @@
 .contact-links .mail { justify-self: start; }
 
 /* hero with 3D model */
-.hero.home { grid-template-columns: 1.05fr 1fr; gap: 24px; align-items: center; padding: 72px 0 24px; }
+.hero.home { grid-template-columns: 1.05fr 1fr; gap: 24px; align-items: end; padding: 72px 0 24px; }
 .hero.home h1 { font-size: clamp(56px, 8vw, 112px); }
 .hero-3d { position: relative; }
 .hero-3d .m3d-stage {
@@ -60,7 +60,7 @@
   background: none; overflow: visible;
 }
 .hero-3d .m3d-status { opacity: .6; }
-.hero-3d figcaption { display: flex; justify-content: space-between; gap: 12px; margin-top: -8px; }
+.hero-3d figcaption { display: flex; justify-content: space-between; gap: 12px; }
 .hero-3d figcaption a { text-decoration: none; color: var(--ink); }
 .hero-3d figcaption a:hover { color: var(--hot); }
 @media (max-width: 860px) {
@@ -74,14 +74,17 @@
 .projects .project.soon .top { display: flex; justify-content: space-between; width: 100%; }
 .exp li.earlier .role { font-weight: 500; color: var(--dim); }
 
-/* project cards with thumbnail */
-.project.card-img { min-height: 0; gap: 0; }
-.project .thumb { margin: -22px -22px 18px; aspect-ratio: 16 / 9; overflow: hidden; background: var(--surface); border-bottom: 1px solid var(--faint); }
-.project .thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.8,0,1); }
-.project:hover .thumb img { transform: scale(1.03); }
-.thumb-die { display: grid; place-items: center; padding: 6% 8%; }
+/* Click-Pax dieline as feature visual (placeholder until renders) */
+.feature .img.thumb-die { display: grid; place-items: center; padding: 8% 9%; aspect-ratio: 4 / 3; }
 .thumb-die svg { width: 100%; }
 .thumb-die .t-cut { fill: var(--bg); stroke: var(--ink); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
 .thumb-die .t-crease { fill: none; stroke: var(--hot); stroke-width: 1.5; stroke-dasharray: 6 4; vector-effect: non-scaling-stroke; }
-.project.card-img h3 { padding-top: 14px; margin-top: 0; }
-.project.card-img p { padding-right: 28px; }
+.feature + .feature { margin-top: 20px; }
+.feature.flip { grid-template-columns: 1fr 1.35fr; }
+.feature.flip .img { order: 2; border-left: 1px solid var(--faint); }
+.feature:not(.flip) .img { border-right: 1px solid var(--faint); }
+@media (max-width: 860px) {
+  .feature.flip { grid-template-columns: 1fr; }
+  .feature.flip .img { order: 0; border-left: 0; }
+  .feature .img { border-right: 0 !important; border-bottom: 1px solid var(--faint); }
+}
