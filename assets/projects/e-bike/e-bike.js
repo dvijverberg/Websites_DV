@@ -17,7 +17,7 @@ const PARTS = [
   { x: 67, y: 27, cat: "elec", name: "Torque sensor", text: "Measures how hard the rider pushes. Misalignment or sensor faults trigger error codes." },
   { x: 74, y: 29, cat: "bear", name: "Crankshaft bearing", text: "Every motor has a 'weakest' bearing that tends to fail first. Which one that is, is rarely documented." },
   { x: 73, y: 58, cat: "elec", name: "Motor (rotor + stator)", text: "The electric motor itself. Its rotor runs on bearings that wear just like the others." },
-  { x: 86, y: 47, cat: "mech", name: "Casing half", text: "The second half, often with the electronics side. Opening it requires specific tools and care with seals." },
+  { x: 86, y: 47, cat: "mech", name: "Casing half", text: "The other half. Opening a motor takes the right tools and care not to damage the seals." },
   { x: 93, y: 54, cat: "mech", name: "Screws (TX25)", text: "Reversible connections make disassembly possible. Glued or sealed joints make it much harder." },
 ];
 

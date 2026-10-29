@@ -67,3 +67,8 @@
   .hero.home { grid-template-columns: 1fr; padding-top: 40px; gap: 8px; }
   .hero-3d .m3d-stage { aspect-ratio: 4 / 3; }
 }
+
+/* skills in groups */
+.skill-groups { display: grid; gap: 26px; padding-top: 26px; }
+.skill-groups .skills { padding-top: 10px; }
+.projects .project.soon .top { display: flex; justify-content: space-between; width: 100%; }

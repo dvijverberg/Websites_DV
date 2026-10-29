@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Dion Vijverberg — Product Development Engineer</title>
-  <meta name="description" content="Dion Vijverberg, product development engineer. From idea to something that can actually be made.">
+  <meta name="description" content="Dion Vijverberg, product designer and engineer. I design and build products, physical and digital.">
   <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
   <link rel="preload" href="/assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -12,7 +12,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Dion Vijverberg — Product Development Engineer">
-  <meta property="og:description" content="Product development engineer. I take products from idea to something that can actually be made.">
+  <meta property="og:description" content="Product designer and engineer. I design and build products, physical and digital.">
   <meta property="og:url" content="https://websitesdv.vercel.app/">
   <meta property="og:image" content="https://websitesdv.vercel.app/og.png">
   <meta property="og:image:width" content="1200">
@@ -41,17 +41,17 @@
     <main>
       <div class="hero home">
         <div>
-          <div class="eyebrow"><span class="dot"></span><span class="mono">Open to work — De Lier, NL</span></div>
+          <div class="eyebrow"><span class="dot"></span><span class="mono">Open to work · De Lier, NL</span></div>
           <h1>Dion<br>Vijverberg</h1>
-          <p class="pitch">Product development engineer. I take products from idea to <strong>something that can actually be made.</strong></p>
+          <p class="pitch">Product designer and engineer. I take ideas to <strong>something that can actually be made</strong>, and build the tools that get me there faster.</p>
           <div class="hero-meta">
             <div><span class="mono">Education</span><b>MSc IPD, TU Delft</b></div>
-            <div><span class="mono">Focus</span><b>Concept → Production</b></div>
+            <div><span class="mono">I build</span><b>Hardware · Prototypes · Tools</b></div>
           </div>
         </div>
         <figure class="m3d hero-3d" data-src="/assets/projects/e-bike/motor.glb" data-mode="right" data-tilt="-0.55" data-yaw="-0.5" data-pad="1.35">
           <div class="m3d-stage"><span class="m3d-status mono"></span></div>
-          <figcaption class="mono"><span><span class="hot">Fig. 0</span> — E-bike motor casing · drag to rotate</span><a href="/projects/e-bike-diagnostics">Project →</a></figcaption>
+          <figcaption class="mono"><span>E-bike motor casing · drag to rotate</span><a href="/projects/e-bike-diagnostics">Project →</a></figcaption>
         </figure>
       </div>
 
@@ -72,12 +72,16 @@
           </div>
         </a>
 
-        <div class="projects single">
+        <div class="projects">
           <div class="project soon rv">
-            <span class="mono hot">02</span>
-            <h3>Blender add-ons</h3>
-            <p>Tools I built to speed up product visualisation work.</p>
-            <span class="mono" style="margin-left:auto">Coming soon</span>
+            <div class="top"><span class="mono hot">02</span><span class="mono">In progress</span></div>
+            <h3>Click-Pax: packaging, and the software behind it</h3>
+            <p>Packaging concepts for clients, plus a Blender add-on and tools that turn flat dielines into renders and proposals.</p>
+          </div>
+          <div class="project soon rv">
+            <div class="top"><span class="mono hot">03</span><span class="mono">In progress</span></div>
+            <h3>KUBO R&amp;D: from analysis to tested prototype</h3>
+            <p>Greenhouse technology: finding the problem, building a prototype and testing whether it works.</p>
           </div>
         </div>
       </section>
@@ -85,7 +89,7 @@
       <section id="about">
         <div class="sec-head rv">
           <h2>About</h2>
-          <span class="mono">Hands + head</span>
+          <span class="mono">De Lier, NL</span>
         </div>
         <div class="about">
           <figure class="portrait rv">
@@ -94,7 +98,8 @@
           </figure>
           <div class="about-text rv">
             <p>I like understanding how products work by taking them apart. At eighteen I bought a fifty-year-old Zündapp moped without knowing how a two-stroke engine worked. I've since spent <strong>more time repairing it than riding it.</strong></p>
-            <p>That curiosity runs through my work: from redesigning a tool and taking it to production at KUBO's R&amp;D department, to packaging concepts at Click-Pax and my graduation project on repairable e-bike motors.</p>
+            <p>I still work that way. I'd rather build a rough version and test it than keep drawing. That goes for a sensor setup on a workbench, a tool that has to be made by a supplier, or a piece of software that saves a team hours of repetitive work.</p>
+            <p>More and more of what I build is digital. I write my own Blender add-ons and Python tools, and I use AI as a working partner to get from idea to a working version quickly.</p>
           </div>
         </div>
       </section>
@@ -131,13 +136,15 @@
       <section id="skills">
         <div class="sec-head rv">
           <h2>Toolkit</h2>
-          <span class="mono">What I work with</span>
+          <span class="mono">Physical + digital</span>
         </div>
-        <div class="skills rv">
-          <span>SolidWorks</span><span>Inventor</span><span>Blender</span>
-          <span>Prototyping</span><span>3D printing</span><span>Test setups</span>
-          <span>Data analysis</span><span>Design for manufacturing</span>
-          <span>Concept development</span><span>Circularity &amp; repairability</span>
+        <div class="skill-groups">
+          <div class="rv"><span class="mono">Physical product</span>
+            <div class="skills"><span>Concept development</span><span>SolidWorks</span><span>Inventor</span><span>Design for manufacturing</span><span>Prototyping</span><span>3D printing</span><span>Test setups &amp; measurement</span><span>Circularity &amp; repairability</span></div></div>
+          <div class="rv"><span class="mono">Digital</span>
+            <div class="skills"><span>Blender &amp; rendering</span><span>Blender add-ons</span><span>Python</span><span>Arduino</span><span>Data analysis</span><span>Digital prototyping</span><span>Web prototypes</span></div></div>
+          <div class="rv"><span class="mono">Working with AI</span>
+            <div class="skills"><span>Building tools with AI</span><span>Workflow automation</span><span>Render &amp; document automation</span></div></div>
         </div>
       </section>
 
@@ -147,7 +154,7 @@
           <span class="mono">De Lier, NL</span>
         </div>
         <div class="contact-grid rv">
-          <p class="contact-sub">Open to roles in product development. Feel free to reach out.</p>
+          <p class="contact-sub">Looking for a team that builds its own things, physical, digital or both. Happy to talk.</p>
           <ul class="contact-links">
             <li><span class="mono">Email</span><a class="mail" href="mailto:dionweervijf@gmail.com">dionweervijf@gmail.com <span class="hot">↗</span></a></li>
             <li><span class="mono">LinkedIn</span><a class="mail" href="https://www.linkedin.com/in/dionvijverberg/" target="_blank" rel="noopener">dionvijverberg <span class="hot">↗</span></a></li>
