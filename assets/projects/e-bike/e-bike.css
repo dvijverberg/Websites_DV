@@ -5,3 +5,4 @@
 .made-grid p { color: var(--dim); font-size: 15px; line-height: 1.55; margin-top: 8px; }
 @media (max-width: 900px) { .made-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .made-grid { grid-template-columns: 1fr; gap: 18px; } }
+.beyond { margin-top: 64px; }
