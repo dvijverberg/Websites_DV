@@ -6,3 +6,5 @@
 @media (max-width: 900px) { .made-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .made-grid { grid-template-columns: 1fr; gap: 18px; } }
 .beyond { margin-top: 64px; }
+.concept-scene { max-width: 620px; margin: 40px auto 0; }
+.concept-scene img { width: 100%; height: auto; }
