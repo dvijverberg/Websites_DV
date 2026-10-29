@@ -9,7 +9,7 @@
       1: { t: "Fan current", p: "A current meter on the fan's power supply. The current the fan draws is one way to work out the airflow Q." },
       2: { t: "Pressure over the fan", p: "A Testo sensor measures the difference in static pressure before and after the fan. That is a second way to work out Q." },
       3: { t: "Pitot tube", p: "A pitot tube in the hose, just after the fan, measures the air that actually moves through it." },
-      4: { t: "Pressure along the hose", p: "Measuring points along the 85 m hose show how the pressure is spread over its length. The graph below shows those readings." },
+      4: { t: "Pressure along the hose", p: "Measuring points from 10 to 87 m along the hose show how the pressure is spread over its length. The graph below shows those readings." },
     };
     const pts = rig.querySelectorAll(".pt");
     const groups = rig.querySelectorAll("g[data-m]");
@@ -32,7 +32,7 @@
   }
 
   /* ---------- pressure along the hose ---------- */
-  // Read from Fig. 06 of the internship report: pressure per measuring point (psf_10 ... psf_87) per fan setting.
+  // Read from Fig. 06 of the internship report: static pressure (Pa) at 10 ... 87 m along the hose, per fan speed (%).
   const pos = [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 87];
   const data = {
     30:  [17, 19, 20, 11, 14, 15, 17, 11, 12, 12, 13, 11, 11, 13, 14, 9, 8],
@@ -68,23 +68,26 @@
       const W = Math.max(280, plot.clientWidth - 36);
       const narrow = W < 520;
       const H = narrow ? 230 : 300;
-      const L = 34, R = narrow ? 30 : 40, T = 12, B = 34;
+      const L = 40, R = narrow ? 40 : 46, T = 12, B = 34;
       const x = (i) => L + (pos[i] - pos[0]) / (pos[pos.length - 1] - pos[0]) * (W - L - R);
       const y = (v) => T + (1 - v / 250) * (H - T - B);
 
       plot.innerHTML = "";
-      const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Pressure at each measuring point along the hose, per fan setting" }, plot);
+      const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Static pressure in pascal at each point along the hose, per fan speed" }, plot);
 
       for (let v = 0; v <= 250; v += 50) {
         el("line", { class: "grid", x1: L, x2: W - R + 10, y1: y(v), y2: y(v) }, svg);
         el("text", { class: "axis", x: L - 8, y: y(v) + 4, "text-anchor": "end" }, svg).textContent = v;
+      }
+      {
+        el("text", { class: "axis", x: L + 6, y: y(250) + 14 }, svg).textContent = "Pa";
       }
       pos.forEach((p, i) => {
         if (narrow ? i % 4 !== 0 && i !== pos.length - 1 : i % 2 !== 0 && i !== pos.length - 1) return;
         if (i === pos.length - 2) return;
         el("text", { class: "axis", x: x(i), y: H - B + 18, "text-anchor": "middle" }, svg).textContent = p;
       });
-      el("text", { class: "axis", x: W - R + 10, y: H - 2, "text-anchor": "end" }, svg).textContent = "measuring point along the hose →";
+      el("text", { class: "axis", x: W - R + 10, y: H - 2, "text-anchor": "end" }, svg).textContent = "distance along the hose (m) →";
 
       const order = Object.keys(data).map(Number).sort((a, b) => (a === sel) - (b === sel));
       order.forEach((k) => {
@@ -95,7 +98,7 @@
       });
       data[sel].forEach((v, i) => el("circle", { class: "dot", cx: x(i), cy: y(v), r: narrow ? 2.5 : 3 }, svg));
       const last = data[sel].length - 1;
-      el("text", { class: "tag", x: x(last) + 6, y: y(data[sel][last]) + 4 }, svg).textContent = sel;
+      el("text", { class: "tag", x: x(last) + 6, y: y(data[sel][last]) + 4 }, svg).textContent = sel + "%";
     }
 
     function select(k) {
@@ -104,10 +107,10 @@
       const v = data[k];
       const avg = v.reduce((a, b) => a + b, 0) / v.length;
       const lo = Math.min(...v), hi = Math.max(...v);
-      out.avg.textContent = Math.round(avg);
-      out.lo.textContent = lo;
-      out.hi.textContent = hi;
-      out.note.textContent = `At fan setting ${k}, the readings along the hose stay between ${lo} and ${hi}.`;
+      out.avg.textContent = Math.round(avg) + " Pa";
+      out.lo.textContent = lo + " Pa";
+      out.hi.textContent = hi + " Pa";
+      out.note.textContent = `At ${k}% fan speed, the static pressure along the hose stays between ${lo} and ${hi} Pa.`;
       draw();
     }
 
