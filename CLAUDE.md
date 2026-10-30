@@ -20,7 +20,7 @@ Talk to Dion in Dutch. Site copy is English.
 
 ## Design rules (Dion's wishes)
 - Clean and calm, not loud, not "AI-looking". Short, concrete copy without marketing clichés.
-- Dark by default with a light/dark switch. Dark is neutral (#0e0e0d), never greenish. Accent #ff5b1f, used sparingly.
+- Light by default with a light/dark switch (Dion, 30 Oct 2026). Dark is neutral (#0e0e0d), never greenish. Accent #ff5b1f, used sparingly.
 - Subtle technical-drawing theme: mono labels, "Fig. n —" captions, title block in the footer. Don't add more ornament.
 - Content stays in the centred column (`.wrap`, max 1120px).
 - Line drawings with white backgrounds go in `.drawing` (multiply in light, invert + screen in dark), never on white panels.
